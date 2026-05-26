@@ -1,6 +1,8 @@
 ---
 import '@/styles/global.css';
 import { SITE } from '@lib/constants';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 
 interface Props {
   title: string;
@@ -70,10 +72,10 @@ const fullTitle = title === 'Home' ? `${SITE.name} — ${description}` : `${titl
     <slot name="head" />
   </head>
   <body class="min-h-dvh flex flex-col antialiased">
-    <slot name="header" />
+    <Header />
     <main class="flex-1">
       <slot />
     </main>
-    <slot name="footer" />
+    <Footer />
   </body>
 </html>
