@@ -6,6 +6,7 @@ import SectionHeading from '@components/ui/SectionHeading.astro';
 import ServiceCard from '@components/ui/ServiceCard.astro';
 import Badge from '@components/ui/Badge.astro';
 import Card from '@components/ui/Card.astro';
+import FeaturedProjects from '@components/sections/FeaturedProjects.astro';
 
 const services = [
   {
@@ -74,6 +75,11 @@ const services = [
         <ServiceCard {...service} />
       ))}
     </div>
+  </Section>
+
+  <!-- Portofoliu featured -->
+  <Section>
+    <FeaturedProjects />
   </Section>
 
   <!-- De ce eu -->

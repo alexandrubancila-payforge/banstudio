@@ -1,0 +1,57 @@
+---
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import Badge from '@components/ui/Badge.astro';
+import Button from '@components/ui/Button.astro';
+import { getCollection } from 'astro:content';
+
+const featured = (await getCollection('portofoliu'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6);
+---
+
+{featured.length > 0 && (
+  <div>
+    <SectionHeading
+      title="Proiecte recente"
+      subtitle="O selecție din lucrările mele pentru clienți din Moldova, România și Italia."
+    />
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((project) => (
+        <a
+          href={`/portofoliu/${project.id}`}
+          class="group overflow-hidden rounded-xl border border-neutral-200 bg-white transition-all duration-300 hover:border-primary-200 hover:shadow-medium"
+        >
+          <div class="aspect-video overflow-hidden bg-neutral-100">
+            <img
+              src={project.data.image}
+              alt={project.data.imageAlt}
+              class="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5">
+            <div class="flex flex-wrap gap-2">
+              {project.data.tags.slice(0, 2).map((tag) => (
+                <Badge>{tag}</Badge>
+              ))}
+            </div>
+            <h3 class="mt-3 font-heading text-lg font-bold text-neutral-950 group-hover:text-primary-700">
+              {project.data.title}
+            </h3>
+            <p class="mt-1 text-sm text-neutral-500">
+              {project.data.client}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-10 text-center">
+      <Button href="/portofoliu" variant="secondary">
+        Vezi toate proiectele →
+      </Button>
+    </div>
+  </div>
+)}
