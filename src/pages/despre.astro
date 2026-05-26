@@ -1,0 +1,130 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Button from '@components/ui/Button.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<BaseLayout
+  title="Despre mine"
+  description="Alexandru Bancilă — web developer freelancer din Chișinău, Moldova. Creez site-uri profesionale pentru afaceri din Moldova și România."
+>
+  <Section>
+    <div class="grid items-start gap-12 lg:grid-cols-5">
+      <!-- Foto placeholder -->
+      <div class="lg:col-span-2">
+        <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-100">
+          <div class="flex size-full items-center justify-center text-neutral-300">
+            <svg class="size-24" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="lg:col-span-3">
+        <h1 class="text-display font-heading font-black text-neutral-950">
+          Salut, sunt Alexandru
+        </h1>
+        <div class="mt-6 space-y-4 text-neutral-600">
+          <p>
+            Sunt web developer freelancer din Chișinău, Moldova. De câțiva ani construiesc site-uri web pentru afaceri mici și medii din Moldova, România și din afara țării.
+          </p>
+          <p>
+            Am pornit din curiozitate — voiam să înțeleg cum funcționează internetul. Am rămas din pasiune — fiecare proiect e o provocare nouă, fiecare client are o poveste unică.
+          </p>
+          <p>
+            Cred că un site web bun nu e doar frumos — e rapid, ușor de folosit, apare pe Google și aduce clienți. Asta e standardul pe care îl aplic în fiecare proiect.
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <Button href="/contact" variant="primary" size="lg">
+            Hai să lucrăm împreună
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Valori / Cum lucrez -->
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-black text-neutral-950">Cum lucrez</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Transparent</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Știi exact ce fac, cât durează și cât costă. Fără surprize, fără costuri ascunse. Comunicăm deschis la fiecare pas.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Orientat pe rezultat</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Nu fac site-uri ca să le pun în portofoliu. Le fac ca să funcționeze pentru tine — să aducă clienți, vizibilitate, vânzări.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Atent la detalii</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          De la kerning-ul textului la viteza de încărcare — detaliile fac diferența între un site mediocru și unul excelent.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Disponibil</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Răspund în ore, nu în zile. Vorbești direct cu mine, nu cu un intermediar. Problemele se rezolvă rapid.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Educat continuu</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Tehnologiile web evoluează constant. Investesc timp să rămân la curent cu cele mai bune practici și instrumente.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Responsabil</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Fiecare proiect e reputația mea. De aceea dau tot ce am mai bun, indiferent de dimensiunea proiectului.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <!-- Cifre -->
+  <Section>
+    <div class="grid gap-8 text-center sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { number: '13+', label: 'Proiecte livrate' },
+        { number: '4', label: 'Țări' },
+        { number: '95+', label: 'Scor PageSpeed mediu' },
+        { number: '24h', label: 'Timp de răspuns' },
+      ].map(({ number, label }) => (
+        <div>
+          <p class="font-heading text-4xl font-black text-primary-600">{number}</p>
+          <p class="mt-1 text-sm text-neutral-500">{label}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section background="muted">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-headline font-heading font-black text-neutral-950">
+        Gata de un proiect nou?
+      </h2>
+      <p class="mt-4 text-lg text-neutral-500">
+        Spune-mi despre afacerea ta. Consultanța inițială e gratuită.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href="/contact" variant="primary" size="lg">
+          Contactează-mă
+        </Button>
+        <Button href="/portofoliu" variant="secondary" size="lg">
+          Vezi portofoliul
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
