@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
+import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -21,6 +22,11 @@ const { Content } = await render(project);
   description={project.data.description}
   ogImage={project.data.image}
 >
+  <SchemaBreadcrumb items={[
+    { name: 'Acasă', href: '/' },
+    { name: 'Portofoliu', href: '/portofoliu' },
+    { name: project.data.title, href: `/portofoliu/${project.id}` },
+  ]} />
   <article class="py-section">
     <div class="container">
       <!-- Breadcrumb -->
@@ -78,6 +84,8 @@ const { Content } = await render(project);
           src={project.data.image}
           alt={project.data.imageAlt}
           class="w-full object-cover"
+          loading="eager"
+          decoding="async"
         />
       </div>
 

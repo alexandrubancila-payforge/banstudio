@@ -2,6 +2,8 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Badge from '@components/ui/Badge.astro';
 import Button from '@components/ui/Button.astro';
+import SchemaArticle from '@components/seo/SchemaArticle.astro';
+import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
 
 interface Props {
   title: string;
@@ -20,6 +22,19 @@ const formatDate = (d: Date) =>
 ---
 
 <BaseLayout title={title} description={description} ogImage={image}>
+  <SchemaArticle
+    title={title}
+    description={description}
+    date={date}
+    updated={updated}
+    image={image}
+    url={Astro.url.pathname}
+  />
+  <SchemaBreadcrumb items={[
+    { name: 'Acasă', href: '/' },
+    { name: 'Blog', href: '/blog' },
+    { name: title, href: Astro.url.pathname },
+  ]} />
   <article class="py-section">
     <div class="container">
       <nav class="mb-8 text-sm text-neutral-400" aria-label="Breadcrumb">
@@ -64,6 +79,8 @@ const formatDate = (d: Date) =>
               src={image}
               alt={imageAlt || title}
               class="w-full object-cover"
+              loading="eager"
+              decoding="async"
             />
           </div>
         )}

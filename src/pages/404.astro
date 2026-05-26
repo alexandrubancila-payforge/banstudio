@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+---
+
+<BaseLayout title="Pagina nu a fost găsită" noindex>
+  <section class="py-section">
+    <div class="container">
+      <div class="mx-auto max-w-lg text-center">
+        <p class="text-7xl font-heading font-black text-primary-200">404</p>
+        <h1 class="mt-4 text-headline font-heading font-black text-neutral-950">
+          Pagina nu există
+        </h1>
+        <p class="mt-4 text-lg text-neutral-500">
+          Se pare că pagina pe care o cauți a fost mutată sau nu mai există.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <Button href="/" variant="primary">
+            Înapoi acasă
+          </Button>
+          <Button href="/contact" variant="secondary">
+            Contactează-mă
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

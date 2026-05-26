@@ -1,0 +1,43 @@
+---
+import { SITE } from '@lib/constants';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  founder: {
+    '@type': 'Person',
+    name: SITE.author,
+    jobTitle: 'Web Developer',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Chișinău',
+    addressCountry: 'MD',
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'Moldova' },
+    { '@type': 'Country', name: 'Romania' },
+  ],
+  serviceType: [
+    'Web Development',
+    'Web Design',
+    'WordPress Development',
+    'SEO',
+    'Graphic Design',
+    'Brand Identity',
+  ],
+  priceRange: '€€',
+  email: 'contact@ban.studio',
+  sameAs: [
+    'https://github.com/bancilaalexandru',
+    'https://linkedin.com/in/bancilaalexandru',
+  ],
+  image: `${SITE.url}/og-default.png`,
+  inLanguage: SITE.language,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

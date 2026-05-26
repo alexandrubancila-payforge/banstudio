@@ -1,0 +1,38 @@
+---
+import { SITE } from '@lib/constants';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  updated?: Date;
+  image?: string;
+  url: string;
+}
+
+const { title, description, date, updated, image, url } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: date.toISOString(),
+  ...(updated && { dateModified: updated.toISOString() }),
+  ...(image && { image: `${SITE.url}${image}` }),
+  url: `${SITE.url}${url}`,
+  author: {
+    '@type': 'Person',
+    name: SITE.author,
+    url: SITE.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+  },
+  inLanguage: SITE.language,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -7,6 +7,7 @@ import ServiceCard from '@components/ui/ServiceCard.astro';
 import Badge from '@components/ui/Badge.astro';
 import Card from '@components/ui/Card.astro';
 import FeaturedProjects from '@components/sections/FeaturedProjects.astro';
+import SchemaLocalBusiness from '@components/seo/SchemaLocalBusiness.astro';
 
 const services = [
   {
@@ -43,6 +44,7 @@ const services = [
 ---
 
 <BaseLayout title="Home">
+  <SchemaLocalBusiness />
   <!-- Hero -->
   <section class="py-section">
     <div class="container">
