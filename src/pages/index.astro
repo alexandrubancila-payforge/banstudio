@@ -1,17 +1,28 @@
 ---
-
+import BaseLayout from '@layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home">
+  <section class="container py-section">
+    <h1 class="text-display font-heading font-black text-neutral-950">
+      Ban Studio
+    </h1>
+    <p class="mt-4 max-w-2xl text-lg text-neutral-600">
+      Creare site-uri web profesionale în Chișinău și București.
+    </p>
+    <div class="mt-8 flex gap-4">
+      <a
+        href="/contact"
+        class="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 font-medium text-white transition-colors hover:bg-primary-700"
+      >
+        Solicită o ofertă
+      </a>
+      <a
+        href="/portofoliu"
+        class="inline-flex items-center rounded-lg border border-neutral-300 px-6 py-3 font-medium text-neutral-700 transition-colors hover:bg-neutral-100"
+      >
+        Vezi portofoliul
+      </a>
+    </div>
+  </section>
+</BaseLayout>
