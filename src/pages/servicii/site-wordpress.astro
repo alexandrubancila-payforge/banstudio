@@ -1,0 +1,70 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Site WordPress"
+  description="Site-uri WordPress profesionale cu teme custom, ușor de gestionat. Fără page builders lente — cod curat și performanță reală."
+  badge="Popular"
+  icon="🔧"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">De ce WordPress cu mine</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Temă custom</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Nu folosesc teme cumpărate pline de cod inutil. Construiesc tema de la zero, exact pentru nevoile tale.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Ușor de gestionat</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Panoul de administrare e simplu și intuitiv. Poți modifica texte, imagini și pagini fără cunoștințe tehnice.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Rapid, nu lent</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          WordPress poate fi rapid dacă e făcut corect. Optimizez fiecare aspect — cache, imagini, queries, hosting.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">SEO nativ</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Configurez Yoast/RankMath, schema markup, sitemap și structura URL-urilor pentru vizibilitate maximă pe Google.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Securitate</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Hardening WordPress, firewall, backup automat, actualizări regulate. Site-ul tău e protejat.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Training inclus</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          La predare, te învăț cum să folosești panoul admin. Primești și un ghid scris ca referință.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Ideal pentru</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        { title: 'Afaceri locale', desc: 'Restaurante, saloane, cabinete medicale — care au nevoie de prezență online și actualizări frecvente.' },
+        { title: 'Blog / revistă', desc: 'Publicări regulate de conținut, categorii, autori multipli.' },
+        { title: 'Site cu multe pagini', desc: 'Peste 20 de pagini de conținut care trebuie gestionate ușor de echipa ta.' },
+      ].map(({ title, desc }) => (
+        <div class="rounded-xl border border-neutral-200 bg-white p-6">
+          <h3 class="font-heading text-lg font-bold text-neutral-950">{title}</h3>
+          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

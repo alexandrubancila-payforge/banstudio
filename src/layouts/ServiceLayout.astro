@@ -1,0 +1,71 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import Section from '@components/ui/Section.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  badge: string;
+  icon: string;
+}
+
+const { title, description, badge, icon } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero serviciu -->
+  <section class="py-section">
+    <div class="container">
+      <nav class="mb-8 text-sm text-neutral-400" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-neutral-600">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href="/servicii" class="hover:text-neutral-600">Servicii</a>
+        <span class="mx-2">/</span>
+        <span class="text-neutral-600">{title}</span>
+      </nav>
+
+      <Badge variant="primary">{badge}</Badge>
+      <div class="mt-4 flex items-start gap-4">
+        <span class="hidden text-4xl sm:block" aria-hidden="true">{icon}</span>
+        <div>
+          <h1 class="text-display font-heading font-black text-neutral-950">
+            {title}
+          </h1>
+          <p class="mt-4 max-w-2xl text-lg text-neutral-500 sm:text-xl">
+            {description}
+          </p>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Button href="/contact" variant="primary" size="lg">
+          Solicită o ofertă
+        </Button>
+        <Button href="/portofoliu" variant="secondary">
+          Vezi exemple
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conținut specific serviciu -->
+  <slot />
+
+  <!-- CTA final -->
+  <Section background="muted">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-headline font-heading font-black text-neutral-950">
+        Gata să începem?
+      </h2>
+      <p class="mt-4 text-lg text-neutral-500">
+        Spune-mi despre proiectul tău și primești o ofertă personalizată în 24 de ore.
+      </p>
+      <div class="mt-8">
+        <Button href="/contact" variant="primary" size="lg">
+          Contactează-mă
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

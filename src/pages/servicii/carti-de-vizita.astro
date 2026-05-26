@@ -1,0 +1,67 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Cărți de vizită"
+  description="Design profesional de cărți de vizită care te fac memorabil. Print-ready, multiple variante, livrare rapidă."
+  badge="Design print"
+  icon="🎴"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Ce include pachetul</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">2-3 concepte</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Primești mai multe variante de design din care alegi. Le rafinăm împreună până ești mulțumit.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Față + verso</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Design complet pe ambele fețe. Informații de contact, logo, elemente vizuale — totul aranjat profesional.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Print-ready</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Fișierele sunt pregătite pentru tipografie: CMYK, bleed, 300 DPI. Trimiți direct la print fără ajustări.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Formate multiple</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Primești fișierele în PDF, AI/PSD și PNG. Ai totul pentru print și pentru digital.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Revizii incluse</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Până la 3 runde de modificări incluse în preț. Ajustăm culorile, fonturile sau layout-ul până e perfect.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Livrare rapidă</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Primele concepte în 2-3 zile lucrătoare. Design final în maximum o săptămână.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Combinare recomandată</h2>
+    <p class="mt-4 max-w-2xl text-neutral-500">
+      Cărțile de vizită au cel mai mare impact când fac parte dintr-o identitate vizuală completă. Combină cu serviciul de identitate vizuală pentru un brand coerent.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href="/servicii/identitate-vizuala" class="rounded-xl border border-primary-200 bg-primary-50 p-5 transition-colors hover:bg-primary-100">
+        <h3 class="font-heading font-bold text-primary-700">🎨 Identitate vizuală</h3>
+        <p class="mt-1 text-sm text-primary-600/70">Logo + culori + tipografie + cărți de vizită</p>
+      </a>
+    </div>
+  </Section>
+</ServiceLayout>

@@ -1,0 +1,73 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Redesign site"
+  description="Transformă un site vechi într-unul modern, rapid și care aduce clienți. Păstrăm ce funcționează, îmbunătățim tot restul."
+  badge="Modernizare"
+  icon="✨"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Semne că ai nevoie de redesign</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      {[
+        'Site-ul se încarcă greu (peste 3 secunde)',
+        'Nu arată bine pe telefon',
+        'Designul arată depășit (mai vechi de 3-4 ani)',
+        'Nu apari pe Google pentru serviciile tale',
+        'Vizitatorii pleacă fără să te contacteze',
+        'Nu poți actualiza conținutul ușor',
+      ].map((sign) => (
+        <div class="flex items-start gap-3 rounded-lg border border-neutral-200 bg-white p-4">
+          <span class="mt-0.5 text-accent-500">✗</span>
+          <p class="text-sm text-neutral-700">{sign}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Ce fac diferit</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Audit complet</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Analizez site-ul actual: performanță, SEO, UX, conținut. Identific exact ce trebuie schimbat și ce merită păstrat.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Migrare fără pierderi</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Păstrez URL-urile existente sau setez redirect-uri 301. Zero pierderi de trafic și poziții SEO.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Rezultate măsurabile</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Compar metricile înainte și după: PageSpeed, Core Web Vitals, bounce rate, conversii. Vezi diferența concret.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Procesul de redesign</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { step: '01', title: 'Audit', desc: 'Analizez site-ul actual, identific problemele și oportunitățile.' },
+        { step: '02', title: 'Strategie', desc: 'Planificăm structura nouă, conținutul și obiectivele.' },
+        { step: '03', title: 'Redesign', desc: 'Creez noul design și dezvolt site-ul pe o tehnologie modernă.' },
+        { step: '04', title: 'Migrare', desc: 'Lansez noul site cu redirect-uri, testare completă și monitorizare.' },
+      ].map(({ step, title, desc }) => (
+        <div>
+          <span class="font-heading text-3xl font-black text-primary-200">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-neutral-950">{title}</h3>
+          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

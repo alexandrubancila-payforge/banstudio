@@ -1,0 +1,86 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Creare site web"
+  description="Site-uri web profesionale construite în cod, cu design unic, performanță excelentă și SEO optimizat. Astro, Next.js, HTML/CSS."
+  badge="Serviciu principal"
+  icon="💻"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Ce primești</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Design unic</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Fiecare site e proiectat de la zero pentru afacerea ta. Fără template-uri generice — designul reflectă brandul tău.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Performanță 95+</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Cod curat, imagini optimizate, zero bloat. Scor PageSpeed 95-100 pe mobil și desktop — Google te premiază.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">SEO integrat</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Meta tags, schema markup, sitemap, Core Web Vitals — totul e optimizat din start ca să fii găsit pe Google.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Responsive perfect</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Site-ul arată impecabil pe telefon, tabletă și desktop. Mobile-first approach — pentru că 70%+ din trafic vine de pe mobil.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Securitate</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Site static = zero vulnerabilități de server. HTTPS, headers de securitate, protecție completă.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Hosting inclus</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Te ajut cu deploy-ul pe Cloudflare Pages sau Vercel — hosting rapid, gratuit, cu CDN global.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Procesul de lucru</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { step: '01', title: 'Descoperire', desc: 'Înțeleg afacerea ta, publicul țintă și obiectivele site-ului.' },
+        { step: '02', title: 'Design', desc: 'Creez mockup-uri și le rafinăm împreună până sunt perfecte.' },
+        { step: '03', title: 'Dezvoltare', desc: 'Construiesc site-ul în cod cu focus pe performanță și SEO.' },
+        { step: '04', title: 'Lansare', desc: 'Testare finală, deploy, și suport post-lansare inclus.' },
+      ].map(({ step, title, desc }) => (
+        <div>
+          <span class="font-heading text-3xl font-black text-primary-200">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-neutral-950">{title}</h3>
+          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Tehnologii pe care le folosesc</h2>
+    <p class="mt-4 max-w-2xl text-neutral-500">
+      Aleg tehnologia potrivită pentru fiecare proiect. Site de prezentare? Astro. Aplicație interactivă? Next.js. Landing page simplă? HTML/CSS pur.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      {['Astro', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML/CSS', 'JavaScript', 'Cloudflare Pages', 'Vercel'].map((tech) => (
+        <span class="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700">
+          {tech}
+        </span>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

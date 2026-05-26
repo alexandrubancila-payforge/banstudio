@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/ui/Section.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ServiceCard from '@components/ui/ServiceCard.astro';
+import Button from '@components/ui/Button.astro';
+
+const services = [
+  {
+    title: 'Creare site web în cod',
+    description: 'Site-uri rapide, optimizate SEO, construite cu tehnologii moderne — Astro, Next.js, HTML/CSS. Fără template-uri, fiecare proiect e unic.',
+    icon: '💻',
+    href: '/servicii/creare-site-web',
+  },
+  {
+    title: 'Site WordPress',
+    description: 'Site-uri WordPress profesionale cu teme custom, pe care le poți gestiona singur. Fără page builders lente.',
+    icon: '🔧',
+    href: '/servicii/site-wordpress',
+  },
+  {
+    title: 'Redesign site',
+    description: 'Transformă un site vechi într-unul modern, rapid și care aduce clienți. Păstrăm ce funcționează, îmbunătățim restul.',
+    icon: '✨',
+    href: '/servicii/redesign-site',
+  },
+  {
+    title: 'Cărți de vizită',
+    description: 'Design profesional care te face memorabil. Print-ready, livrare rapidă, multiple variante de ales.',
+    icon: '🎴',
+    href: '/servicii/carti-de-vizita',
+  },
+  {
+    title: 'Identitate vizuală',
+    description: 'Logo, paletă de culori, tipografie, ghid de brand — tot ce ai nevoie ca brandul tău să arate coerent și profesional.',
+    icon: '🎨',
+    href: '/servicii/identitate-vizuala',
+  },
+];
+---
+
+<BaseLayout
+  title="Servicii"
+  description="Servicii profesionale de web development și design: creare site-uri, WordPress, redesign, cărți de vizită, identitate vizuală."
+>
+  <Section>
+    <SectionHeading
+      title="Servicii"
+      subtitle="De la un site simplu de prezentare la o platformă complexă cu e-commerce. Alege ce ai nevoie sau contactează-mă pentru o soluție personalizată."
+      as="h1"
+    />
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <ServiceCard {...service} />
+      ))}
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-headline font-heading font-black text-neutral-950">
+        Nu ești sigur ce ai nevoie?
+      </h2>
+      <p class="mt-4 text-lg text-neutral-500">
+        Spune-mi despre afacerea ta și te ajut să alegi soluția potrivită. Consultanța inițială e gratuită.
+      </p>
+      <div class="mt-8">
+        <Button href="/contact" variant="primary" size="lg">
+          Contactează-mă gratuit
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
