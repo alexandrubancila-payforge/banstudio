@@ -1,6 +1,6 @@
 export const SITE = {
   name: 'Ban Studio',
-  url: 'https://ban.studio',
+  url: 'https://banstudio.dev',
   description:
     'Creare site-uri web profesionale în Chișinău și București. Design modern, performanță excelentă, SEO optimizat.',
   author: 'Alexandru Bancilă',

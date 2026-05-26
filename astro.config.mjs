@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   // Schimbă cu domeniul tău real înainte de deploy
-  site: 'https://ban.studio',
+  site: 'https://banstudio.dev',
 
   // URL-uri fără trailing slash: /servicii nu /servicii/
   trailingSlash: 'never',
