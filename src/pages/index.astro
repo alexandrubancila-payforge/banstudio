@@ -1,28 +1,130 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import Section from '@components/ui/Section.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ServiceCard from '@components/ui/ServiceCard.astro';
+import Badge from '@components/ui/Badge.astro';
+import Card from '@components/ui/Card.astro';
+
+const services = [
+  {
+    title: 'Site web în cod',
+    description: 'Site-uri rapide, optimizate SEO, construite cu tehnologii moderne. Fără template-uri — fiecare proiect e unic.',
+    icon: '💻',
+    href: '/servicii/creare-site-web',
+  },
+  {
+    title: 'Site WordPress',
+    description: 'Site-uri WordPress profesionale pe care le poți gestiona singur. Teme custom, nu page builders lente.',
+    icon: '🔧',
+    href: '/servicii/site-wordpress',
+  },
+  {
+    title: 'Redesign site',
+    description: 'Transformă un site vechi într-unul modern, rapid și care aduce clienți. Păstrăm ce funcționează, îmbunătățim restul.',
+    icon: '✨',
+    href: '/servicii/redesign-site',
+  },
+  {
+    title: 'Cărți de vizită',
+    description: 'Design profesional care te face memorabil. Print-ready, livrare rapidă.',
+    icon: '🎴',
+    href: '/servicii/carti-de-vizita',
+  },
+  {
+    title: 'Identitate vizuală',
+    description: 'Logo, paletă de culori, tipografie — tot ce ai nevoie ca brandul tău să arate coerent și profesional.',
+    icon: '🎨',
+    href: '/servicii/identitate-vizuala',
+  },
+];
 ---
 
 <BaseLayout title="Home">
-  <section class="container py-section">
-    <h1 class="text-display font-heading font-black text-neutral-950">
-      Ban Studio
-    </h1>
-    <p class="mt-4 max-w-2xl text-lg text-neutral-600">
-      Creare site-uri web profesionale în Chișinău și București.
-    </p>
-    <div class="mt-8 flex flex-wrap gap-3 sm:gap-4">
-      <a
-        href="/contact"
-        class="inline-flex items-center whitespace-nowrap rounded-lg bg-primary-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-700 sm:px-6 sm:text-base"
-      >
-        Solicită o ofertă
-      </a>
-      <a
-        href="/portofoliu"
-        class="inline-flex items-center whitespace-nowrap rounded-lg border border-neutral-300 px-5 py-3 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-100 sm:px-6 sm:text-base"
-      >
-        Vezi portofoliul
-      </a>
+  <!-- Hero -->
+  <section class="py-section">
+    <div class="container">
+      <Badge variant="primary">Disponibil pentru proiecte noi</Badge>
+      <h1 class="mt-5 max-w-3xl text-display font-heading font-black text-neutral-950">
+        Creez site-uri web care <span class="text-primary-600">aduc rezultate</span>
+      </h1>
+      <p class="mt-5 max-w-xl text-lg text-neutral-500 sm:text-xl">
+        Web developer freelancer în Chișinău. Design modern, cod curat, performanță excelentă — site-ul tău merită mai mult decât un template.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 sm:gap-4">
+        <Button href="/contact" variant="primary" size="lg">
+          Solicită o ofertă
+        </Button>
+        <Button href="/portofoliu" variant="secondary" size="lg">
+          Vezi portofoliul
+        </Button>
+      </div>
     </div>
   </section>
+
+  <!-- Servicii -->
+  <Section background="muted">
+    <SectionHeading
+      title="Servicii"
+      subtitle="De la idee la un site care lucrează pentru tine. Alege ce ai nevoie."
+    />
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <ServiceCard {...service} />
+      ))}
+    </div>
+  </Section>
+
+  <!-- De ce eu -->
+  <Section>
+    <SectionHeading
+      title="De ce să lucrezi cu mine"
+      subtitle="Nu sunt o agenție cu 50 de oameni. Sunt o singură persoană care-ți dă toată atenția."
+      align="center"
+    />
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <p class="text-2xl" aria-hidden="true">⚡</p>
+        <h3 class="mt-3 font-heading text-lg font-bold text-neutral-950">Rapid</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Site-uri cu scor 95+ pe PageSpeed. Fiecare milisecundă contează pentru conversii și SEO.
+        </p>
+      </Card>
+      <Card hover>
+        <p class="text-2xl" aria-hidden="true">🎯</p>
+        <h3 class="mt-3 font-heading text-lg font-bold text-neutral-950">Focusat pe rezultate</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Nu fac site-uri frumoase și atât. Fac site-uri care aduc clienți, vânzări și vizibilitate.
+        </p>
+      </Card>
+      <Card hover>
+        <p class="text-2xl" aria-hidden="true">💬</p>
+        <h3 class="mt-3 font-heading text-lg font-bold text-neutral-950">Comunicare directă</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Vorbești direct cu mine, nu cu un manager de proiect. Răspuns rapid, zero birocrație.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section background="muted">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-headline font-heading font-black text-neutral-950">
+        Hai să construim ceva împreună
+      </h2>
+      <p class="mt-4 text-lg text-neutral-500">
+        Spune-mi despre proiectul tău și îți trimit o ofertă personalizată în 24 de ore.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href="/contact" variant="primary" size="lg">
+          Contactează-mă
+        </Button>
+        <Button href="/servicii" variant="ghost" size="lg">
+          Vezi toate serviciile
+        </Button>
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

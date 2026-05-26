@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'a'> {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href: string;
+}
+
+const { variant = 'primary', size = 'md', href, class: className, ...rest } = Astro.props;
+
+const baseClasses =
+  'inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500';
+
+const variants = {
+  primary: 'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800',
+  secondary:
+    'border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 hover:border-neutral-400 active:bg-neutral-100',
+  ghost: 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900',
+} as const;
+
+const sizes = {
+  sm: 'px-3.5 py-2 text-sm gap-1.5',
+  md: 'px-5 py-2.5 text-sm sm:px-6 sm:py-3 sm:text-base gap-2',
+  lg: 'px-7 py-3.5 text-base sm:text-lg gap-2.5',
+} as const;
+---
+
+<a
+  href={href}
+  class:list={[baseClasses, variants[variant], sizes[size], className]}
+  {...rest}
+>
+  <slot />
+</a>
