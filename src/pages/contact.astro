@@ -141,6 +141,13 @@ import { SITE, SOCIAL_LINKS } from '@lib/constants';
 
       <!-- Formular -->
       <div class="lg:col-span-3">
+        <!-- Succes / Eroare mesaj — apare deasupra formularului -->
+        <div id="form-success" class="mb-4 hidden rounded-lg bg-green-50 p-4 text-sm text-green-700">
+          Mulțumesc! Mesajul tău a fost trimis. Te contactez în maximum 24 de ore.
+        </div>
+        <div id="form-error" class="mb-4 hidden rounded-lg bg-red-50 p-4 text-sm text-red-700">
+          A apărut o eroare. Te rog trimite un email direct la sasa.bancila@gmail.com.
+        </div>
         <form
           id="contact-form"
           action="https://api.web3forms.com/submit"
@@ -182,6 +189,20 @@ import { SITE, SOCIAL_LINKS } from '@lib/constants';
                   placeholder="ion@exemplu.md"
                 />
               </div>
+            </div>
+
+            <div>
+              <label for="phone" class="block text-sm font-medium text-neutral-700">
+                Telefon
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                autocomplete="tel"
+                class="mt-1.5 w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-neutral-900 transition-colors placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+                placeholder="+373 69 123 456"
+              />
             </div>
 
             <div>
@@ -244,13 +265,6 @@ import { SITE, SOCIAL_LINKS } from '@lib/constants';
           </div>
         </form>
 
-        <!-- Succes / Eroare mesaj -->
-        <div id="form-success" class="mt-4 hidden rounded-lg bg-green-50 p-4 text-sm text-green-700">
-          Mulțumesc! Mesajul tău a fost trimis. Te contactez în maximum 24 de ore.
-        </div>
-        <div id="form-error" class="mt-4 hidden rounded-lg bg-red-50 p-4 text-sm text-red-700">
-          A apărut o eroare. Te rog trimite un email direct la sasa.bancila@gmail.com.
-        </div>
       </div>
     </div>
   </Section>
@@ -276,12 +290,14 @@ import { SITE, SOCIAL_LINKS } from '@lib/constants';
 
       if (res.ok) {
         form.reset();
-        form.classList.add('hidden');
+        errorEl.classList.add('hidden');
         successEl.classList.remove('hidden');
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } else {
         throw new Error('Submit failed');
       }
     } catch {
+      successEl.classList.add('hidden');
       errorEl.classList.remove('hidden');
     } finally {
       submitBtn.textContent = originalText;

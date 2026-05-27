@@ -3,7 +3,7 @@ title: "Jurist Chișinău — Cabinet de Avocatură"
 description: "Site pentru cabinet de avocatură din Chișinău cu prezentare servicii juridice și consultanță online."
 client: "JuristPro Chișinău"
 date: 2023-10-01
-image: "/images/portofoliu/jurist-chisinau.jpg"
+image: "/images/portofoliu/jurist-chisinau.webp"
 imageAlt: "Screenshot site Jurist Chișinău cu pagina de servicii juridice"
 tags: ["Juridic", "Multi-page", "SEO local"]
 url: "https://juristchisinau.md/"

@@ -3,7 +3,7 @@ title: "Alpinism Utilitar — Lucrări la Înălțime"
 description: "Landing page pentru servicii profesionale de alpinism utilitar și lucrări la înălțime în România și Moldova."
 client: "Alpinism Utilitar"
 date: 2023-06-01
-image: "/images/portofoliu/alpinism-utilitar.jpg"
+image: "/images/portofoliu/alpinism-utilitar.webp"
 imageAlt: "Screenshot site Alpinism Utilitar cu prezentarea serviciilor de lucrări la înălțime"
 tags: ["Servicii", "Landing page", "Nișă"]
 url: "https://alpinism-utilitar.pro/"

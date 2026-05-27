@@ -33,6 +33,9 @@ const projects = (await getCollection('portofoliu'))
             <img
               src={project.data.image}
               alt={project.data.imageAlt}
+              width="800"
+              height="450"
+              decoding="async"
               class="size-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />

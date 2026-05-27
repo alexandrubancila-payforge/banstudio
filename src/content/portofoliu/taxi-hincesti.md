@@ -3,7 +3,7 @@ title: "Taxi Hîncești — Serviciu de Taxi"
 description: "Landing page pentru serviciul de taxi din Hîncești, cu comandă rapidă și acoperire locală + intercity."
 client: "Taxi Hîncești"
 date: 2024-05-01
-image: "/images/portofoliu/taxi-hincesti.jpg"
+image: "/images/portofoliu/taxi-hincesti.webp"
 imageAlt: "Screenshot site Taxi Hîncești cu formularul de comandă taxi"
 tags: ["Transport", "Landing page", "SEO local"]
 url: "https://taxihincesti.md/"

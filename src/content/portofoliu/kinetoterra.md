@@ -3,7 +3,7 @@ title: "KinetoTerra — Centru de Kinetoterapie"
 description: "Site complet pentru centrul de recuperare medicală KinetoTerra din Chișinău, cu 13+ ani de experiență."
 client: "KinetoTerra"
 date: 2024-04-01
-image: "/images/portofoliu/kinetoterra.jpg"
+image: "/images/portofoliu/kinetoterra.webp"
 imageAlt: "Screenshot site KinetoTerra cu pagina de servicii de kinetoterapie"
 tags: ["Medical", "Multi-page", "SEO"]
 url: "https://kinetoterra.md/"

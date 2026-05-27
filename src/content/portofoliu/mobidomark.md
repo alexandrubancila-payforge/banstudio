@@ -3,7 +3,7 @@ title: "Mobidomark — Mobilă la Comandă"
 description: "Site de prezentare pentru companie de design și producție mobilă la comandă — bucătării, dulapuri, mobilier."
 client: "Mobidomark"
 date: 2023-11-01
-image: "/images/portofoliu/mobidomark.jpg"
+image: "/images/portofoliu/mobidomark.webp"
 imageAlt: "Screenshot site Mobidomark cu pagina de portofoliu mobilier la comandă"
 tags: ["Mobilier", "Portofoliu", "Multi-page"]
 url: "https://mobidomark.md/"

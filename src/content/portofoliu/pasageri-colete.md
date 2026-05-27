@@ -3,7 +3,7 @@ title: "Pasageri & Colete — Transport Internațional"
 description: "Landing page pentru serviciu de transport pasageri și colete pe ruta Moldova — Germania — Olanda — Belgia."
 client: "Pasageri-Colete"
 date: 2023-12-01
-image: "/images/portofoliu/pasageri-colete.jpg"
+image: "/images/portofoliu/pasageri-colete.webp"
 imageAlt: "Screenshot site Pasageri Colete cu rutele de transport internațional"
 tags: ["Transport", "Landing page", "Internațional"]
 url: "https://pasageri-colete.com/"

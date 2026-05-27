@@ -3,7 +3,7 @@ title: "Spiridon Vangheli — Platformă Literară"
 description: "Platformă digitală dedicată moștenirii literare a scriitorului Spiridon Vangheli, cu magazin online de cărți."
 client: "Fundația Spiridon Vangheli"
 date: 2024-06-01
-image: "/images/portofoliu/spiridon-vangheli.jpg"
+image: "/images/portofoliu/spiridon-vangheli.webp"
 imageAlt: "Screenshot platformă Spiridon Vangheli cu pagina principală și magazinul de cărți"
 tags: ["E-commerce", "Cultură", "Multi-page"]
 url: "https://spiridon-vangheli.md/"

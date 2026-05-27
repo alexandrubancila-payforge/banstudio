@@ -3,7 +3,7 @@ title: "Avocat Pro — Servicii Juridice"
 description: "Site de prezentare pentru firmă de servicii juridice profesionale din Chișinău, cu consultanță și reprezentare."
 client: "Avocat Pro"
 date: 2023-08-01
-image: "/images/portofoliu/avocat-pro.jpg"
+image: "/images/portofoliu/avocat-pro.webp"
 imageAlt: "Screenshot site Avocat Pro cu pagina de servicii juridice"
 tags: ["Juridic", "Multi-page", "SEO"]
 url: "https://avocatpro.md/"

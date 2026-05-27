@@ -12,6 +12,11 @@ export default defineConfig({
 
   integrations: [sitemap()],
 
+  // Inline tot CSS-ul — elimină render-blocking stylesheet
+  build: {
+    inlineStylesheets: 'always',
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

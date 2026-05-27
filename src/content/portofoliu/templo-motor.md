@@ -3,7 +3,7 @@ title: "Templo Motor — Service Auto"
 description: "Landing page one-page pentru service auto profesional. Design în limba spaniolă cu secțiuni ancorate."
 client: "Templo Motor"
 date: 2023-09-01
-image: "/images/portofoliu/templo-motor.jpg"
+image: "/images/portofoliu/templo-motor.webp"
 imageAlt: "Screenshot site Templo Motor cu pagina de servicii auto"
 tags: ["Auto", "Landing page", "Spaniolă"]
 url: "https://templo-motor.com/"
