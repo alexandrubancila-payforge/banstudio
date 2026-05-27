@@ -1,0 +1,232 @@
+---
+/**
+ * Mockup de telefon pur CSS cu un mini-website în interior.
+ * Zero imagini externe — totul e HTML/CSS inline.
+ */
+---
+
+<div class="phone-mockup">
+  <div class="phone-frame">
+    <!-- Notch -->
+    <div class="phone-notch"></div>
+    <!-- Screen -->
+    <div class="phone-screen">
+      <!-- Mini website inside -->
+      <div class="mini-site">
+        <!-- Nav -->
+        <div class="mini-nav">
+          <div class="mini-logo"></div>
+          <div class="mini-nav-links">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+        <!-- Hero -->
+        <div class="mini-hero">
+          <div class="mini-badge"></div>
+          <div class="mini-heading"></div>
+          <div class="mini-heading short"></div>
+          <div class="mini-text"></div>
+          <div class="mini-text short"></div>
+          <div class="mini-buttons">
+            <div class="mini-btn primary"></div>
+            <div class="mini-btn secondary"></div>
+          </div>
+        </div>
+        <!-- Cards section -->
+        <div class="mini-section">
+          <div class="mini-section-title"></div>
+          <div class="mini-cards">
+            <div class="mini-card">
+              <div class="mini-card-icon"></div>
+              <div class="mini-card-line"></div>
+              <div class="mini-card-line short"></div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-icon"></div>
+              <div class="mini-card-line"></div>
+              <div class="mini-card-line short"></div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-icon"></div>
+              <div class="mini-card-line"></div>
+              <div class="mini-card-line short"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .phone-mockup {
+    display: flex;
+    justify-content: center;
+  }
+
+  .phone-frame {
+    position: relative;
+    width: 260px;
+    height: 530px;
+    background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow:
+      0 25px 60px oklch(0 0 0 / 0.2),
+      0 8px 20px oklch(0 0 0 / 0.1),
+      inset 0 1px 0 oklch(1 0 0 / 0.1);
+  }
+
+  .phone-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 24px;
+    background: #1a1a1a;
+    border-radius: 0 0 16px 16px;
+    z-index: 10;
+  }
+
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  .mini-site {
+    padding: 36px 16px 16px;
+    height: 100%;
+  }
+
+  /* Mini nav */
+  .mini-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .mini-logo {
+    width: 48px;
+    height: 8px;
+    background: oklch(0.10 0.004 155);
+    border-radius: 4px;
+  }
+  .mini-nav-links {
+    display: flex;
+    gap: 6px;
+  }
+  .mini-nav-links span {
+    display: block;
+    width: 20px;
+    height: 5px;
+    background: oklch(0.82 0.004 155);
+    border-radius: 3px;
+  }
+
+  /* Mini hero */
+  .mini-hero {
+    margin-bottom: 20px;
+  }
+  .mini-badge {
+    width: 60px;
+    height: 10px;
+    background: oklch(0.93 0.03 155);
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  .mini-heading {
+    height: 12px;
+    background: oklch(0.10 0.004 155);
+    border-radius: 4px;
+    margin-bottom: 6px;
+    width: 100%;
+  }
+  .mini-heading.short {
+    width: 65%;
+  }
+  .mini-text {
+    height: 6px;
+    background: oklch(0.82 0.004 155);
+    border-radius: 3px;
+    margin-bottom: 4px;
+    margin-top: 10px;
+    width: 90%;
+  }
+  .mini-text.short {
+    width: 60%;
+    margin-top: 0;
+  }
+  .mini-buttons {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .mini-btn {
+    height: 16px;
+    border-radius: 6px;
+  }
+  .mini-btn.primary {
+    width: 60px;
+    background: oklch(0.47 0.17 155);
+  }
+  .mini-btn.secondary {
+    width: 50px;
+    background: transparent;
+    border: 1px solid oklch(0.82 0.004 155);
+  }
+
+  /* Mini section */
+  .mini-section {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid oklch(0.95 0.004 155);
+  }
+  .mini-section-title {
+    width: 50px;
+    height: 9px;
+    background: oklch(0.10 0.004 155);
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .mini-cards {
+    display: flex;
+    gap: 6px;
+  }
+  .mini-card {
+    flex: 1;
+    background: oklch(0.98 0.004 155);
+    border: 1px solid oklch(0.90 0.004 155);
+    border-radius: 8px;
+    padding: 8px;
+  }
+  .mini-card-icon {
+    width: 16px;
+    height: 16px;
+    background: oklch(0.93 0.03 155);
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .mini-card-line {
+    height: 4px;
+    background: oklch(0.82 0.004 155);
+    border-radius: 2px;
+    margin-bottom: 3px;
+    width: 100%;
+  }
+  .mini-card-line.short {
+    width: 60%;
+    margin-bottom: 0;
+  }
+
+  /* Responsive */
+  @media (min-width: 640px) {
+    .phone-frame {
+      width: 280px;
+      height: 570px;
+    }
+  }
+</style>

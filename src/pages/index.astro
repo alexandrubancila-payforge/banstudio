@@ -7,6 +7,7 @@ import ServiceCard from '@components/ui/ServiceCard.astro';
 import Badge from '@components/ui/Badge.astro';
 import Card from '@components/ui/Card.astro';
 import FeaturedProjects from '@components/sections/FeaturedProjects.astro';
+import PhoneMockup from '@components/ui/PhoneMockup.astro';
 import SchemaLocalBusiness from '@components/seo/SchemaLocalBusiness.astro';
 
 const services = [
@@ -43,20 +44,29 @@ const services = [
   <!-- Hero -->
   <section class="py-section">
     <div class="container">
-      <Badge variant="primary">Disponibil pentru proiecte noi</Badge>
-      <h1 class="mt-5 max-w-3xl text-display font-heading font-black text-neutral-950">
-        Creez site-uri web care <span class="text-primary-600">aduc rezultate</span>
-      </h1>
-      <p class="mt-5 max-w-xl text-lg text-neutral-500 sm:text-xl">
-        Web developer freelancer în Chișinău. Design modern, cod curat, performanță excelentă — site-ul tău merită mai mult decât un template.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-3 sm:gap-4">
-        <Button href="/contact" variant="primary" size="lg">
-          Solicită o ofertă
-        </Button>
-        <Button href="/portofoliu" variant="secondary" size="lg">
-          Vezi portofoliul
-        </Button>
+      <div class="flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between">
+        <!-- Text -->
+        <div class="max-w-2xl lg:max-w-xl">
+          <Badge variant="primary">Disponibil pentru proiecte noi</Badge>
+          <h1 class="mt-5 text-display font-heading font-black text-neutral-950">
+            Creez site-uri web care <span class="text-primary-600">aduc rezultate</span>
+          </h1>
+          <p class="mt-5 max-w-xl text-lg text-neutral-500 sm:text-xl">
+            Web developer freelancer în Chișinău. Design modern, cod curat, performanță excelentă — site-ul tău merită mai mult decât un template.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3 sm:gap-4">
+            <Button href="/contact" variant="primary" size="lg">
+              Solicită o ofertă
+            </Button>
+            <Button href="/portofoliu" variant="secondary" size="lg">
+              Vezi portofoliul
+            </Button>
+          </div>
+        </div>
+        <!-- Phone mockup -->
+        <div class="hidden lg:block">
+          <PhoneMockup />
+        </div>
       </div>
     </div>
   </section>
