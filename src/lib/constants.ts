@@ -17,7 +17,7 @@ export const NAV_LINKS = [
 ] as const;
 
 export const SOCIAL_LINKS = {
-  github: 'https://github.com/bancilaalexandru',
-  linkedin: 'https://linkedin.com/in/bancilaalexandru',
+  github: 'https://github.com/Bancila07',
+  linkedin: 'https://www.linkedin.com/in/b%C4%83ncil%C4%83-alexandru-5247b6223/',
   instagram: '',
 } as const;
