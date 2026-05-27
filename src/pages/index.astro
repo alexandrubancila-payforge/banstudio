@@ -13,31 +13,26 @@ const services = [
   {
     title: 'Site web în cod',
     description: 'Site-uri rapide, optimizate SEO, construite cu tehnologii moderne. Fără template-uri — fiecare proiect e unic.',
-    icon: '💻',
     href: '/servicii/creare-site-web',
   },
   {
     title: 'Site WordPress',
     description: 'Site-uri WordPress profesionale pe care le poți gestiona singur. Teme custom, nu page builders lente.',
-    icon: '🔧',
     href: '/servicii/site-wordpress',
   },
   {
     title: 'Redesign site',
     description: 'Transformă un site vechi într-unul modern, rapid și care aduce clienți. Păstrăm ce funcționează, îmbunătățim restul.',
-    icon: '✨',
     href: '/servicii/redesign-site',
   },
   {
     title: 'Cărți de vizită',
     description: 'Design profesional care te face memorabil. Print-ready, livrare rapidă.',
-    icon: '🎴',
     href: '/servicii/carti-de-vizita',
   },
   {
     title: 'Identitate vizuală',
     description: 'Logo, paletă de culori, tipografie — tot ce ai nevoie ca brandul tău să arate coerent și profesional.',
-    icon: '🎨',
     href: '/servicii/identitate-vizuala',
   },
 ];
@@ -93,21 +88,34 @@ const services = [
     />
     <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <Card hover>
-        <p class="text-2xl" aria-hidden="true">⚡</p>
+        <div class="flex size-10 items-center justify-center rounded-lg bg-primary-100" aria-hidden="true">
+          <svg class="size-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+          </svg>
+        </div>
         <h3 class="mt-3 font-heading text-lg font-bold text-neutral-950">Rapid</h3>
         <p class="mt-2 text-sm text-neutral-500">
           Site-uri cu scor 95+ pe PageSpeed. Fiecare milisecundă contează pentru conversii și SEO.
         </p>
       </Card>
       <Card hover>
-        <p class="text-2xl" aria-hidden="true">🎯</p>
+        <div class="flex size-10 items-center justify-center rounded-lg bg-primary-100" aria-hidden="true">
+          <svg class="size-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>
+        </div>
         <h3 class="mt-3 font-heading text-lg font-bold text-neutral-950">Focusat pe rezultate</h3>
         <p class="mt-2 text-sm text-neutral-500">
           Nu fac site-uri frumoase și atât. Fac site-uri care aduc clienți, vânzări și vizibilitate.
         </p>
       </Card>
       <Card hover>
-        <p class="text-2xl" aria-hidden="true">💬</p>
+        <div class="flex size-10 items-center justify-center rounded-lg bg-primary-100" aria-hidden="true">
+          <svg class="size-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+          </svg>
+        </div>
         <h3 class="mt-3 font-heading text-lg font-bold text-neutral-950">Comunicare directă</h3>
         <p class="mt-2 text-sm text-neutral-500">
           Vorbești direct cu mine, nu cu un manager de proiect. Răspuns rapid, zero birocrație.

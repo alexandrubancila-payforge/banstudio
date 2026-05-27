@@ -35,31 +35,31 @@
 }
 
 @theme {
-  /* Culori primare — un albastru-indigo cu personalitate */
-  --color-primary-50: oklch(0.97 0.01 260);
-  --color-primary-100: oklch(0.93 0.03 260);
-  --color-primary-200: oklch(0.86 0.06 260);
-  --color-primary-300: oklch(0.76 0.10 260);
-  --color-primary-400: oklch(0.65 0.15 260);
-  --color-primary-500: oklch(0.55 0.19 260);
-  --color-primary-600: oklch(0.47 0.20 260);
-  --color-primary-700: oklch(0.40 0.18 260);
-  --color-primary-800: oklch(0.33 0.14 260);
-  --color-primary-900: oklch(0.27 0.10 260);
-  --color-primary-950: oklch(0.20 0.07 260);
+  /* Culori primare — verde smarald profesional */
+  --color-primary-50: oklch(0.97 0.01 155);
+  --color-primary-100: oklch(0.93 0.03 155);
+  --color-primary-200: oklch(0.86 0.06 155);
+  --color-primary-300: oklch(0.76 0.10 155);
+  --color-primary-400: oklch(0.65 0.14 155);
+  --color-primary-500: oklch(0.55 0.17 155);
+  --color-primary-600: oklch(0.47 0.17 155);
+  --color-primary-700: oklch(0.40 0.15 155);
+  --color-primary-800: oklch(0.33 0.12 155);
+  --color-primary-900: oklch(0.27 0.08 155);
+  --color-primary-950: oklch(0.20 0.05 155);
 
-  /* Neutrale calde — nu gri rece, ci cu o nuanță subtilă */
-  --color-neutral-50: oklch(0.98 0.005 260);
-  --color-neutral-100: oklch(0.95 0.005 260);
-  --color-neutral-200: oklch(0.90 0.005 260);
-  --color-neutral-300: oklch(0.82 0.005 260);
-  --color-neutral-400: oklch(0.65 0.005 260);
-  --color-neutral-500: oklch(0.50 0.005 260);
-  --color-neutral-600: oklch(0.40 0.005 260);
-  --color-neutral-700: oklch(0.30 0.005 260);
-  --color-neutral-800: oklch(0.20 0.005 260);
-  --color-neutral-900: oklch(0.14 0.005 260);
-  --color-neutral-950: oklch(0.10 0.005 260);
+  /* Neutrale cu nuanță subtilă de verde */
+  --color-neutral-50: oklch(0.98 0.004 155);
+  --color-neutral-100: oklch(0.95 0.004 155);
+  --color-neutral-200: oklch(0.90 0.004 155);
+  --color-neutral-300: oklch(0.82 0.004 155);
+  --color-neutral-400: oklch(0.65 0.004 155);
+  --color-neutral-500: oklch(0.50 0.004 155);
+  --color-neutral-600: oklch(0.40 0.004 155);
+  --color-neutral-700: oklch(0.30 0.004 155);
+  --color-neutral-800: oklch(0.20 0.004 155);
+  --color-neutral-900: oklch(0.14 0.004 155);
+  --color-neutral-950: oklch(0.10 0.004 155);
 
   /* Accent — un coral/portocaliu cald pentru CTA-uri */
   --color-accent-400: oklch(0.75 0.15 30);

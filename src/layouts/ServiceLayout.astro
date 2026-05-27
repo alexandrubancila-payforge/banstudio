@@ -10,10 +10,10 @@ interface Props {
   title: string;
   description: string;
   badge: string;
-  icon: string;
+  icon?: string;
 }
 
-const { title, description, badge, icon } = Astro.props;
+const { title, description, badge } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -35,17 +35,12 @@ const { title, description, badge, icon } = Astro.props;
       </nav>
 
       <Badge variant="primary">{badge}</Badge>
-      <div class="mt-4 flex items-start gap-4">
-        <span class="hidden text-4xl sm:block" aria-hidden="true">{icon}</span>
-        <div>
-          <h1 class="text-display font-heading font-black text-neutral-950">
-            {title}
-          </h1>
-          <p class="mt-4 max-w-2xl text-lg text-neutral-500 sm:text-xl">
-            {description}
-          </p>
-        </div>
-      </div>
+      <h1 class="mt-4 text-display font-heading font-black text-neutral-950">
+        {title}
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-neutral-500 sm:text-xl">
+        {description}
+      </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <Button href="/contact" variant="primary" size="lg">
           Solicită o ofertă
