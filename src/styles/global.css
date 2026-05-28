@@ -42,7 +42,7 @@
   --color-primary-300: oklch(0.76 0.10 155);
   --color-primary-400: oklch(0.65 0.14 155);
   --color-primary-500: oklch(0.55 0.17 155);
-  --color-primary-600: oklch(0.47 0.17 155);
+  --color-primary-600: oklch(0.44 0.17 155);
   --color-primary-700: oklch(0.40 0.15 155);
   --color-primary-800: oklch(0.33 0.12 155);
   --color-primary-900: oklch(0.27 0.08 155);
@@ -53,8 +53,8 @@
   --color-neutral-100: oklch(0.95 0.004 155);
   --color-neutral-200: oklch(0.90 0.004 155);
   --color-neutral-300: oklch(0.82 0.004 155);
-  --color-neutral-400: oklch(0.65 0.004 155);
-  --color-neutral-500: oklch(0.50 0.004 155);
+  --color-neutral-400: oklch(0.55 0.004 155);
+  --color-neutral-500: oklch(0.44 0.004 155);
   --color-neutral-600: oklch(0.40 0.004 155);
   --color-neutral-700: oklch(0.30 0.004 155);
   --color-neutral-800: oklch(0.20 0.004 155);
