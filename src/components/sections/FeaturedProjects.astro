@@ -3,6 +3,12 @@ import SectionHeading from '@components/ui/SectionHeading.astro';
 import Badge from '@components/ui/Badge.astro';
 import Button from '@components/ui/Button.astro';
 import { getCollection } from 'astro:content';
+import { resolveLocale, getDict } from '@/i18n';
+
+const locale = resolveLocale(Astro.currentLocale);
+const dict = getDict(locale);
+const portfolioPrefix = locale === 'ru' ? '/ru/portfolio' : '/portofoliu';
+const portfolioHref = locale === 'ru' ? '/ru/portfolio' : '/portofoliu';
 
 const featured = (await getCollection('portofoliu'))
   .filter((p) => p.data.featured)
@@ -13,14 +19,14 @@ const featured = (await getCollection('portofoliu'))
 {featured.length > 0 && (
   <div>
     <SectionHeading
-      title="Proiecte recente"
-      subtitle="O selecție din lucrările mele pentru clienți din Moldova, România și Italia."
+      title={dict.portfolio.title}
+      subtitle={dict.portfolio.subtitle}
     />
 
     <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {featured.map((project) => (
         <a
-          href={`/portofoliu/${project.id}`}
+          href={`${portfolioPrefix}/${project.id}`}
           class="group overflow-hidden rounded-xl border border-neutral-200 bg-white transition-all duration-300 hover:border-primary-200 hover:shadow-medium"
         >
           <div class="aspect-video overflow-hidden bg-neutral-100">
@@ -52,8 +58,8 @@ const featured = (await getCollection('portofoliu'))
     </div>
 
     <div class="mt-10 text-center">
-      <Button href="/portofoliu" variant="secondary">
-        Vezi toate proiectele →
+      <Button href={portfolioHref} variant="secondary">
+        {dict.portfolio.viewAll} →
       </Button>
     </div>
   </div>
