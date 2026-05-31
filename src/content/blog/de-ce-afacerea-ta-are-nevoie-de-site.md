@@ -4,6 +4,7 @@ description: "Un site profesional nu e un lux, e o necesitate. Află de ce aface
 date: 2024-05-15
 tags: ["Business", "Web Development"]
 draft: false
+lang: ro
 ---
 
 ## Clienții tăi te caută pe Google

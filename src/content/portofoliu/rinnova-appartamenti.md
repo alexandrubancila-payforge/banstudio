@@ -9,6 +9,7 @@ tags: ["Internațional", "Construcții", "Italiană"]
 url: "https://rinnovaappartamenti.com"
 featured: true
 order: 3
+lang: ro
 ---
 
 ## Despre proiect

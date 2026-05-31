@@ -12,6 +12,7 @@ const blog = defineCollection({
     imageAlt: z.string().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    lang: z.enum(['ro', 'ru']).default('ro'),
   }),
 });
 
@@ -28,6 +29,7 @@ const portofoliu = defineCollection({
     url: z.string().url().optional(),
     featured: z.boolean().default(false),
     order: z.number().default(0),
+    lang: z.enum(['ro', 'ru']).default('ro'),
   }),
 });
 

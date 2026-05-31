@@ -9,6 +9,7 @@ tags: ["Medical", "Multi-page", "SEO"]
 url: "https://kinetoterra.md/"
 featured: true
 order: 2
+lang: ro
 ---
 
 ## Despre proiect

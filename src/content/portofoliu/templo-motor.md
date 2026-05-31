@@ -9,6 +9,7 @@ tags: ["Auto", "Landing page", "Spaniolă"]
 url: "https://templo-motor.com/"
 featured: false
 order: 11
+lang: ro
 ---
 
 ## Despre proiect

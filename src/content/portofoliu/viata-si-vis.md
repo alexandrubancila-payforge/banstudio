@@ -9,6 +9,7 @@ tags: ["Nonprofit", "România", "Multi-page"]
 url: "https://viatasivis.ro/"
 featured: true
 order: 5
+lang: ro
 ---
 
 ## Despre proiect

@@ -4,6 +4,7 @@ description: "Ghid de bază SEO pentru antreprenori. Cum funcționează Google, 
 date: 2024-03-10
 tags: ["SEO", "Marketing"]
 draft: false
+lang: ro
 ---
 
 ## Ce este SEO pe scurt

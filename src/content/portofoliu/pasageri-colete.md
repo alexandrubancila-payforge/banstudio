@@ -9,6 +9,7 @@ tags: ["Transport", "Landing page", "Internațional"]
 url: "https://pasageri-colete.com/"
 featured: false
 order: 15
+lang: ro
 ---
 
 ## Despre proiect

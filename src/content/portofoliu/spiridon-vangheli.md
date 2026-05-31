@@ -9,6 +9,7 @@ tags: ["E-commerce", "Cultură", "Multi-page"]
 url: "https://spiridon-vangheli.md/"
 featured: true
 order: 1
+lang: ro
 ---
 
 ## Despre proiect

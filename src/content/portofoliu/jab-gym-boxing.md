@@ -9,6 +9,7 @@ tags: ["Sport", "Multi-page", "Design"]
 url: "https://jabgymboxing.com/"
 featured: true
 order: 4
+lang: ro
 ---
 
 ## Despre proiect

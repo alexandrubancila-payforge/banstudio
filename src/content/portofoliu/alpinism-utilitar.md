@@ -9,6 +9,7 @@ tags: ["Servicii", "Landing page", "Nișă"]
 url: "https://alpinism-utilitar.pro/"
 featured: false
 order: 16
+lang: ro
 ---
 
 ## Despre proiect

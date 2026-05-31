@@ -9,6 +9,7 @@ tags: ["Juridic", "Multi-page", "SEO local"]
 url: "https://juristchisinau.md/"
 featured: false
 order: 12
+lang: ro
 ---
 
 ## Despre proiect

@@ -9,6 +9,7 @@ tags: ["Transport", "Landing page", "SEO local"]
 url: "https://taxihincesti.md/"
 featured: false
 order: 10
+lang: ro
 ---
 
 ## Despre proiect

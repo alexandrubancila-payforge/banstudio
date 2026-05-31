@@ -9,6 +9,7 @@ tags: ["Transport", "Multilingv", "Multi-page"]
 url: "https://proexpertrans.md"
 featured: false
 order: 14
+lang: ro
 ---
 
 ## Despre proiect

@@ -4,6 +4,7 @@ description: "Freelancer sau agenție? WordPress sau cod custom? Ghid complet pe
 date: 2024-04-20
 tags: ["Ghid", "Web Development"]
 draft: false
+lang: ro
 ---
 
 ## Freelancer vs. agenție

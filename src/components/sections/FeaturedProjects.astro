@@ -11,7 +11,7 @@ const portfolioPrefix = locale === 'ru' ? '/ru/portfolio' : '/portofoliu';
 const portfolioHref = locale === 'ru' ? '/ru/portfolio' : '/portofoliu';
 
 const featured = (await getCollection('portofoliu'))
-  .filter((p) => p.data.featured)
+  .filter((p) => p.data.featured && (p.data.lang === locale || (!p.data.lang && locale === 'ro')))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 6);
 ---

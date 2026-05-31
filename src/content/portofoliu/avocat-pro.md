@@ -9,6 +9,7 @@ tags: ["Juridic", "Multi-page", "SEO"]
 url: "https://avocatpro.md/"
 featured: false
 order: 13
+lang: ro
 ---
 
 ## Despre proiect

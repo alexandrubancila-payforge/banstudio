@@ -9,6 +9,7 @@ tags: ["Mobilier", "Portofoliu", "Multi-page"]
 url: "https://mobidomark.md/"
 featured: true
 order: 6
+lang: ro
 ---
 
 ## Despre proiect

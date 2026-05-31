@@ -6,7 +6,7 @@ import Badge from '@components/ui/Badge.astro';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('portofoliu'))
-  .filter((p) => !('draft' in p.data && p.data.draft))
+  .filter((p) => !('draft' in p.data && p.data.draft) && (p.data.lang === 'ro' || !p.data.lang))
   .sort((a, b) => {
     if (a.data.order !== b.data.order) return a.data.order - b.data.order;
     return b.data.date.getTime() - a.data.date.getTime();

@@ -4,6 +4,7 @@ description: "Am obținut 100 la Performance, Accessibility, Best Practices și 
 date: 2026-05-28
 tags: ["Performance", "SEO", "Web Development"]
 draft: false
+lang: ro
 ---
 
 ![PageSpeed Insights — scor 100 pe toate cele 4 categorii pentru banstudio.dev](/images/blog/pagespeed-100-banstudio.png)
