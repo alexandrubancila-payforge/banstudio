@@ -1,0 +1,72 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Редизайн сайта"
+  description="Превратите старый сайт в современный, быстрый и привлекающий клиентов. Сохраним то, что работает, улучшим все остальное."
+  badge="Модернизация"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Признаки того, что нужен редизайн</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      {[
+        'Сайт загружается долго (более 3 секунд)',
+        'Плохо выглядит на телефоне',
+        'Дизайн выглядит устаревшим (старше 3-4 лет)',
+        'Не находят в Google по вашим услугам',
+        'Посетители уходят, не связавшись с вами',
+        'Сложно обновлять контент',
+      ].map((sign) => (
+        <div class="flex items-start gap-3 rounded-lg border border-neutral-200 bg-white p-4">
+          <span class="mt-0.5 text-accent-500">✗</span>
+          <p class="text-sm text-neutral-700">{sign}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Что я делаю по-другому</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Полный аудит</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Анализирую текущий сайт: производительность, SEO, UX, контент. Определяю, что нужно изменить, а что стоит сохранить.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Миграция без потерь</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Сохраняю существующие URL или настраиваю 301-редиректы. Ноль потерь трафика и SEO-позиций.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Измеримые результаты</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Сравниваю метрики до и после: PageSpeed, Core Web Vitals, bounce rate, конверсии. Вы видите разницу конкретно.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Процесс редизайна</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { step: '01', title: 'Аудит', desc: 'Анализирую текущий сайт, определяю проблемы и возможности.' },
+        { step: '02', title: 'Стратегия', desc: 'Планируем новую структуру, контент и цели.' },
+        { step: '03', title: 'Редизайн', desc: 'Создаю новый дизайн и разрабатываю сайт на современной технологии.' },
+        { step: '04', title: 'Миграция', desc: 'Запускаю новый сайт с редиректами, полным тестированием и мониторингом.' },
+      ].map(({ step, title, desc }) => (
+        <div>
+          <span class="font-heading text-3xl font-black text-primary-200">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-neutral-950">{title}</h3>
+          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

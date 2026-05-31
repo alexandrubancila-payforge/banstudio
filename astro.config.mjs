@@ -4,13 +4,25 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // Schimbă cu domeniul tău real înainte de deploy
   site: 'https://banstudio.dev',
-
-  // URL-uri fără trailing slash: /servicii nu /servicii/
   trailingSlash: 'never',
 
-  integrations: [sitemap()],
+  i18n: {
+    defaultLocale: 'ro',
+    locales: ['ro', 'ru'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'ro',
+        locales: { ro: 'ro-MD', ru: 'ru-RU' },
+      },
+    }),
+  ],
 
   // Inline tot CSS-ul — elimină render-blocking stylesheet
   build: {

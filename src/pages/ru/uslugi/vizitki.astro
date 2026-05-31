@@ -1,0 +1,66 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Визитные карточки"
+  description="Профессиональный дизайн визитных карточек, который делает вас запоминающимся. Готово к печати, несколько вариантов, быстрая доставка."
+  badge="Дизайн печати"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Что входит в пакет</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">2-3 концепта</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Получаете несколько вариантов дизайна на выбор. Доработаем вместе до полного удовлетворения.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Лицевая + оборотная</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Полный дизайн обеих сторон. Контактная информация, логотип, визуальные элементы — все оформлено профессионально.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Готово к печати</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Файлы подготовлены для типографии: CMYK, вылеты, 300 DPI. Отправляете прямо в печать без доработок.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Несколько форматов</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Получаете файлы в PDF, AI/PSD и PNG. Все для печати и для цифрового использования.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Ревизии включены</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          До 3 раундов правок включены в цену. Корректируем цвета, шрифты или макет до идеала.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Быстрая доставка</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Первые концепты за 2-3 рабочих дня. Финальный дизайн максимум за неделю.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Рекомендуемая комбинация</h2>
+    <p class="mt-4 max-w-2xl text-neutral-500">
+      Визитные карточки производят наибольшее впечатление, когда являются частью целостного фирменного стиля. Сочетайте с услугой фирменного стиля для единого бренда.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href="/ru/uslugi/firmennyy-stil" class="rounded-xl border border-primary-200 bg-primary-50 p-5 transition-colors hover:bg-primary-100">
+        <h3 class="font-heading font-bold text-primary-700">Фирменный стиль</h3>
+        <p class="mt-1 text-sm text-primary-600/70">Логотип + цвета + типографика + визитные карточки</p>
+      </a>
+    </div>
+  </Section>
+</ServiceLayout>

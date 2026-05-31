@@ -1,0 +1,133 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Button from '@components/ui/Button.astro';
+import Card from '@components/ui/Card.astro';
+import { getDict } from '@/i18n';
+
+const dict = getDict('ru');
+---
+
+<BaseLayout
+  title="О нас"
+  description="Александр Банчилэ — веб-разработчик фрилансер из Кишинева, Молдова. Создаю профессиональные сайты для бизнеса в Молдове и Румынии."
+>
+  <Section>
+    <div class="grid items-start gap-12 lg:grid-cols-5">
+      <!-- Фото placeholder -->
+      <div class="lg:col-span-2">
+        <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-100">
+          <div class="flex size-full items-center justify-center text-neutral-300">
+            <svg class="size-24" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Текст -->
+      <div class="lg:col-span-3">
+        <h1 class="text-display font-heading font-black text-neutral-950">
+          Привет, я Александр
+        </h1>
+        <div class="mt-6 space-y-4 text-neutral-600">
+          <p>
+            Я веб-разработчик фрилансер из Кишинева, Молдова. Уже несколько лет создаю веб-сайты для малого и среднего бизнеса в Молдове, Румынии и за рубежом.
+          </p>
+          <p>
+            Начал из любопытства — хотел понять, как работает интернет. Остался из-за страсти — каждый проект это новый вызов, у каждого клиента уникальная история.
+          </p>
+          <p>
+            Я считаю, что хороший сайт — это не только красиво. Он быстрый, удобный, появляется в Google и привлекает клиентов. Это стандарт, который я применяю в каждом проекте.
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <Button href="/ru/kontakt" variant="primary" size="lg">
+            Давайте работать вместе
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Ценности / Как я работаю -->
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-black text-neutral-950">Как я работаю</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Прозрачно</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Вы точно знаете, что я делаю, сколько это займет и сколько стоит. Никаких сюрпризов, никаких скрытых расходов. Открытое общение на каждом этапе.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Ориентирован на результат</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Я не делаю сайты, чтобы положить их в портфолио. Я делаю их, чтобы они работали на вас — привлекали клиентов, видимость, продажи.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Внимание к деталям</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          От кернинга текста до скорости загрузки — детали делают разницу между посредственным и отличным сайтом.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Доступен</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Отвечаю за часы, а не за дни. Общаетесь напрямую со мной, без посредников. Проблемы решаются быстро.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Постоянное обучение</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Веб-технологии постоянно развиваются. Я инвестирую время, чтобы быть в курсе лучших практик и инструментов.
+        </p>
+      </Card>
+      <Card>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Ответственен</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Каждый проект — это моя репутация. Поэтому я отдаю все лучшее, независимо от размера проекта.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <!-- Цифры -->
+  <Section>
+    <div class="grid gap-8 text-center sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { number: '13+', label: 'Проектов выполнено' },
+        { number: '4', label: 'Страны' },
+        { number: '95+', label: 'Средний балл PageSpeed' },
+        { number: '24ч', label: 'Время ответа' },
+      ].map(({ number, label }) => (
+        <div>
+          <p class="font-heading text-4xl font-black text-primary-600">{number}</p>
+          <p class="mt-1 text-sm text-neutral-500">{label}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section background="muted">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-headline font-heading font-black text-neutral-950">
+        Готовы к новому проекту?
+      </h2>
+      <p class="mt-4 text-lg text-neutral-500">
+        Расскажите мне о вашем бизнесе. Первичная консультация бесплатна.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href="/ru/kontakt" variant="primary" size="lg">
+          Связаться со мной
+        </Button>
+        <Button href="/ru/portfolio" variant="secondary" size="lg">
+          Смотреть портфолио
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

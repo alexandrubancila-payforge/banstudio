@@ -1,0 +1,87 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Фирменный стиль"
+  description="Логотип, цветовая палитра, типографика, гайдлайн бренда — все, что нужно, чтобы ваш бизнес выглядел профессионально и целостно."
+  badge="Брендинг"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Что входит в полный пакет</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Дизайн логотипа</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          3 концепта логотипа, доработка и финальная версия. Получаете цветную, черно-белую версии и отдельную иконку.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Цветовая палитра</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Основные, дополнительные и нейтральные цвета, выбранные стратегически. С кодами HEX, RGB и CMYK для любого носителя.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Типографика</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Шрифты для заголовков и текста с правилами использования. Подбираю читаемые шрифты с характером.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Гайдлайн бренда</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          PDF-документ со всеми визуальными правилами. Любой, кто работает с вашим брендом, точно знает что и как.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Визитные карточки</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Дизайн визитных карточек включен в пакет айдентики. Согласованы с остальным брендом.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Кит для соцсетей</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Аватар, обложка и шаблоны постов для Facebook, Instagram, LinkedIn.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Процесс брендинга</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { step: '01', title: 'Бриф', desc: 'Заполняете анкету о бизнесе, ценностях, целевой аудитории и визуальных предпочтениях.' },
+        { step: '02', title: 'Исследование', desc: 'Анализирую конкурентов и рынок. Определяю, что работает и где вы можете отличиться.' },
+        { step: '03', title: 'Концепты', desc: 'Создаю 3 разных визуальных направления. Представляю мудборды и обсуждаем.' },
+        { step: '04', title: 'Доработка', desc: 'Развиваю выбранное направление, применяю ко всем материалам, передаю финальные файлы.' },
+      ].map(({ step, title, desc }) => (
+        <div>
+          <span class="font-heading text-3xl font-black text-primary-200">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-neutral-950">{title}</h3>
+          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Почему важен фирменный стиль</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-3">
+      {[
+        { stat: '75%', desc: 'потребителей оценивают надежность бизнеса по дизайну' },
+        { stat: '80%', desc: 'рост узнаваемости бренда при целостном визуальном стиле' },
+        { stat: '3с', desc: 'достаточно посетителю для формирования первого впечатления' },
+      ].map(({ stat, desc }) => (
+        <div class="text-center">
+          <p class="font-heading text-4xl font-black text-primary-600">{stat}</p>
+          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

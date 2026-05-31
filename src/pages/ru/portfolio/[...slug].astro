@@ -1,0 +1,114 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
+import { getCollection, render } from 'astro:content';
+import { getDict } from '@/i18n';
+
+const dict = getDict('ru');
+
+export async function getStaticPaths() {
+  const projects = await getCollection('portofoliu');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={project.data.title}
+  description={project.data.description}
+  ogImage={project.data.image}
+>
+  <SchemaBreadcrumb items={[
+    { name: dict.breadcrumb.home, href: '/ru' },
+    { name: dict.breadcrumb.portfolio, href: '/ru/portfolio' },
+    { name: project.data.title, href: `/ru/portfolio/${project.id}` },
+  ]} />
+  <article class="py-section">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm text-neutral-400" aria-label="Breadcrumb">
+        <a href="/ru" class="hover:text-neutral-600">{dict.breadcrumb.home}</a>
+        <span class="mx-2">/</span>
+        <a href="/ru/portfolio" class="hover:text-neutral-600">{dict.breadcrumb.portfolio}</a>
+        <span class="mx-2">/</span>
+        <span class="text-neutral-600">{project.data.title}</span>
+      </nav>
+
+      <!-- Header -->
+      <div class="max-w-3xl">
+        <div class="flex flex-wrap gap-2">
+          {project.data.tags.map((tag) => (
+            <Badge variant="primary">{tag}</Badge>
+          ))}
+        </div>
+        <h1 class="mt-4 text-display font-heading font-black text-neutral-950">
+          {project.data.title}
+        </h1>
+        <p class="mt-4 text-lg text-neutral-500 sm:text-xl">
+          {project.data.description}
+        </p>
+        <dl class="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+          <div>
+            <dt class="font-medium text-neutral-400">{dict.portfolio.client}</dt>
+            <dd class="text-neutral-700">{project.data.client}</dd>
+          </div>
+          <div>
+            <dt class="font-medium text-neutral-400">{dict.portfolio.year}</dt>
+            <dd class="text-neutral-700">{project.data.date.getFullYear()}</dd>
+          </div>
+          {project.data.url && (
+            <div>
+              <dt class="font-medium text-neutral-400">{dict.portfolio.liveSite}</dt>
+              <dd>
+                <a
+                  href={project.data.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-primary-600 hover:underline"
+                >
+                  {dict.portfolio.visit} →
+                </a>
+              </dd>
+            </div>
+          )}
+        </dl>
+      </div>
+
+      <!-- Главное изображение -->
+      <div class="mt-10 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100">
+        <img
+          src={project.data.image}
+          alt={project.data.imageAlt}
+          width="720"
+          height="378"
+          class="w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+
+      <!-- Содержание кейса -->
+      <div class="prose mx-auto mt-12 max-w-3xl">
+        <Content />
+      </div>
+
+      <!-- Навигация -->
+      <div class="mt-16 flex flex-wrap justify-center gap-4 border-t border-neutral-200 pt-10">
+        <Button href="/ru/portfolio" variant="secondary">
+          ← {dict.portfolio.allProjects}
+        </Button>
+        <Button href="/ru/kontakt" variant="primary">
+          {dict.portfolio.similarProject}
+        </Button>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

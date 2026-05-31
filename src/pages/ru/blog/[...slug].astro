@@ -1,0 +1,121 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Badge from '@components/ui/Badge.astro';
+import Button from '@components/ui/Button.astro';
+import SchemaArticle from '@components/seo/SchemaArticle.astro';
+import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
+import { getCollection, render } from 'astro:content';
+import { getDict } from '@/i18n';
+
+const dict = getDict('ru');
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts
+    .filter((p) => !p.data.draft)
+    .map((post) => ({
+      params: { slug: post.id },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} ogImage={post.data.image}>
+  <SchemaArticle
+    title={post.data.title}
+    description={post.data.description}
+    date={post.data.date}
+    updated={post.data.updated}
+    image={post.data.image}
+    url={Astro.url.pathname}
+  />
+  <SchemaBreadcrumb items={[
+    { name: dict.breadcrumb.home, href: '/ru' },
+    { name: dict.breadcrumb.blog, href: '/ru/blog' },
+    { name: post.data.title, href: Astro.url.pathname },
+  ]} />
+  <article class="py-section">
+    <div class="container">
+      <nav class="mb-8 text-sm text-neutral-400" aria-label="Breadcrumb">
+        <a href="/ru" class="hover:text-neutral-600">{dict.breadcrumb.home}</a>
+        <span class="mx-2">/</span>
+        <a href="/ru/blog" class="hover:text-neutral-600">{dict.breadcrumb.blog}</a>
+        <span class="mx-2">/</span>
+        <span class="text-neutral-600">{post.data.title}</span>
+      </nav>
+
+      <div class="mx-auto max-w-3xl">
+        {post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag) => (
+              <Badge variant="primary">{tag}</Badge>
+            ))}
+          </div>
+        )}
+
+        <h1 class="mt-4 text-display font-heading font-black text-neutral-950">
+          {post.data.title}
+        </h1>
+
+        <p class="mt-4 text-lg text-neutral-500">
+          {post.data.description}
+        </p>
+
+        <div class="mt-6 flex items-center gap-4 text-sm text-neutral-400">
+          <time datetime={post.data.date.toISOString()}>
+            {formatDate(post.data.date)}
+          </time>
+          {post.data.updated && (
+            <span>
+              · Обновлено <time datetime={post.data.updated.toISOString()}>{formatDate(post.data.updated)}</time>
+            </span>
+          )}
+        </div>
+
+        {post.data.image && (
+          <div class="mt-8 overflow-hidden rounded-xl">
+            <img
+              src={post.data.image}
+              alt={post.data.imageAlt || post.data.title}
+              class="w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        )}
+
+        <div class="prose mt-10">
+          <Content />
+        </div>
+
+        <div class="mt-16 border-t border-neutral-200 pt-8">
+          <div class="rounded-xl bg-primary-50 p-6 text-center sm:p-8">
+            <h2 class="font-heading text-xl font-bold text-neutral-950">
+              Нужен профессиональный сайт?
+            </h2>
+            <p class="mt-2 text-sm text-neutral-600">
+              Свяжитесь со мной для бесплатной консультации о вашем проекте.
+            </p>
+            <div class="mt-4">
+              <Button href="/ru/kontakt" variant="primary">
+                Связаться со мной
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <Button href="/ru/blog" variant="ghost">
+            ← Все статьи
+          </Button>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

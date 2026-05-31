@@ -5,6 +5,7 @@ import Badge from '@components/ui/Badge.astro';
 import Section from '@components/ui/Section.astro';
 import SchemaService from '@components/seo/SchemaService.astro';
 import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
+import { resolveLocale, getDict } from '@/i18n';
 
 interface Props {
   title: string;
@@ -14,22 +15,29 @@ interface Props {
 }
 
 const { title, description, badge } = Astro.props;
+const locale = resolveLocale(Astro.currentLocale);
+const dict = getDict(locale);
+const isRu = locale === 'ru';
+const homeHref = isRu ? '/ru' : '/';
+const servicesHref = isRu ? '/ru/uslugi' : '/servicii';
+const contactHref = isRu ? '/ru/kontakt' : '/contact';
+const portfolioHref = isRu ? '/ru/portfolio' : '/portofoliu';
 ---
 
 <BaseLayout title={title} description={description}>
   <SchemaService name={title} description={description} url={Astro.url.pathname} />
   <SchemaBreadcrumb items={[
-    { name: 'Acasă', href: '/' },
-    { name: 'Servicii', href: '/servicii' },
+    { name: dict.breadcrumb.home, href: homeHref },
+    { name: dict.breadcrumb.services, href: servicesHref },
     { name: title, href: Astro.url.pathname },
   ]} />
   <!-- Hero serviciu -->
   <section class="py-section">
     <div class="container">
       <nav class="mb-8 text-sm text-neutral-400" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-neutral-600">Acasă</a>
+        <a href={homeHref} class="hover:text-neutral-600">{dict.breadcrumb.home}</a>
         <span class="mx-2">/</span>
-        <a href="/servicii" class="hover:text-neutral-600">Servicii</a>
+        <a href={servicesHref} class="hover:text-neutral-600">{dict.breadcrumb.services}</a>
         <span class="mx-2">/</span>
         <span class="text-neutral-600">{title}</span>
       </nav>
@@ -42,11 +50,11 @@ const { title, description, badge } = Astro.props;
         {description}
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <Button href="/contact" variant="primary" size="lg">
-          Solicită o ofertă
+        <Button href={contactHref} variant="primary" size="lg">
+          {dict.serviceLayout.requestOffer}
         </Button>
-        <Button href="/portofoliu" variant="secondary">
-          Vezi exemple
+        <Button href={portfolioHref} variant="secondary">
+          {dict.serviceLayout.viewExamples}
         </Button>
       </div>
     </div>
@@ -59,14 +67,14 @@ const { title, description, badge } = Astro.props;
   <Section background="muted">
     <div class="mx-auto max-w-2xl text-center">
       <h2 class="text-headline font-heading font-black text-neutral-950">
-        Gata să începem?
+        {dict.serviceLayout.ctaTitle}
       </h2>
       <p class="mt-4 text-lg text-neutral-500">
-        Spune-mi despre proiectul tău și primești o ofertă personalizată în 24 de ore.
+        {dict.serviceLayout.ctaSubtitle}
       </p>
       <div class="mt-8">
-        <Button href="/contact" variant="primary" size="lg">
-          Contactează-mă
+        <Button href={contactHref} variant="primary" size="lg">
+          {dict.serviceLayout.ctaButton}
         </Button>
       </div>
     </div>

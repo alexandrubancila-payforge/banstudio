@@ -1,0 +1,69 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Сайт на WordPress"
+  description="Профессиональные сайты на WordPress с кастомными темами, которыми легко управлять. Без медленных page builder-ов — чистый код и реальная производительность."
+  badge="Популярно"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Почему WordPress со мной</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Кастомная тема</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Не использую купленные темы, полные ненужного кода. Создаю тему с нуля, точно под ваши потребности.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Легко управлять</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Панель администрирования проста и интуитивна. Вы можете менять тексты, изображения и страницы без технических знаний.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Быстрый, не медленный</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          WordPress может быть быстрым, если сделан правильно. Оптимизирую каждый аспект — кеш, изображения, запросы, хостинг.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Нативное SEO</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Настраиваю Yoast/RankMath, schema markup, sitemap и структуру URL для максимальной видимости в Google.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Безопасность</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Усиление WordPress, файрвол, автоматический бэкап, регулярные обновления. Ваш сайт защищен.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Обучение включено</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          При сдаче проекта обучу пользоваться админ-панелью. Также получите письменную инструкцию.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Идеально для</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        { title: 'Местный бизнес', desc: 'Рестораны, салоны, медицинские кабинеты — которым нужно присутствие в сети и частые обновления.' },
+        { title: 'Блог / журнал', desc: 'Регулярная публикация контента, категории, несколько авторов.' },
+        { title: 'Сайт с множеством страниц', desc: 'Более 20 страниц контента, которыми должна легко управлять ваша команда.' },
+      ].map(({ title, desc }) => (
+        <div class="rounded-xl border border-neutral-200 bg-white p-6">
+          <h3 class="font-heading text-lg font-bold text-neutral-950">{title}</h3>
+          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

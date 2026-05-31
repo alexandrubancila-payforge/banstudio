@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/ui/Section.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ServiceCard from '@components/ui/ServiceCard.astro';
+import Button from '@components/ui/Button.astro';
+import { getDict } from '@/i18n';
+
+const dict = getDict('ru');
+const services = dict.services.items;
+---
+
+<BaseLayout
+  title={dict.services.sectionTitle}
+  description={dict.services.pageSubtitle}
+>
+  <Section>
+    <SectionHeading
+      title={dict.services.sectionTitle}
+      subtitle={dict.services.pageSubtitle}
+      as="h1"
+    />
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <ServiceCard {...service} />
+      ))}
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-headline font-heading font-black text-neutral-950">
+        {dict.services.notSure}
+      </h2>
+      <p class="mt-4 text-lg text-neutral-500">
+        {dict.services.notSureDesc}
+      </p>
+      <div class="mt-8">
+        <Button href="/ru/kontakt" variant="primary" size="lg">
+          {dict.services.notSureCta}
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

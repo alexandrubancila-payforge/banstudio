@@ -1,0 +1,139 @@
+{
+  "nav": {
+    "services": "Servicii",
+    "portfolio": "Portofoliu",
+    "blog": "Blog",
+    "about": "Despre",
+    "contact": "Contact",
+    "cta": "Solicita o oferta"
+  },
+  "header": {
+    "menuOpen": "Deschide meniul",
+    "menuClose": "Inchide meniul"
+  },
+  "hero": {
+    "badge": "Disponibil pentru proiecte noi",
+    "title": "Creez site-uri web care",
+    "titleHighlight": "aduc rezultate",
+    "subtitle": "Web developer freelancer in Chisinau. Design modern, cod curat, performanta excelenta — site-ul tau merita mai mult decat un template.",
+    "ctaPrimary": "Solicita o oferta",
+    "ctaSecondary": "Vezi portofoliul"
+  },
+  "services": {
+    "sectionTitle": "Servicii",
+    "sectionSubtitle": "De la idee la un site care lucreaza pentru tine. Alege ce ai nevoie.",
+    "pageSubtitle": "De la un site simplu de prezentare la o platforma complexa cu e-commerce. Alege ce ai nevoie sau contacteaza-ma pentru o solutie personalizata.",
+    "items": [
+      {
+        "title": "Site web in cod",
+        "description": "Site-uri rapide, optimizate SEO, construite cu tehnologii moderne. Fara template-uri — fiecare proiect e unic.",
+        "href": "/servicii/creare-site-web"
+      },
+      {
+        "title": "Site WordPress",
+        "description": "Site-uri WordPress profesionale pe care le poti gestiona singur. Teme custom, nu page builders lente.",
+        "href": "/servicii/site-wordpress"
+      },
+      {
+        "title": "Redesign site",
+        "description": "Transforma un site vechi intr-unul modern, rapid si care aduce clienti. Pastram ce functioneaza, imbunatatim restul.",
+        "href": "/servicii/redesign-site"
+      },
+      {
+        "title": "Carti de vizita",
+        "description": "Design profesional care te face memorabil. Print-ready, livrare rapida.",
+        "href": "/servicii/carti-de-vizita"
+      },
+      {
+        "title": "Identitate vizuala",
+        "description": "Logo, paleta de culori, tipografie — tot ce ai nevoie ca brandul tau sa arate coerent si profesional.",
+        "href": "/servicii/identitate-vizuala"
+      }
+    ],
+    "notSure": "Nu esti sigur ce ai nevoie?",
+    "notSureDesc": "Spune-mi despre afacerea ta si te ajut sa alegi solutia potrivita. Consultanta initiala e gratuita.",
+    "notSureCta": "Contacteaza-ma gratuit"
+  },
+  "whyMe": {
+    "title": "De ce sa lucrezi cu mine",
+    "subtitle": "Nu sunt o agentie cu 50 de oameni. Sunt o singura persoana care-ti da toata atentia.",
+    "fast": "Rapid",
+    "fastDesc": "Site-uri cu scor 95+ pe PageSpeed. Fiecare milisecunda conteaza pentru conversii si SEO.",
+    "results": "Focusat pe rezultate",
+    "resultsDesc": "Nu fac site-uri frumoase si atat. Fac site-uri care aduc clienti, vanzari si vizibilitate.",
+    "direct": "Comunicare directa",
+    "directDesc": "Vorbesti direct cu mine, nu cu un manager de proiect. Raspuns rapid, zero birocratie."
+  },
+  "cta": {
+    "title": "Hai sa construim ceva impreuna",
+    "subtitle": "Spune-mi despre proiectul tau si iti trimit o oferta personalizata in 24 de ore.",
+    "primary": "Contacteaza-ma",
+    "secondary": "Vezi toate serviciile"
+  },
+  "portfolio": {
+    "title": "Proiecte recente",
+    "subtitle": "O selectie din lucrarile mele pentru clienti din Moldova, Romania si Italia.",
+    "pageSubtitle": "Fiecare proiect e o poveste. Iata cateva dintre cele mai recente lucrari.",
+    "viewAll": "Vezi toate proiectele",
+    "allProjects": "Toate proiectele",
+    "similarProject": "Ai un proiect similar? Contacteaza-ma",
+    "client": "Client",
+    "year": "An",
+    "liveSite": "Site live",
+    "visit": "Viziteaza"
+  },
+  "contact": {
+    "title": "Contacteaza-ma",
+    "subtitle": "Ai un proiect in minte? Spune-mi despre el si iti trimit o oferta personalizata in 24 de ore. Consultanta initiala e gratuita.",
+    "email": "Email",
+    "location": "Locatie",
+    "locationValue": "Chisinau, Moldova",
+    "phone": "Telefon",
+    "responseTime": "Timp de raspuns",
+    "responseTimeValue": "Maximum 24 de ore",
+    "writeDirectly": "Scrie-mi direct",
+    "formName": "Nume complet *",
+    "formNamePlaceholder": "Ion Popescu",
+    "formEmail": "Email *",
+    "formEmailPlaceholder": "ion@exemplu.md",
+    "formPhone": "Telefon",
+    "formPhonePlaceholder": "+373 69 123 456",
+    "formService": "Ce serviciu te intereseaza?",
+    "formServiceDefault": "Alege un serviciu...",
+    "formBudget": "Buget estimativ",
+    "formBudgetDefault": "Selecteaza...",
+    "formBudgetOptions": ["Sub 500 €", "500 – 1.000 €", "1.000 – 2.000 €", "Peste 2.000 €", "Nu sunt sigur"],
+    "formMessage": "Mesaj *",
+    "formMessagePlaceholder": "Descrie pe scurt proiectul tau — ce fel de site ai nevoie, pentru ce afacere, ce functionalitati...",
+    "formSubmit": "Trimite mesajul",
+    "formSending": "Se trimite...",
+    "formSuccess": "Multumesc! Mesajul tau a fost trimis. Te contactez in maximum 24 de ore.",
+    "formError": "A aparut o eroare. Te rog trimite un email direct la sasa.bancila@gmail.com.",
+    "formSubject": "Cerere noua de pe banstudio.dev"
+  },
+  "footer": {
+    "description": "Site-uri web profesionale pentru afaceri din Moldova si Romania. Design modern, cod curat, rezultate masurabile.",
+    "pages": "Pagini",
+    "contact": "Contact",
+    "copyright": "Toate drepturile rezervate."
+  },
+  "breadcrumb": {
+    "home": "Acasa",
+    "services": "Servicii",
+    "portfolio": "Portofoliu",
+    "blog": "Blog"
+  },
+  "serviceLayout": {
+    "ctaTitle": "Gata sa incepem?",
+    "ctaSubtitle": "Spune-mi despre proiectul tau si primesti o oferta personalizata in 24 de ore.",
+    "ctaButton": "Contacteaza-ma",
+    "viewExamples": "Vezi exemple",
+    "requestOffer": "Solicita o oferta"
+  },
+  "notFound": {
+    "title": "Pagina nu exista",
+    "description": "Pagina pe care o cauti nu exista sau a fost mutata.",
+    "goHome": "Inapoi acasa",
+    "goServices": "Vezi serviciile"
+  }
+}

@@ -1,0 +1,85 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Создание сайта"
+  description="Профессиональные веб-сайты, написанные в коде, с уникальным дизайном, отличной производительностью и SEO-оптимизацией. Astro, Next.js, HTML/CSS."
+  badge="Основная услуга"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Что вы получаете</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Уникальный дизайн</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Каждый сайт проектируется с нуля для вашего бизнеса. Никаких шаблонов — дизайн отражает ваш бренд.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Производительность 95+</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Чистый код, оптимизированные изображения, ноль лишнего. Оценка PageSpeed 95-100 на мобильных и десктопе — Google это вознаграждает.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Встроенное SEO</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Мета-теги, schema markup, sitemap, Core Web Vitals — все оптимизировано с самого начала для видимости в Google.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Идеальная адаптивность</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Сайт безупречно выглядит на телефоне, планшете и компьютере. Mobile-first подход — ведь 70%+ трафика с мобильных.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Безопасность</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Статический сайт = ноль серверных уязвимостей. HTTPS, заголовки безопасности, полная защита.
+        </p>
+      </Card>
+      <Card hover>
+        <h3 class="font-heading text-lg font-bold text-neutral-950">Хостинг включен</h3>
+        <p class="mt-2 text-sm text-neutral-500">
+          Помогу с размещением на Cloudflare Pages или Vercel — быстрый, бесплатный хостинг с глобальным CDN.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Процесс работы</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { step: '01', title: 'Знакомство', desc: 'Изучаю ваш бизнес, целевую аудиторию и цели сайта.' },
+        { step: '02', title: 'Дизайн', desc: 'Создаю макеты и совершенствуем их вместе до идеала.' },
+        { step: '03', title: 'Разработка', desc: 'Строю сайт в коде с фокусом на производительность и SEO.' },
+        { step: '04', title: 'Запуск', desc: 'Финальное тестирование, размещение и поддержка после запуска.' },
+      ].map(({ step, title, desc }) => (
+        <div>
+          <span class="font-heading text-3xl font-black text-primary-200">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-neutral-950">{title}</h3>
+          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-neutral-950">Используемые технологии</h2>
+    <p class="mt-4 max-w-2xl text-neutral-500">
+      Выбираю подходящую технологию для каждого проекта. Сайт-визитка? Astro. Интерактивное приложение? Next.js. Простой лендинг? Чистый HTML/CSS.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      {['Astro', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML/CSS', 'JavaScript', 'Cloudflare Pages', 'Vercel'].map((tech) => (
+        <span class="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700">
+          {tech}
+        </span>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>
