@@ -6,12 +6,12 @@ interface Props {
 const { variant = 'default' } = Astro.props;
 
 const variants = {
-  default: 'bg-neutral-100 text-neutral-700',
-  primary: 'bg-primary-100 text-primary-700',
-  accent: 'bg-accent-500/15 text-accent-600',
+  default: 'bg-surface-2 text-ink-muted border border-border',
+  primary: 'bg-primary-500/12 text-primary-700 dark:text-primary-300',
+  accent: 'bg-accent-500/15 text-accent-600 dark:text-accent-400',
 } as const;
 ---
 
-<span class:list={['inline-flex items-center rounded-full px-3 py-1 text-xs font-medium', variants[variant]]}>
+<span class:list={['inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold tracking-wide', variants[variant]]}>
   <slot />
 </span>

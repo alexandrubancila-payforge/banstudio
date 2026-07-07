@@ -8,7 +8,7 @@ imageAlt: "Screenshot site AnonXmd cu pagina principala de servicii ECU tuning"
 tags: ["Авто", "Multi-page", "Мультиязычный"]
 url: "https://anonxmd.com/"
 featured: true
-order: 0
+order: 7
 lang: ru
 ---
 

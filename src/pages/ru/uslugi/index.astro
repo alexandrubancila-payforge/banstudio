@@ -22,17 +22,17 @@ const services = dict.services.items;
     />
     <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((service) => (
-        <ServiceCard {...service} />
+        <div class="reveal"><ServiceCard {...service} /></div>
       ))}
     </div>
   </Section>
 
   <Section background="muted">
     <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-headline font-heading font-black text-neutral-950">
+      <h2 class="text-headline font-heading font-black text-ink">
         {dict.services.notSure}
       </h2>
-      <p class="mt-4 text-lg text-neutral-500">
+      <p class="mt-4 text-lg text-ink-muted">
         {dict.services.notSureDesc}
       </p>
       <div class="mt-8">

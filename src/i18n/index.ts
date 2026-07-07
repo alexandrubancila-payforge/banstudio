@@ -33,7 +33,6 @@ const routeMap: Record<string, string> = {
   '/servicii/identitate-vizuala': '/ru/uslugi/firmennyy-stil',
   '/portofoliu': '/ru/portfolio',
   '/blog': '/ru/blog',
-  '/despre': '/ru/o-nas',
   '/contact': '/ru/kontakt',
 };
 
@@ -89,14 +88,13 @@ export function getNavLinks(locale: Locale) {
   const prefix = locale === 'ru' ? '/ru' : '';
 
   const paths = locale === 'ru'
-    ? { services: '/ru/uslugi', portfolio: '/ru/portfolio', blog: '/ru/blog', about: '/ru/o-nas', contact: '/ru/kontakt' }
-    : { services: '/servicii', portfolio: '/portofoliu', blog: '/blog', about: '/despre', contact: '/contact' };
+    ? { services: '/ru/uslugi', portfolio: '/ru/portfolio', blog: '/ru/blog', contact: '/ru/kontakt' }
+    : { services: '/servicii', portfolio: '/portofoliu', blog: '/blog', contact: '/contact' };
 
   return [
     { label: dict.nav.services, href: paths.services },
     { label: dict.nav.portfolio, href: paths.portfolio },
     { label: dict.nav.blog, href: paths.blog },
-    { label: dict.nav.about, href: paths.about },
     { label: dict.nav.contact, href: paths.contact },
   ];
 }

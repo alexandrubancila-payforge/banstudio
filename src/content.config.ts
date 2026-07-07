@@ -29,6 +29,7 @@ const portofoliu = defineCollection({
     url: z.string().url().optional(),
     featured: z.boolean().default(false),
     order: z.number().default(0),
+    category: z.enum(['web', 'carti-vizita']).default('web'),
     lang: z.enum(['ro', 'ru']).default('ro'),
   }),
 });

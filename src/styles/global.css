@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Variant `dark:` — acoperă auto (prefers-color-scheme) + manual (data-theme) */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) { @slot; }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]) *),
+    &:where(:root:not([data-theme="light"])) { @slot; }
+  }
+}
+
+/* ============================================================
+   FONTS — self-hosted, subset, font-display: swap
+   ============================================================ */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -34,6 +46,9 @@
   src: url('/fonts/satoshi-900.woff2') format('woff2');
 }
 
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
 @theme {
   /* Culori primare — verde smarald profesional */
   --color-primary-50: oklch(0.97 0.01 155);
@@ -61,22 +76,39 @@
   --color-neutral-900: oklch(0.14 0.004 155);
   --color-neutral-950: oklch(0.10 0.004 155);
 
-  /* Accent — un coral/portocaliu cald pentru CTA-uri */
+  /* Accent — coral/portocaliu cald pentru CTA-uri și highlight editorial */
+  --color-accent-300: oklch(0.82 0.10 30);
   --color-accent-400: oklch(0.75 0.15 30);
   --color-accent-500: oklch(0.65 0.20 30);
   --color-accent-600: oklch(0.58 0.20 30);
 
-  /* Fonturi — Satoshi (heading, cu caracter) + Inter (body, lizibil) */
+  /* ---- TOKENS SEMANTICE (se inversează în dark mode) ----
+     Toate componentele folosesc acești tokeni → dark mode "curge" automat. */
+  --color-surface: oklch(0.99 0.005 100);        /* fundal de bază — off-white cald */
+  --color-surface-2: oklch(0.965 0.006 120);     /* fundal secundar (secțiuni muted) */
+  --color-surface-3: oklch(1 0 0);               /* carduri / suprafețe ridicate */
+  --color-ink: oklch(0.16 0.01 160);             /* text principal / heading */
+  --color-ink-muted: oklch(0.42 0.008 160);      /* text secundar (AA și la 14px) */
+  --color-ink-subtle: oklch(0.47 0.008 160);     /* text terțiar / captions (AA) */
+  --color-border: oklch(0.90 0.006 150);         /* borduri */
+  --color-border-strong: oklch(0.82 0.008 150);
+  --color-hairline: oklch(0.93 0.005 150);       /* linii foarte subtile */
+
+  /* Fonturi — Satoshi (heading editorial) + Inter (body, lizibil) */
   --font-heading: 'Satoshi', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
+  /* Voce de date/utilitar — monospace de sistem (zero KB descărcat) */
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Code', Menlo, Consolas, monospace;
 
-  /* Dimensiuni text fluid — se adaptează la viewport */
+  /* Scară tipografică EDITORIALĂ — expresivă, fluidă */
+  --text-mega: clamp(2.75rem, 5.5vw + 0.5rem, 5.25rem);  /* hero editorial */
   --text-display: clamp(2.5rem, 5vw + 1rem, 4.5rem);
-  --text-headline: clamp(2rem, 3vw + 0.5rem, 3rem);
-  --text-title: clamp(1.5rem, 2vw + 0.5rem, 2rem);
+  --text-headline: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
+  --text-title: clamp(1.5rem, 2vw + 0.5rem, 2.125rem);
+  --text-eyebrow: 0.8125rem;
 
-  /* Spațiere secțiuni */
-  --spacing-section: clamp(4rem, 8vw, 8rem);
+  /* Spațiere secțiuni — echilibrată (se adună sus+jos între secțiuni) */
+  --spacing-section: clamp(2.75rem, 4.5vw, 4.5rem);
 
   /* Radius consistent */
   --radius-sm: 0.375rem;
@@ -84,18 +116,74 @@
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
 
-  /* Shadows subtile */
-  --shadow-soft: 0 2px 8px oklch(0 0 0 / 0.06), 0 1px 3px oklch(0 0 0 / 0.04);
-  --shadow-medium: 0 4px 16px oklch(0 0 0 / 0.08), 0 2px 6px oklch(0 0 0 / 0.04);
-  --shadow-strong: 0 8px 32px oklch(0 0 0 / 0.12), 0 4px 12px oklch(0 0 0 / 0.06);
+  /* Shadows colorate (verde-tint, nu negru pur) — mai bogate */
+  --shadow-soft: 0 2px 8px oklch(0.27 0.08 155 / 0.05), 0 1px 3px oklch(0.27 0.08 155 / 0.04);
+  --shadow-medium: 0 8px 24px oklch(0.27 0.08 155 / 0.08), 0 3px 8px oklch(0.27 0.08 155 / 0.05);
+  --shadow-strong: 0 18px 48px oklch(0.27 0.08 155 / 0.12), 0 6px 16px oklch(0.27 0.08 155 / 0.07);
+  --shadow-glow: 0 0 0 1px oklch(0.55 0.17 155 / 0.1), 0 12px 40px oklch(0.55 0.17 155 / 0.18);
 
   /* Tranziții */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Container */
-  --container-max: 72rem;
+  --container-max: 75rem;
   --container-padding: clamp(1rem, 4vw, 2rem);
+}
+
+/* ============================================================
+   DARK MODE — auto (prefers-color-scheme) + override manual
+   Overriding tokeni semantici => tot site-ul se inversează.
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-surface: oklch(0.16 0.012 160);
+    --color-surface-2: oklch(0.19 0.014 160);
+    --color-surface-3: oklch(0.22 0.016 160);
+    --color-ink: oklch(0.96 0.006 150);
+    --color-ink-muted: oklch(0.74 0.008 150);
+    --color-ink-subtle: oklch(0.60 0.008 150);
+    --color-border: oklch(0.30 0.012 160);
+    --color-border-strong: oklch(0.40 0.014 160);
+    --color-hairline: oklch(0.26 0.010 160);
+
+    --shadow-soft: 0 2px 8px oklch(0 0 0 / 0.3), 0 1px 3px oklch(0 0 0 / 0.25);
+    --shadow-medium: 0 8px 24px oklch(0 0 0 / 0.4), 0 3px 8px oklch(0 0 0 / 0.3);
+    --shadow-strong: 0 18px 48px oklch(0 0 0 / 0.5), 0 6px 16px oklch(0 0 0 / 0.35);
+    --shadow-glow: 0 0 0 1px oklch(0.65 0.17 155 / 0.25), 0 12px 48px oklch(0.55 0.17 155 / 0.3);
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-surface: oklch(0.16 0.012 160);
+  --color-surface-2: oklch(0.19 0.014 160);
+  --color-surface-3: oklch(0.22 0.016 160);
+  --color-ink: oklch(0.96 0.006 150);
+  --color-ink-muted: oklch(0.74 0.008 150);
+  --color-ink-subtle: oklch(0.60 0.008 150);
+  --color-border: oklch(0.30 0.012 160);
+  --color-border-strong: oklch(0.40 0.014 160);
+  --color-hairline: oklch(0.26 0.010 160);
+
+  --shadow-soft: 0 2px 8px oklch(0 0 0 / 0.3), 0 1px 3px oklch(0 0 0 / 0.25);
+  --shadow-medium: 0 8px 24px oklch(0 0 0 / 0.4), 0 3px 8px oklch(0 0 0 / 0.3);
+  --shadow-strong: 0 18px 48px oklch(0 0 0 / 0.5), 0 6px 16px oklch(0 0 0 / 0.35);
+  --shadow-glow: 0 0 0 1px oklch(0.65 0.17 155 / 0.25), 0 12px 48px oklch(0.55 0.17 155 / 0.3);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+/* View Transitions native cross-document — zero JS */
+@view-transition { navigation: auto; }
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) { animation: vt-out 0.25s var(--ease-out-expo) both; }
+  ::view-transition-new(root) { animation: vt-in 0.35s var(--ease-out-expo) both; }
+  @keyframes vt-out { to { opacity: 0; transform: translateY(-8px); } }
+  @keyframes vt-in { from { opacity: 0; transform: translateY(8px); } }
 }
 
 @layer base {
@@ -103,38 +191,49 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] { color-scheme: dark; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { color-scheme: dark; }
   }
 
   body {
     font-family: var(--font-body);
-    color: var(--color-neutral-800);
-    background-color: white;
+    color: var(--color-ink);
+    background-color: var(--color-surface);
     line-height: 1.7;
+    transition: background-color 0.4s var(--ease-out-expo), color 0.4s var(--ease-out-expo);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
-    line-height: 1.2;
-    color: var(--color-neutral-950);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
     text-wrap: balance;
   }
 
-  p {
-    text-wrap: pretty;
-  }
+  p { text-wrap: pretty; }
 
   :focus-visible {
     outline: 2px solid var(--color-primary-500);
     outline-offset: 2px;
+    border-radius: 2px;
   }
 
   ::selection {
-    background-color: var(--color-primary-200);
-    color: var(--color-primary-900);
+    background-color: var(--color-primary-500);
+    color: white;
   }
+
+  img { content-visibility: auto; }
 }
 
+/* ============================================================
+   COMPONENTS
+   ============================================================ */
 @layer components {
   .container {
     max-width: var(--container-max);
@@ -142,57 +241,169 @@
     padding-inline: var(--container-padding);
   }
 
+  /* Eyebrow / label — voce mono de developer */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary-600);
+  }
+  /* Etichetă de date mono (metrici, captions tehnice) */
+  .spec {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: -0.01em;
+    color: var(--color-ink-subtle);
+  }
+  :root[data-theme="dark"] .eyebrow { color: var(--color-primary-400); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .eyebrow { color: var(--color-primary-400); }
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  /* Text cu accent editorial subliniat */
+  .ink-highlight {
+    background-image: linear-gradient(transparent 60%, oklch(0.55 0.17 155 / 0.18) 0);
+  }
+
+  /* Prose — articole blog/portofoliu */
   .prose {
     line-height: 1.8;
-    color: var(--color-neutral-700);
+    color: var(--color-ink-muted);
+    font-size: 1.0625rem;
   }
   .prose h2 {
     margin-top: 2.5em;
     margin-bottom: 0.75em;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--color-ink);
   }
   .prose h3 {
     margin-top: 2em;
     margin-bottom: 0.5em;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
+    color: var(--color-ink);
   }
-  .prose p {
-    margin-bottom: 1.25em;
-  }
-  .prose ul, .prose ol {
-    margin-bottom: 1.25em;
-    padding-left: 1.5em;
-  }
-  .prose li {
-    margin-bottom: 0.5em;
-  }
-  .prose ul li {
-    list-style-type: disc;
-  }
-  .prose ol li {
-    list-style-type: decimal;
-  }
+  .prose p { margin-bottom: 1.25em; }
+  .prose ul, .prose ol { margin-bottom: 1.25em; padding-left: 1.5em; }
+  .prose li { margin-bottom: 0.5em; }
+  .prose ul li { list-style-type: disc; }
+  .prose ol li { list-style-type: decimal; }
   .prose a {
     color: var(--color-primary-600);
     text-decoration: underline;
     text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
   }
-  .prose a:hover {
-    color: var(--color-primary-700);
+  :root[data-theme="dark"] .prose a { color: var(--color-primary-400); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .prose a { color: var(--color-primary-400); }
   }
-  .prose img {
-    border-radius: var(--radius-xl);
-    margin-block: 2em;
-  }
+  .prose a:hover { text-decoration-thickness: 2px; }
+  .prose img { border-radius: var(--radius-xl); margin-block: 2em; }
   .prose blockquote {
-    border-left: 3px solid var(--color-primary-300);
+    border-left: 3px solid var(--color-primary-400);
     padding-left: 1em;
     font-style: italic;
-    color: var(--color-neutral-500);
+    color: var(--color-ink-subtle);
     margin-block: 1.5em;
   }
-  .prose strong {
-    color: var(--color-neutral-900);
+  .prose strong { color: var(--color-ink); font-weight: 600; }
+
+  /* Tabele în articole — comparații îngrijite, dark-aware, scroll pe mobil */
+  .prose table {
+    width: 100%;
+    margin-block: 2em;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .prose thead th {
+    background: var(--color-surface-2);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-ink);
+    text-align: left;
+    padding: 0.75em 1em;
+    border-bottom: 1px solid var(--color-border-strong);
+  }
+  .prose tbody td {
+    padding: 0.75em 1em;
+    color: var(--color-ink-muted);
+    border-bottom: 1px solid var(--color-hairline);
+    vertical-align: top;
+  }
+  .prose tbody tr:last-child td { border-bottom: none; }
+  .prose tbody td:first-child {
     font-weight: 600;
+    color: var(--color-ink);
+  }
+  .prose tbody tr:nth-child(even) td { background: color-mix(in oklch, var(--color-surface-2) 50%, transparent); }
+}
+
+/* ============================================================
+   ANIMAȚII — CSS scroll-driven nativ, zero JS
+   Respectă prefers-reduced-motion.
+   ============================================================ */
+@layer utilities {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Reveal la intrarea în viewport */
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+    .reveal-fade {
+      animation: reveal-fade linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+    }
+
+    /* Intrare la încărcare (hero) — staggered prin --i.
+       DOAR transform (fără opacity): textul e pictat instant la opacitate plină,
+       deci nu întârzie FCP/LCP. Protejează scorul 100 pe mobil. */
+    .enter {
+      animation: enter-up 0.55s var(--ease-out-expo) both;
+      animation-delay: calc(var(--i, 0) * 55ms);
+    }
+  }
+
+  @keyframes reveal-up {
+    /* DOAR transform: textul rămâne la opacitate plină → axe vede mereu
+       contrast corect (opacity intermediară pică auditul de contrast). */
+    from { transform: translateY(26px); }
+    to { transform: translateY(0); }
+  }
+  @keyframes reveal-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes enter-up {
+    from { transform: translateY(18px); }
+    to { transform: translateY(0); }
+  }
+
+  /* Grain / noise overlay subtil pentru profunzime editorială */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 }

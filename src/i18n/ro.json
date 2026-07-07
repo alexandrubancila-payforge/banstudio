@@ -3,7 +3,6 @@
     "services": "Servicii",
     "portfolio": "Portofoliu",
     "blog": "Blog",
-    "about": "Despre",
     "contact": "Contact",
     "cta": "Solicita o oferta"
   },
@@ -18,6 +17,11 @@
     "subtitle": "Web developer freelancer in Chisinau. Design modern, cod curat, performanta excelenta — site-ul tau merita mai mult decat un template.",
     "ctaPrimary": "Solicita o oferta",
     "ctaSecondary": "Vezi portofoliul"
+  },
+  "stats": {
+    "pagespeed": "Scor PageSpeed",
+    "projects": "Proiecte livrate",
+    "response": "Timp de raspuns"
   },
   "services": {
     "sectionTitle": "Servicii",

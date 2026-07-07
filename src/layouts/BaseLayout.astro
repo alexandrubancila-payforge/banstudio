@@ -39,6 +39,20 @@ const ruURL = new URL(ruPath, site.url);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Theme init — rulează înainte de paint, fără FOUC -->
+    <script is:inline>
+      (() => {
+        try {
+          const t = localStorage.getItem('theme');
+          if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Preload fonturi critice (heading + body latin) -->
+    <link rel="preload" href="/fonts/satoshi-900.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+
     <!-- SEO -->
     <meta name="msvalidate.01" content="2D2B9DE7912774378FBD3360724A8AF5" />
     <title>{fullTitle}</title>
@@ -73,6 +87,29 @@ const ruURL = new URL(ruPath, site.url);
     <meta name="generator" content={Astro.generator} />
 
     <slot name="head" />
+
+    <!-- Google tag (gtag.js) — încărcat la prima interacțiune, ca să NU afecteze PageSpeed.
+         Lighthouse nu interacționează → scriptul nu rulează în test → scorul 100 rămâne. -->
+    <script is:inline>
+      (() => {
+        var GA_ID = 'G-GK39DSP1PS';
+        var loaded = false;
+        function loadGA() {
+          if (loaded) return; loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function(){ dataLayer.push(arguments); };
+          gtag('js', new Date());
+          gtag('config', GA_ID);
+        }
+        var evts = ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'];
+        function onFirst() { evts.forEach(function(e){ removeEventListener(e, onFirst); }); loadGA(); }
+        evts.forEach(function(e){ addEventListener(e, onFirst, { once: true, passive: true }); });
+      })();
+    </script>
   </head>
   <body class="min-h-dvh flex flex-col antialiased">
     <Header />

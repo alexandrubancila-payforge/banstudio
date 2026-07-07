@@ -2,6 +2,8 @@
 title: "PageSpeed 100/100 — Cum am obținut scor perfect pe banstudio.dev"
 description: "Am obținut 100 la Performance, Accessibility, Best Practices și SEO pe Google PageSpeed Insights. Iată exact ce am făcut și de ce contează pentru afacerea ta."
 date: 2026-05-28
+image: "/images/blog/pagespeed-100-cum-am-obtinut-scor-perfect.png"
+imageAlt: "PageSpeed 100 / 100"
 tags: ["Performance", "SEO", "Web Development"]
 draft: false
 lang: ro

@@ -10,41 +10,41 @@ import Card from '@components/ui/Card.astro';
   badge="Branding"
 >
   <Section>
-    <h2 class="text-headline font-heading font-bold text-neutral-950">Ce include pachetul complet</h2>
+    <h2 class="text-headline font-heading font-bold text-ink">Ce include pachetul complet</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Logo design</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Logo design</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           3 concepte de logo, rafinare și versiune finală. Primești variante color, alb-negru, icon separat.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Paletă de culori</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Paletă de culori</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           Culori primare, secundare și neutre alese strategic. Cu coduri HEX, RGB și CMYK pentru orice mediu.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Tipografie</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Tipografie</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           Fonturi pentru titluri și text, cu reguli de utilizare. Selectez fonturi lizibile și cu caracter.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Ghid de brand</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Ghid de brand</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           Document PDF cu toate regulile vizuale. Oricine lucrează pe brandul tău știe exact ce și cum.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Cărți de vizită</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Cărți de vizită</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           Design de cărți de vizită inclus în pachetul de identitate. Coerente cu restul brandului.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Social media kit</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Social media kit</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           Avatar, cover photo și template-uri de postări pentru Facebook, Instagram, LinkedIn.
         </p>
       </Card>
@@ -52,7 +52,7 @@ import Card from '@components/ui/Card.astro';
   </Section>
 
   <Section background="muted">
-    <h2 class="text-headline font-heading font-bold text-neutral-950">Procesul de branding</h2>
+    <h2 class="text-headline font-heading font-bold text-ink">Procesul de branding</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {[
         { step: '01', title: 'Brief', desc: 'Completezi un chestionar despre afacere, valori, public țintă și preferințe vizuale.' },
@@ -60,26 +60,26 @@ import Card from '@components/ui/Card.astro';
         { step: '03', title: 'Concepte', desc: 'Creez 3 direcții vizuale diferite. Prezint moodboard-urile și le discutăm.' },
         { step: '04', title: 'Rafinare', desc: 'Dezvolt direcția aleasă, aplic pe toate materialele, livrez fișierele finale.' },
       ].map(({ step, title, desc }) => (
-        <div>
-          <span class="font-heading text-3xl font-black text-primary-200">{step}</span>
-          <h3 class="mt-2 font-heading text-lg font-bold text-neutral-950">{title}</h3>
-          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        <div class="reveal">
+          <span class="font-heading text-3xl font-black text-primary-500 dark:text-primary-300">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-ink">{title}</h3>
+          <p class="mt-2 text-sm text-ink-muted">{desc}</p>
         </div>
       ))}
     </div>
   </Section>
 
   <Section>
-    <h2 class="text-headline font-heading font-bold text-neutral-950">De ce contează identitatea vizuală</h2>
+    <h2 class="text-headline font-heading font-bold text-ink">De ce contează identitatea vizuală</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-3">
       {[
         { stat: '75%', desc: 'dintre consumatori judecă credibilitatea unei afaceri după design' },
         { stat: '80%', desc: 'creștere în recunoașterea brandului cu o identitate vizuală consistentă' },
         { stat: '3s', desc: 'sunt suficiente pentru un vizitator să-și formeze prima impresie' },
       ].map(({ stat, desc }) => (
-        <div class="text-center">
-          <p class="font-heading text-4xl font-black text-primary-600">{stat}</p>
-          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        <div class="reveal text-center">
+          <p class="font-heading text-4xl font-black text-primary-600 dark:text-primary-300">{stat}</p>
+          <p class="mt-2 text-sm text-ink-muted">{desc}</p>
         </div>
       ))}
     </div>

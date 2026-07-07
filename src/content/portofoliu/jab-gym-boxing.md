@@ -8,7 +8,7 @@ imageAlt: "Screenshot site JAB Gym Boxing cu pagina principală a clubului de bo
 tags: ["Sport", "Multi-page", "Design"]
 url: "https://jabgymboxing.com/"
 featured: true
-order: 4
+order: 3
 lang: ro
 ---
 

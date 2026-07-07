@@ -35,42 +35,41 @@ const formatDate = (d: Date) =>
     { name: 'Blog', href: '/blog' },
     { name: title, href: Astro.url.pathname },
   ]} />
-  <article class="py-section">
+  <article class="pb-section pt-10 sm:pt-14">
     <div class="container">
-      <nav class="mb-8 text-sm text-neutral-400" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-neutral-600">Acasă</a>
-        <span class="mx-2">/</span>
-        <a href="/blog" class="hover:text-neutral-600">Blog</a>
-        <span class="mx-2">/</span>
-        <span class="text-neutral-600">{title}</span>
-      </nav>
-
       <div class="mx-auto max-w-3xl">
+        <nav class="text-sm text-ink-subtle" aria-label="Breadcrumb">
+          <a href="/" class="transition-colors hover:text-ink">Acasă</a>
+          <span class="mx-1.5 text-border-strong">/</span>
+          <a href="/blog" class="transition-colors hover:text-ink">Blog</a>
+        </nav>
+
         {tags.length > 0 && (
-          <div class="flex flex-wrap gap-2">
+          <div class="mt-6 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Badge variant="primary">{tag}</Badge>
             ))}
           </div>
         )}
 
-        <h1 class="mt-4 text-display font-heading font-black text-neutral-950">
+        <h1 class="mt-4 text-display font-heading font-black text-ink">
           {title}
         </h1>
 
-        <p class="mt-4 text-lg text-neutral-500">
+        <p class="mt-4 text-lg text-ink-muted">
           {description}
         </p>
 
-        <div class="mt-6 flex items-center gap-4 text-sm text-neutral-400">
-          <time datetime={date.toISOString()}>
-            {formatDate(date)}
-          </time>
-          {updated && (
-            <span>
-              · Actualizat <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
-            </span>
-          )}
+        <!-- Autor + dată -->
+        <div class="mt-8 flex items-center gap-3 border-t border-border pt-6">
+          <span class="grid size-10 shrink-0 place-items-center rounded-full bg-primary-600 font-heading text-base font-black text-white" aria-hidden="true">B</span>
+          <div class="text-sm leading-tight">
+            <p class="font-semibold text-ink">Alexandru Bancilă</p>
+            <p class="mt-0.5 text-ink-subtle">
+              <time datetime={date.toISOString()}>{formatDate(date)}</time>
+              {updated && (<span> · actualizat <time datetime={updated.toISOString()}>{formatDate(updated)}</time></span>)}
+            </p>
+          </div>
         </div>
 
         {image && (
@@ -89,12 +88,12 @@ const formatDate = (d: Date) =>
           <slot />
         </div>
 
-        <div class="mt-16 border-t border-neutral-200 pt-8">
-          <div class="rounded-xl bg-primary-50 p-6 text-center sm:p-8">
-            <h2 class="font-heading text-xl font-bold text-neutral-950">
+        <div class="mt-16 border-t border-border pt-8">
+          <div class="rounded-xl bg-primary-50 dark:bg-primary-500/10 p-6 text-center sm:p-8">
+            <h2 class="font-heading text-xl font-bold text-ink">
               Ai nevoie de un site profesional?
             </h2>
-            <p class="mt-2 text-sm text-neutral-600">
+            <p class="mt-2 text-sm text-ink-muted">
               Contactează-mă pentru o consultanță gratuită despre proiectul tău.
             </p>
             <div class="mt-4">

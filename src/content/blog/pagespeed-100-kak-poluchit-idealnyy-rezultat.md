@@ -2,6 +2,8 @@
 title: "PageSpeed 100/100 — Как я получил идеальный результат на banstudio.dev"
 description: "Я получил 100 баллов в Performance, Accessibility, Best Practices и SEO в Google PageSpeed Insights. Вот что именно я сделал и почему это важно для вашего бизнеса."
 date: 2026-05-28
+image: "/images/blog/pagespeed-100-kak-poluchit-idealnyy-rezultat.png"
+imageAlt: "PageSpeed 100 / 100"
 tags: ["Производительность", "SEO", "Веб-разработка"]
 draft: false
 lang: ru

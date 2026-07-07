@@ -29,15 +29,13 @@ const { Content } = await render(project);
     { name: 'Portofoliu', href: '/portofoliu' },
     { name: project.data.title, href: `/portofoliu/${project.id}` },
   ]} />
-  <article class="py-section">
+  <article class="pb-section pt-10 sm:pt-14">
     <div class="container">
       <!-- Breadcrumb -->
-      <nav class="mb-8 text-sm text-neutral-400" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-neutral-600">Acasă</a>
-        <span class="mx-2">/</span>
-        <a href="/portofoliu" class="hover:text-neutral-600">Portofoliu</a>
-        <span class="mx-2">/</span>
-        <span class="text-neutral-600">{project.data.title}</span>
+      <nav class="mb-8 text-sm text-ink-subtle" aria-label="Breadcrumb">
+        <a href="/" class="transition-colors hover:text-ink">Acasă</a>
+        <span class="mx-1.5 text-border-strong">/</span>
+        <a href="/portofoliu" class="transition-colors hover:text-ink">Portofoliu</a>
       </nav>
 
       <!-- Header -->
@@ -47,41 +45,41 @@ const { Content } = await render(project);
             <Badge variant="primary">{tag}</Badge>
           ))}
         </div>
-        <h1 class="mt-4 text-display font-heading font-black text-neutral-950">
+        <h1 class="mt-4 text-display font-heading font-black text-ink">
           {project.data.title}
         </h1>
-        <p class="mt-4 text-lg text-neutral-500 sm:text-xl">
+        <p class="mt-4 text-lg text-ink-muted sm:text-xl">
           {project.data.description}
         </p>
-        <dl class="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-          <div>
-            <dt class="font-medium text-neutral-400">Client</dt>
-            <dd class="text-neutral-700">{project.data.client}</dd>
-          </div>
-          <div>
-            <dt class="font-medium text-neutral-400">An</dt>
-            <dd class="text-neutral-700">{project.data.date.getFullYear()}</dd>
-          </div>
-          {project.data.url && (
+        <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 rounded-2xl border border-border bg-surface-2 px-6 py-5">
+          <dl class="flex flex-wrap gap-x-8 gap-y-4">
             <div>
-              <dt class="font-medium text-neutral-400">Site live</dt>
-              <dd>
-                <a
-                  href={project.data.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-primary-600 hover:underline"
-                >
-                  Vizitează →
-                </a>
-              </dd>
+              <dt class="text-xs font-semibold uppercase tracking-wider text-ink-subtle">Client</dt>
+              <dd class="mt-1 font-semibold text-ink">{project.data.client}</dd>
             </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wider text-ink-subtle">An</dt>
+              <dd class="mt-1 font-semibold text-ink">{project.data.date.getFullYear()}</dd>
+            </div>
+          </dl>
+          {project.data.url && (
+            <a
+              href={project.data.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="ml-auto inline-flex items-center gap-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-semibold text-surface transition-transform duration-200 hover:-translate-y-0.5"
+            >
+              Vizitează site-ul
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </a>
           )}
-        </dl>
+        </div>
       </div>
 
       <!-- Imagine principală -->
-      <div class="mt-10 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100">
+      <div class="mt-10 overflow-hidden rounded-xl border border-border bg-surface-2">
         <img
           src={project.data.image}
           alt={project.data.imageAlt}
@@ -100,7 +98,7 @@ const { Content } = await render(project);
       </div>
 
       <!-- Navigare -->
-      <div class="mt-16 flex flex-wrap justify-center gap-4 border-t border-neutral-200 pt-10">
+      <div class="mt-16 flex flex-wrap justify-center gap-4 border-t border-border pt-10">
         <Button href="/portofoliu" variant="secondary">
           ← Toate proiectele
         </Button>

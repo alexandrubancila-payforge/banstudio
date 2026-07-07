@@ -10,41 +10,41 @@ import Card from '@components/ui/Card.astro';
   badge="Брендинг"
 >
   <Section>
-    <h2 class="text-headline font-heading font-bold text-neutral-950">Что входит в полный пакет</h2>
+    <h2 class="text-headline font-heading font-bold text-ink">Что входит в полный пакет</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Дизайн логотипа</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Дизайн логотипа</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           3 концепта логотипа, доработка и финальная версия. Получаете цветную, черно-белую версии и отдельную иконку.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Цветовая палитра</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Цветовая палитра</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           Основные, дополнительные и нейтральные цвета, выбранные стратегически. С кодами HEX, RGB и CMYK для любого носителя.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Типографика</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Типографика</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           Шрифты для заголовков и текста с правилами использования. Подбираю читаемые шрифты с характером.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Гайдлайн бренда</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Гайдлайн бренда</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           PDF-документ со всеми визуальными правилами. Любой, кто работает с вашим брендом, точно знает что и как.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Визитные карточки</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Визитные карточки</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           Дизайн визитных карточек включен в пакет айдентики. Согласованы с остальным брендом.
         </p>
       </Card>
-      <Card hover>
-        <h3 class="font-heading text-lg font-bold text-neutral-950">Кит для соцсетей</h3>
-        <p class="mt-2 text-sm text-neutral-500">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Кит для соцсетей</h3>
+        <p class="mt-2 text-sm text-ink-muted">
           Аватар, обложка и шаблоны постов для Facebook, Instagram, LinkedIn.
         </p>
       </Card>
@@ -52,7 +52,7 @@ import Card from '@components/ui/Card.astro';
   </Section>
 
   <Section background="muted">
-    <h2 class="text-headline font-heading font-bold text-neutral-950">Процесс брендинга</h2>
+    <h2 class="text-headline font-heading font-bold text-ink">Процесс брендинга</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {[
         { step: '01', title: 'Бриф', desc: 'Заполняете анкету о бизнесе, ценностях, целевой аудитории и визуальных предпочтениях.' },
@@ -60,26 +60,26 @@ import Card from '@components/ui/Card.astro';
         { step: '03', title: 'Концепты', desc: 'Создаю 3 разных визуальных направления. Представляю мудборды и обсуждаем.' },
         { step: '04', title: 'Доработка', desc: 'Развиваю выбранное направление, применяю ко всем материалам, передаю финальные файлы.' },
       ].map(({ step, title, desc }) => (
-        <div>
-          <span class="font-heading text-3xl font-black text-primary-200">{step}</span>
-          <h3 class="mt-2 font-heading text-lg font-bold text-neutral-950">{title}</h3>
-          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        <div class="reveal">
+          <span class="font-heading text-3xl font-black text-primary-500 dark:text-primary-300">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-ink">{title}</h3>
+          <p class="mt-2 text-sm text-ink-muted">{desc}</p>
         </div>
       ))}
     </div>
   </Section>
 
   <Section>
-    <h2 class="text-headline font-heading font-bold text-neutral-950">Почему важен фирменный стиль</h2>
+    <h2 class="text-headline font-heading font-bold text-ink">Почему важен фирменный стиль</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-3">
       {[
         { stat: '75%', desc: 'потребителей оценивают надежность бизнеса по дизайну' },
         { stat: '80%', desc: 'рост узнаваемости бренда при целостном визуальном стиле' },
         { stat: '3с', desc: 'достаточно посетителю для формирования первого впечатления' },
       ].map(({ stat, desc }) => (
-        <div class="text-center">
-          <p class="font-heading text-4xl font-black text-primary-600">{stat}</p>
-          <p class="mt-2 text-sm text-neutral-500">{desc}</p>
+        <div class="reveal text-center">
+          <p class="font-heading text-4xl font-black text-primary-600 dark:text-primary-300">{stat}</p>
+          <p class="mt-2 text-sm text-ink-muted">{desc}</p>
         </div>
       ))}
     </div>

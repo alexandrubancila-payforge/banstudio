@@ -8,7 +8,7 @@ imageAlt: "Screenshot site Rinnova Appartamenti cu pagina de proiecte de renovar
 tags: ["Международный", "Строительство", "Итальянский"]
 url: "https://rinnovaappartamenti.com"
 featured: true
-order: 3
+order: 4
 lang: ru
 ---
 

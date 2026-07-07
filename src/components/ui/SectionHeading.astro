@@ -2,19 +2,23 @@
 interface Props {
   title: string;
   subtitle?: string;
+  eyebrow?: string;
   align?: 'left' | 'center';
   as?: 'h1' | 'h2' | 'h3';
 }
 
-const { title, subtitle, align = 'left', as: Tag = 'h2' } = Astro.props;
+const { title, subtitle, eyebrow, align = 'left', as: Tag = 'h2' } = Astro.props;
 ---
 
 <div class:list={['max-w-2xl', align === 'center' && 'mx-auto text-center']}>
-  <Tag class="text-headline font-heading font-black text-neutral-950">
+  {eyebrow && (
+    <span class:list={['eyebrow', align === 'center' && 'justify-center']}>{eyebrow}</span>
+  )}
+  <Tag class:list={['font-heading text-headline font-black text-ink', eyebrow && 'mt-4']}>
     {title}
   </Tag>
   {subtitle && (
-    <p class="mt-3 text-lg text-neutral-500 sm:mt-4 sm:text-xl">
+    <p class="mt-4 text-lg text-ink-muted sm:text-xl">
       {subtitle}
     </p>
   )}
