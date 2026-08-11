@@ -1,10 +1,11 @@
 ---
 import { resolveLocale, getNavLinks, getAlternatePath, getDict } from '@/i18n';
+import { routePath } from '@lib/paths';
 
 const locale = resolveLocale(Astro.currentLocale);
 const navLinks = getNavLinks(locale);
 const dict = getDict(locale);
-const currentPath = Astro.url.pathname;
+const currentPath = routePath(Astro.url);
 
 const altLocale = locale === 'ro' ? 'ru' : 'ro';
 const altPath = getAlternatePath(currentPath, altLocale);

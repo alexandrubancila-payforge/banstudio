@@ -43,26 +43,88 @@ for (const [roPath, ruPath] of Object.entries(routeMap)) {
 }
 
 /**
- * Get the alternate language URL for a given path
+ * Blog slug mapping: Romanian slug → Russian slug.
+ * Slug-urile sunt traduse, nu identice — deci nu pot fi derivate. Când adaugi un
+ * articol nou tradus, adaugă-l și aici, altfel hreflang-ul îl ignoră și
+ * schimbătorul de limbă cade pe /ru/blog.
  */
-export function getAlternatePath(currentPath: string, targetLocale: Locale): string {
-  // Clean trailing slashes
-  const clean = currentPath.replace(/\/$/, '') || '/';
+const blogSlugMap: Record<string, string> = {
+  'cat-costa-un-site-web-in-moldova': 'skolko-stoit-sayt-v-moldove',
+  'ce-este-seo-si-de-ce-conteaza': 'chto-takoe-seo-i-pochemu-vazhno',
+  'cum-sa-alegi-web-developer': 'kak-vybrat-web-razrabotchika',
+  'de-ce-afacerea-ta-are-nevoie-de-site': 'zachem-biznesu-sayt',
+  'pagespeed-100-cum-am-obtinut-scor-perfect': 'pagespeed-100-kak-poluchit-idealnyy-rezultat',
+  'site-in-cod-sau-wordpress': 'sayt-v-kode-ili-wordpress',
+};
+
+const blogSlugMapReverse: Record<string, string> = {};
+for (const [roSlug, ruSlug] of Object.entries(blogSlugMap)) {
+  blogSlugMapReverse[ruSlug] = roSlug;
+}
+
+// Portofoliu: slug-urile RU sunt slug-ul RO + sufixul `-ru`
+const PORTFOLIO_RU_SUFFIX = '-ru';
+
+const stripSlash = (path: string) => path.replace(/\/$/, '') || '/';
+
+/**
+ * Traducerea exactă 1:1 a unei pagini, sau null dacă nu există.
+ * Folosește-o pentru hreflang: o adnotare care indică un 404 e ignorată de Google
+ * pentru toată perechea de pagini.
+ */
+export function getTranslatedPath(currentPath: string, targetLocale: Locale): string | null {
+  const clean = stripSlash(currentPath);
 
   if (targetLocale === 'ru') {
-    // Romanian → Russian
     if (routeMap[clean]) return routeMap[clean];
-    // Portfolio/blog dynamic pages: /portofoliu/slug → /ru/portfolio/slug
-    if (clean.startsWith('/portofoliu/')) return clean.replace('/portofoliu/', '/ru/portfolio/');
-    if (clean.startsWith('/blog/')) return clean.replace('/blog/', '/ru/blog/');
-    return '/ru';
-  } else {
-    // Russian → Romanian
-    if (reverseRouteMap[clean]) return reverseRouteMap[clean];
-    if (clean.startsWith('/ru/portfolio/')) return clean.replace('/ru/portfolio/', '/portofoliu/');
-    if (clean.startsWith('/ru/blog/')) return clean.replace('/ru/blog/', '/blog/');
-    return '/';
+
+    if (clean.startsWith('/blog/')) {
+      const ruSlug = blogSlugMap[clean.slice('/blog/'.length)];
+      return ruSlug ? `/ru/blog/${ruSlug}` : null;
+    }
+    if (clean.startsWith('/portofoliu/')) {
+      return `/ru/portfolio/${clean.slice('/portofoliu/'.length)}${PORTFOLIO_RU_SUFFIX}`;
+    }
+    return null;
   }
+
+  if (reverseRouteMap[clean]) return reverseRouteMap[clean];
+
+  if (clean.startsWith('/ru/blog/')) {
+    const roSlug = blogSlugMapReverse[clean.slice('/ru/blog/'.length)];
+    return roSlug ? `/blog/${roSlug}` : null;
+  }
+  if (clean.startsWith('/ru/portfolio/')) {
+    const ruSlug = clean.slice('/ru/portfolio/'.length);
+    return ruSlug.endsWith(PORTFOLIO_RU_SUFFIX)
+      ? `/portofoliu/${ruSlug.slice(0, -PORTFOLIO_RU_SUFFIX.length)}`
+      : null;
+  }
+  return null;
+}
+
+/**
+ * Get the alternate language URL for a given path.
+ * Pentru schimbătorul de limbă: întoarce mereu un URL valid, căzând pe indexul
+ * secțiunii (sau home) când pagina nu are traducere.
+ */
+export function getAlternatePath(currentPath: string, targetLocale: Locale): string {
+  const translated = getTranslatedPath(currentPath, targetLocale);
+  if (translated) return translated;
+
+  const clean = stripSlash(currentPath);
+
+  if (targetLocale === 'ru') {
+    if (clean.startsWith('/blog')) return '/ru/blog';
+    if (clean.startsWith('/portofoliu')) return '/ru/portfolio';
+    if (clean.startsWith('/servicii')) return '/ru/uslugi';
+    return '/ru';
+  }
+
+  if (clean.startsWith('/ru/blog')) return '/blog';
+  if (clean.startsWith('/ru/portfolio')) return '/portofoliu';
+  if (clean.startsWith('/ru/uslugi')) return '/servicii';
+  return '/';
 }
 
 /**

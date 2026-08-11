@@ -6,6 +6,7 @@ import SchemaArticle from '@components/seo/SchemaArticle.astro';
 import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
 import { getCollection, render } from 'astro:content';
 import { getDict } from '@/i18n';
+import { routePath } from '@lib/paths';
 
 const dict = getDict('ru');
 
@@ -33,12 +34,12 @@ const formatDate = (d: Date) =>
     date={post.data.date}
     updated={post.data.updated}
     image={post.data.image}
-    url={Astro.url.pathname}
+    url={routePath(Astro.url)}
   />
   <SchemaBreadcrumb items={[
     { name: dict.breadcrumb.home, href: '/ru' },
     { name: dict.breadcrumb.blog, href: '/ru/blog' },
-    { name: post.data.title, href: Astro.url.pathname },
+    { name: post.data.title, href: routePath(Astro.url) },
   ]} />
   <article class="pb-section pt-10 sm:pt-14">
     <div class="container">

@@ -6,6 +6,7 @@ import Section from '@components/ui/Section.astro';
 import SchemaService from '@components/seo/SchemaService.astro';
 import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
 import { resolveLocale, getDict } from '@/i18n';
+import { routePath } from '@lib/paths';
 
 interface Props {
   title: string;
@@ -26,11 +27,11 @@ const portfolioHref = isRu ? '/ru/portfolio' : '/portofoliu';
 ---
 
 <BaseLayout title={seoTitle ?? title} description={description}>
-  <SchemaService name={title} description={description} url={Astro.url.pathname} />
+  <SchemaService name={title} description={description} url={routePath(Astro.url)} />
   <SchemaBreadcrumb items={[
     { name: dict.breadcrumb.home, href: homeHref },
     { name: dict.breadcrumb.services, href: servicesHref },
-    { name: title, href: Astro.url.pathname },
+    { name: title, href: routePath(Astro.url) },
   ]} />
   <!-- Hero serviciu -->
   <section class="py-section">

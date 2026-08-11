@@ -2,7 +2,8 @@
 import '@/styles/global.css';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
-import { resolveLocale, getSiteConfig, getAlternatePath } from '@/i18n';
+import { resolveLocale, getSiteConfig, getTranslatedPath } from '@/i18n';
+import { routePath } from '@lib/paths';
 
 interface Props {
   title: string;
@@ -21,15 +22,18 @@ const {
   noindex = false,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, site.url);
+const canonicalURL = new URL(routePath(Astro.url), site.url);
 const fullTitle = title === 'Home' ? `${site.name} — ${description}` : `${title} | ${site.name}`;
 
-// Hreflang alternate URLs
-const currentPath = Astro.url.pathname;
-const roPath = locale === 'ro' ? currentPath : getAlternatePath(currentPath, 'ro');
-const ruPath = locale === 'ru' ? currentPath : getAlternatePath(currentPath, 'ru');
-const roURL = new URL(roPath, site.url);
-const ruURL = new URL(ruPath, site.url);
+// Hreflang alternate URLs — doar traduceri care există cu adevărat.
+// getTranslatedPath întoarce null când nu există pereche 1:1; într-un asemenea caz
+// NU emitem adnotarea, pentru că un hreflang care indică un 404 e ignorat de Google
+// pentru toată perechea de pagini.
+const currentPath = routePath(Astro.url);
+const roPath = locale === 'ro' ? currentPath : getTranslatedPath(currentPath, 'ro');
+const ruPath = locale === 'ru' ? currentPath : getTranslatedPath(currentPath, 'ru');
+const roURL = roPath ? new URL(roPath, site.url) : null;
+const ruURL = ruPath ? new URL(ruPath, site.url) : null;
 ---
 
 <!doctype html>
@@ -61,9 +65,9 @@ const ruURL = new URL(ruPath, site.url);
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Hreflang -->
-    <link rel="alternate" hreflang="ro" href={roURL} />
-    <link rel="alternate" hreflang="ru" href={ruURL} />
-    <link rel="alternate" hreflang="x-default" href={roURL} />
+    {roURL && <link rel="alternate" hreflang="ro" href={roURL} />}
+    {ruURL && <link rel="alternate" hreflang="ru" href={ruURL} />}
+    {roURL && <link rel="alternate" hreflang="x-default" href={roURL} />}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -88,14 +92,24 @@ const ruURL = new URL(ruPath, site.url);
 
     <slot name="head" />
 
-    <!-- Google tag (gtag.js) — încărcat la prima interacțiune, ca să NU afecteze PageSpeed.
-         Lighthouse nu interacționează → scriptul nu rulează în test → scorul 100 rămâne. -->
+    <!-- Google tag (gtag.js) — încărcat leneș, ca să nu blocheze randarea.
+         Se încarcă la prima interacțiune SAU după 3s (în timp idle), oricare vine prima.
+         Doar pe interacțiune nu era suficient: pe mobil nu există `mousemove`, deci un
+         vizitator care intra, citea hero-ul și pleca fără să dea scroll nu ajungea
+         NICIODATĂ în GA — de aici vizualizările artificial mici. Pentru bounce-urile
+         de sub 3s, gtag.js nu se mai poate încărca la timp, așa că trimitem page_view
+         direct prin Measurement Protocol cu sendBeacon, care pleacă și în timpul
+         descărcării paginii. Cele două căi se exclud reciproc, deci nu se dublează. -->
     <script is:inline>
       (() => {
         var GA_ID = 'G-GK39DSP1PS';
         var loaded = false;
+        var beaconSent = false;
+        var timer;
+
         function loadGA() {
           if (loaded) return; loaded = true;
+          clearTimeout(timer);
           var s = document.createElement('script');
           s.async = true;
           s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
@@ -103,11 +117,67 @@ const ruURL = new URL(ruPath, site.url);
           window.dataLayer = window.dataLayer || [];
           window.gtag = function(){ dataLayer.push(arguments); };
           gtag('js', new Date());
-          gtag('config', GA_ID);
+          // Dacă beacon-ul a raportat deja vizita, nu mai trimitem al doilea page_view.
+          gtag('config', GA_ID, { send_page_view: !beaconSent });
         }
+
+        function store(api, key, make) {
+          try {
+            var v = window[api].getItem(key);
+            if (!v) { v = make(); window[api].setItem(key, v); return { value: v, fresh: true }; }
+            return { value: v, fresh: false };
+          } catch (e) {
+            return { value: make(), fresh: true };
+          }
+        }
+
+        // client_id: refolosim cel din cookie-ul _ga dacă GA a rulat deja pentru acest
+        // vizitator, ca să nu-l numărăm ca doi utilizatori diferiți.
+        function clientId() {
+          var m = document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/);
+          if (m) return m[1];
+          return store('localStorage', 'ga_cid', function () {
+            return Math.floor(Math.random() * 1e10) + '.' + Math.floor(Date.now() / 1000);
+          }).value;
+        }
+
+        function beaconPageView() {
+          if (loaded || beaconSent || !navigator.sendBeacon) return;
+          beaconSent = true;
+          var session = store('sessionStorage', 'ga_sid', function () {
+            return String(Math.floor(Date.now() / 1000));
+          });
+          var p = new URLSearchParams({
+            v: '2',
+            tid: GA_ID,
+            cid: clientId(),
+            sid: session.value,
+            en: 'page_view',
+            dl: location.href,
+            dt: document.title,
+            ul: navigator.language,
+            sr: screen.width + 'x' + screen.height,
+            _p: String(Math.floor(Math.random() * 1e9)),
+          });
+          if (document.referrer) p.set('dr', document.referrer);
+          if (session.fresh) p.set('_ss', '1');
+          navigator.sendBeacon('https://www.google-analytics.com/g/collect?' + p.toString());
+        }
+
         var evts = ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'];
         function onFirst() { evts.forEach(function(e){ removeEventListener(e, onFirst); }); loadGA(); }
         evts.forEach(function(e){ addEventListener(e, onFirst, { once: true, passive: true }); });
+
+        // Fallback pe timer, programat în timp idle ca să nu concureze cu randarea.
+        timer = setTimeout(function () {
+          if ('requestIdleCallback' in window) requestIdleCallback(loadGA, { timeout: 1000 });
+          else loadGA();
+        }, 3000);
+
+        addEventListener('pagehide', beaconPageView);
+        addEventListener('visibilitychange', function () {
+          if (document.visibilityState === 'hidden') beaconPageView();
+        });
       })();
     </script>
   </head>

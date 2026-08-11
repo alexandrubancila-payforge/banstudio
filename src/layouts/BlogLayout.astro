@@ -4,6 +4,7 @@ import Badge from '@components/ui/Badge.astro';
 import Button from '@components/ui/Button.astro';
 import SchemaArticle from '@components/seo/SchemaArticle.astro';
 import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
+import { routePath } from '@lib/paths';
 
 interface Props {
   title: string;
@@ -28,12 +29,12 @@ const formatDate = (d: Date) =>
     date={date}
     updated={updated}
     image={image}
-    url={Astro.url.pathname}
+    url={routePath(Astro.url)}
   />
   <SchemaBreadcrumb items={[
     { name: 'Acasă', href: '/' },
     { name: 'Blog', href: '/blog' },
-    { name: title, href: Astro.url.pathname },
+    { name: title, href: routePath(Astro.url) },
   ]} />
   <article class="pb-section pt-10 sm:pt-14">
     <div class="container">
