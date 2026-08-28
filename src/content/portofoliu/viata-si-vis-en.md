@@ -7,7 +7,7 @@ image: "/images/portofoliu/viata-si-vis.webp"
 imageAlt: "Screenshot of the Viața și Vis website showing the projects and donation campaigns page"
 tags: ["Nonprofit", "Romania", "Multi-page"]
 url: "https://viatasivis.ro/"
-featured: true
+featured: false
 order: 5
 lang: en
 ---

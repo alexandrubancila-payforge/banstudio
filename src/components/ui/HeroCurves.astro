@@ -1,0 +1,129 @@
+---
+/**
+ * Curbe de creștere — strat decorativ pentru hero.
+ *
+ * Referința (payforge) desenează curbele pe <canvas> cu JS. Aici sunt SVG + CSS:
+ * aceeași citire vizuală, dar zero JavaScript — saitul trăiește din scorul 100,
+ * iar un canvas animat ar fi cost de execuție pe main thread degeaba.
+ *
+ * Animăm DOAR stroke-dashoffset (trasare) și transform (plutire) — niciodată
+ * opacity pe text sau layout, deci nu atinge LCP și CLS-ul rămâne 0 (cutia e
+ * absolută, aria-hidden). Respectă prefers-reduced-motion: fără mișcare, curbele
+ * apar direct trasate.
+ */
+---
+
+<div class="curves" aria-hidden="true">
+  <svg viewBox="0 0 800 420" preserveAspectRatio="xMaxYMax slice" fill="none">
+    <!-- de la cea mai palidă în spate, la cea mai saturată în față -->
+    <path class="c c4" d="M-20 416 C 250 416, 420 410, 570 372 C 690 342, 762 268, 820 200" pathLength="1" />
+    <path class="c c3" d="M-20 410 C 230 410, 398 402, 545 352 C 668 311, 745 216, 820 138" pathLength="1" />
+    <path class="c c2" d="M-20 404 C 210 404, 372 394, 516 330 C 640 275, 722 160, 820 76" pathLength="1" />
+    <path class="c c1" d="M-20 398 C 190 398, 345 386, 485 306 C 610 235, 695 108, 820 16" pathLength="1" />
+    <!-- nod pulsatoriu pe curba din față -->
+    <g class="node">
+      <circle class="node-halo" cx="610" cy="235" r="9" />
+      <circle class="node-ring" cx="610" cy="235" r="4.5" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  /* Pe mobil hero-ul e stivuit (titlu + CTA + spec + cadran), iar banda ar cădea
+     sub cadran fără să însemne nimic — deci nici nu o desenăm. */
+  .curves { display: none; }
+
+  @media (min-width: 40rem) {
+  .curves {
+    display: block;
+    position: absolute;
+    inset: auto 0 0 0;
+    height: min(26%, 11rem);
+    z-index: 0;
+    pointer-events: none;
+    /* se stinge spre stânga, ca să nu concureze cu textul */
+    /* Se sting spre stânga, ca să nu treacă peste titlu și peste linia de spec. */
+    /* Pachetul de proiecte ține dreapta acum: curbele se retrag în colțul de
+       jos-dreapta, ca sol sub el, ca să nu treacă peste butoane și spec. */
+    -webkit-mask-image: linear-gradient(to right, transparent 46%, black 76%);
+            mask-image: linear-gradient(to right, transparent 46%, black 76%);
+  }
+  .curves svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  }
+
+  .c {
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+  }
+  /* Albastru rece + verzuri de brand: contrastul cald/rece din referință,
+     dar cu verdele saitului, nu cu paleta lor. */
+  .c1 { stroke: oklch(0.72 0.13 158); }
+  .c2 { stroke: oklch(0.80 0.09 205); }
+  .c3 { stroke: oklch(0.86 0.06 168); }
+  .c4 { stroke: oklch(0.90 0.035 225); }
+
+  /* Pe întuneric, liniile deschise au contrast mult mai mare — le cobor, ca
+     evantaiul să rămână discret și verdele de brand să conducă. */
+  :root[data-theme="dark"] .c1 { stroke: oklch(0.66 0.14 158); }
+  :root[data-theme="dark"] .c2 { stroke: oklch(0.62 0.09 205); }
+  :root[data-theme="dark"] .c3 { stroke: oklch(0.52 0.05 168); }
+  :root[data-theme="dark"] .c4 { stroke: oklch(0.44 0.03 225); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .c1 { stroke: oklch(0.66 0.14 158); }
+    :root:not([data-theme="light"]) .c2 { stroke: oklch(0.62 0.09 205); }
+    :root:not([data-theme="light"]) .c3 { stroke: oklch(0.52 0.05 168); }
+    :root:not([data-theme="light"]) .c4 { stroke: oklch(0.44 0.03 225); }
+  }
+
+  .node-halo { fill: oklch(0.72 0.13 158 / 0.18); }
+  .node-ring {
+    fill: var(--color-surface);
+    stroke: oklch(0.62 0.16 158);
+    stroke-width: 2;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .c {
+      /* pathLength="1" pe fiecare cale → dash-urile sunt relative la lungimea ei.
+         Cu o valoare fixă, curbele mai scurte stăteau nedesenate o bucată din
+         animație (dasharray 1400 vs lungime reală ~866). */
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation:
+        curve-draw 2.1s var(--ease-out-expo) forwards,
+        curve-float 16s ease-in-out infinite;
+    }
+    .c1 { animation-delay: 0.15s, 2.2s; }
+    .c2 { animation-delay: 0.3s, 2.4s; animation-duration: 2.1s, 19s; }
+    .c3 { animation-delay: 0.45s, 2.6s; animation-duration: 2.1s, 22s; }
+    .c4 { animation-delay: 0.6s, 2.8s; animation-duration: 2.1s, 25s; }
+
+    .node {
+      opacity: 0;
+      animation: node-in 0.5s var(--ease-spring) 1.9s forwards;
+    }
+    .node-halo {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: node-pulse 2.8s ease-in-out 2.4s infinite;
+    }
+  }
+
+  @keyframes curve-draw {
+    to { stroke-dashoffset: 0; }
+  }
+  /* plutire foarte mică — dă viață fără să distragă */
+  @keyframes curve-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes node-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes node-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.45); }
+  }
+</style>

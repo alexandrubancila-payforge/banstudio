@@ -1,0 +1,245 @@
+---
+/**
+ * Lista blogului — ca un blog adevărat, nu o grilă uniformă:
+ * cel mai nou articol e capul de afiș (imagine + rezumat + meta), restul vin în
+ * grilă dedesubt. Fiecare articol poartă data și TIMPUL DE CITIRE, calculat la
+ * build din corpul markdown (~200 de cuvinte/min) — zero JS.
+ * O singură componentă pentru toate limbile; etichetele vin din tabelul local.
+ */
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '@/i18n';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  locale: Locale;
+  blogHref: string;
+}
+
+const { posts, locale, blogHref } = Astro.props;
+
+const L = {
+  ro: { read: 'min de citit', cta: 'Citește articolul', latest: 'Cel mai nou' },
+  ru: { read: 'мин чтения', cta: 'Читать статью', latest: 'Самая новая' },
+  en: { read: 'min read', cta: 'Read the article', latest: 'Latest' },
+}[locale];
+
+const DATE_LOCALE = { ro: 'ro-RO', ru: 'ru-RU', en: 'en-GB' }[locale];
+const formatDate = (d: Date) =>
+  d.toLocaleDateString(DATE_LOCALE, { year: 'numeric', month: 'long', day: 'numeric' });
+
+const minutes = (body: string | undefined) =>
+  Math.max(1, Math.round((body ?? '').split(/\s+/).filter(Boolean).length / 200));
+
+const hero = posts[0];
+const rest = posts.slice(1);
+---
+
+<div class="bl">
+  {hero && (
+    <a href={`${blogHref}/${hero.id}`} class="bl-hero reveal">
+      {hero.data.image && (
+        <span class="bl-hero-media">
+          <img src={hero.data.image} alt={hero.data.imageAlt || hero.data.title} width="1200" height="630" decoding="async" loading="eager" />
+          <span class="bl-badge">{L.latest}</span>
+        </span>
+      )}
+      <span class="bl-hero-body">
+        <span class="bl-meta spec">
+          <time datetime={hero.data.date.toISOString()}>{formatDate(hero.data.date)}</time>
+          <span class="bl-dot" aria-hidden="true"></span>
+          {minutes(hero.body)} {L.read}
+        </span>
+        <span class="bl-hero-title">{hero.data.title}</span>
+        <span class="bl-hero-desc">{hero.data.description}</span>
+        <span class="bl-more">
+          {L.cta}
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12l-7.5 7.5M3 12h18" />
+          </svg>
+        </span>
+      </span>
+    </a>
+  )}
+
+  <div class="bl-grid">
+    {rest.map((post) => (
+      <a href={`${blogHref}/${post.id}`} class="bl-card reveal">
+        {post.data.image && (
+          <span class="bl-media">
+            <img src={post.data.image} alt={post.data.imageAlt || post.data.title} width="1200" height="630" decoding="async" loading="lazy" />
+          </span>
+        )}
+        <span class="bl-body">
+          <span class="bl-meta spec">
+            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+            <span class="bl-dot" aria-hidden="true"></span>
+            {minutes(post.body)} {L.read}
+          </span>
+          <span class="bl-title">{post.data.title}</span>
+          <span class="bl-desc">{post.data.description}</span>
+        </span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .bl { margin-top: 2.5rem; }
+
+  /* ---- capul de afiș ---- */
+  .bl-hero {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-3);
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .bl-hero:hover { border-color: var(--color-primary-400); box-shadow: var(--shadow-medium); }
+  @media (min-width: 64rem) {
+    .bl-hero { flex-direction: row; }
+    .bl-hero-media { flex: 1.15; }
+    .bl-hero-body { flex: 1; }
+  }
+  .bl-hero-media {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: var(--color-surface-2);
+  }
+  .bl-hero-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 14rem;
+    object-fit: cover;
+    transition: scale 0.6s var(--ease-out-expo);
+  }
+  .bl-hero:hover .bl-hero-media img { scale: 1.04; }
+  .bl-badge {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: var(--color-primary-600);
+    color: white;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .bl-hero-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: clamp(1.5rem, 3vw, 2.75rem);
+  }
+  .bl-hero-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 1.8vw, 1.65rem);
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    color: var(--color-ink);
+  }
+  .bl-hero-desc {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bl-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary-600);
+  }
+  :root[data-theme="dark"] .bl-more { color: var(--color-primary-300); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .bl-more { color: var(--color-primary-300); }
+  }
+  .bl-more svg { width: 1rem; height: 1rem; transition: translate 0.3s var(--ease-out-expo); }
+  .bl-hero:hover .bl-more svg { translate: 0.25rem 0; }
+
+  /* ---- meta: dată · timp de citire ---- */
+  .bl-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+  }
+  .bl-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--color-ink-subtle);
+  }
+
+  /* ---- grila articolelor ---- */
+  .bl-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  @media (min-width: 48rem) { .bl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 64rem) { .bl-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+  .bl-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-3);
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .bl-card:hover { border-color: var(--color-primary-400); box-shadow: var(--shadow-medium); }
+  .bl-media {
+    display: block;
+    aspect-ratio: 1200 / 630;
+    overflow: hidden;
+    background: var(--color-surface-2);
+  }
+  .bl-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.6s var(--ease-out-expo);
+  }
+  .bl-card:hover .bl-media img { scale: 1.05; }
+  .bl-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.2rem 1.3rem 1.4rem;
+  }
+  .bl-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    color: var(--color-ink);
+  }
+  .bl-desc {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

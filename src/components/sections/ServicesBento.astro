@@ -1,0 +1,688 @@
+---
+/**
+ * Serviciile în grilă bento, cu vizuale vii per card.
+ *
+ * Structura: grilă de 5 coloane, carduri 3+2 / 2+3 / 5 (21st.dev „Features 11").
+ *
+ * Vizualele, alese cu metoda dataviz (forma înainte de culoare):
+ *  1. Site în cod    → bare orizontale, forma EMPHASIS: scorul lui în accent,
+ *                      contextul în gri de de-emphasis. Bare ≤24px, capăt de date
+ *                      rotunjit 4px / bază dreaptă, cresc de la bază la intrarea
+ *                      în viewport (animation-timeline: view(), ca `.reveal`).
+ *                      Etichete și valori în tokeni de text, nu în culoarea seriei.
+ *                      Paleta validată cu scripts/validate_palette.js: separare
+ *                      CVD ΔE 33–38 (PASS). „FAIL"-urile raportate sunt pe slotul
+ *                      gri — corect pentru un hue de identitate, dar aici griul e
+ *                      de-emphasis: rolul lui E să citească gri. WARN-ul de
+ *                      contrast cere etichete vizibile — fiecare bară le are.
+ *  2. WordPress      → mini-editor care „scrie singur": linia se tastează, apoi
+ *                      apare confirmarea publicării. Buclă lentă.
+ *  3. Redesign       → slider înainte/după cu mâner care glisează — idiomul
+ *                      consacrat al redesign-ului. Clip-path + translate sincron.
+ *  4. Cărți de vizită→ lucrarea reală (singura din portofoliu pe acest serviciu).
+ *  5. Identitate     → brand board: logo, specimen, paletă, cu intrare eșalonată.
+ *
+ * Zero JS. Toate animațiile în CSS, sub prefers-reduced-motion: no-preference;
+ * fără mișcare rămâne starea finală (același mecanism ca `.reveal` din temă).
+ */
+import { resolveLocale, getDict } from '@/i18n';
+import { SERVICE_ICONS } from '@lib/service-icons';
+
+const locale = resolveLocale(Astro.currentLocale);
+const dict = getDict(locale);
+
+const SPANS = [3, 2, 2, 3, 5];
+
+const T = {
+  ro: { before: 'Înainte', after: 'După',
+        logo: 'Logo', type: 'Tipografie', colors: 'Culori', guide: 'Ghid de brand' },
+  ru: { before: 'До', after: 'После',
+        logo: 'Логотип', type: 'Типографика', colors: 'Цвета', guide: 'Гайд по бренду' },
+  en: { before: 'Before', after: 'After',
+        logo: 'Logo', type: 'Typography', colors: 'Colours', guide: 'Brand guide' },
+}[locale];
+
+const SWATCHES = ['oklch(0.44 0.17 155)', 'oklch(0.55 0.17 155)', 'oklch(0.76 0.10 155)', 'oklch(0.65 0.20 30)', 'oklch(0.16 0.01 160)'];
+
+const items = dict.services.items.map((item: any, i: number) => ({
+  ...item,
+  icon: SERVICE_ICONS[i],
+  span: SPANS[i] ?? 5,
+  viz: i,
+}));
+---
+
+<div class="bento">
+  {items.map((item) => (
+    <a
+      href={item.href}
+      class:list={['bento-card', `span-${item.span}`, item.span === 5 && 'is-wide', 'reveal']}
+    >
+      <span class="bento-head">
+        <span class="bento-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+          </svg>
+        </span>
+        <span class="bento-title">{item.title}</span>
+        <span class="bento-desc">{item.description}</span>
+        <span class="bento-more" aria-hidden="true">
+          {dict.services.learnMore}
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12l-7.5 7.5M3 12h18" />
+          </svg>
+        </span>
+      </span>
+
+      <span class="bento-visual" aria-hidden="true">
+        {/* 1 — cod care se scrie singur */}
+        {item.viz === 0 && (
+          <span class="viz code">
+            <span class="cd-chrome"><i></i><i></i><i></i><span class="cd-tab">index.astro</span></span>
+            <span class="cd-body">
+              <span class="cd-line l1"><b class="kw">const</b> site = <b class="fn">build</b><b class="pn">(&#123;</b></span>
+              <span class="cd-line l2">&nbsp;&nbsp;design: <b class="st">'custom'</b>,</span>
+              <span class="cd-line l3">&nbsp;&nbsp;pageSpeed: <b class="nr">100</b>,</span>
+              <span class="cd-line l4"><b class="pn">&#125;)</b>; <b class="cm">// 100/100</b></span>
+            </span>
+          </span>
+        )}
+
+        {/* 2 — page builder: cursorul trage un bloc în pagină */}
+        {item.viz === 1 && (
+          <span class="viz builder">
+            <span class="pb-row title"></span>
+            <span class="pb-row"></span>
+            <span class="pb-slot">
+              <span class="pb-hand">
+                <span class="pb-block">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A1.5 1.5 0 0 0 21.75 19.5V4.5A1.5 1.5 0 0 0 20.25 3H3.75A1.5 1.5 0 0 0 2.25 4.5v15A1.5 1.5 0 0 0 3.75 21Z" /></svg>
+                  <i></i><i></i>
+                </span>
+                <svg class="pb-cursor" viewBox="0 0 24 24"><path d="M5.5 2.6 19.4 13.8l-6.2.9 3.4 6.2-2.8 1.5-3.4-6.2-4.9 3.9z" /></svg>
+              </span>
+            </span>
+          </span>
+        )}
+
+        {/* 3 — sliderul înainte/după */}
+        {item.viz === 2 && (
+          <span class="viz compare">
+            <span class="cmp-old">
+              <span class="cmp-tag spec">{T.before}</span>
+              <span class="cmp-hero old"></span>
+              <span class="cmp-rows"><i style="width:82%"></i><i style="width:64%"></i><i style="width:88%"></i></span>
+            </span>
+            <span class="cmp-new">
+              <span class="cmp-tag spec new">{T.after}</span>
+              <span class="cmp-hero new"></span>
+              <span class="cmp-rows new"><i style="width:60%"></i><i style="width:42%"></i></span>
+            </span>
+            <span class="cmp-handle"><i></i></span>
+          </span>
+        )}
+
+        {/* 4 — mockup în evantai: fața + spatele unei cărți specimen */}
+        {item.viz === 3 && (
+          <span class="viz print">
+            <span class="fan">
+              <span class="fcard back">
+                <span class="fc-mono">B</span>
+              </span>
+              <span class="fcard front">
+                <span class="fc-logo">B</span>
+                <span class="fc-name"></span>
+                <span class="fc-line"></span>
+                <span class="fc-line short"></span>
+              </span>
+            </span>
+            <span class="pills">
+              <span class="pill">CMYK</span><span class="pill">Bleed</span><span class="pill">300 DPI</span>
+            </span>
+          </span>
+        )}
+
+        {/* 5 — brand board */}
+        {item.viz === 4 && (
+          <span class="viz brand">
+            <span class="bd-item" style="--i: 0;">
+              <span class="bd-tile logo">B</span>
+              <span class="bd-cap spec">{T.logo}</span>
+            </span>
+            <span class="bd-item" style="--i: 1;">
+              <span class="bd-tile type">Aa</span>
+              <span class="bd-cap spec">{T.type}</span>
+            </span>
+            <span class="bd-item grow" style="--i: 2;">
+              <span class="bd-strip">
+                {SWATCHES.map((c, i) => <i style={`--c: ${c}; --i: ${i};`}></i>)}
+              </span>
+              <span class="bd-cap spec">{T.colors}</span>
+            </span>
+            <span class="bd-item" style="--i: 3;">
+              <span class="bd-tile guide">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+              </span>
+              <span class="bd-cap spec">{T.guide}</span>
+            </span>
+          </span>
+        )}
+      </span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .bento { display: grid; gap: 0.75rem; margin-top: 3rem; }
+  @media (min-width: 48rem) {
+    .bento { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .span-2 { grid-column: span 2; }
+    .span-3 { grid-column: span 3; }
+    .span-5 { grid-column: span 5; }
+  }
+
+  .bento-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-3);
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .bento-card:hover { border-color: var(--color-primary-400); box-shadow: var(--shadow-medium); }
+
+  .bento-head { display: flex; flex-direction: column; padding: clamp(1.5rem, 2.2vw, 2rem); }
+  .bento-visual {
+    display: block;
+    margin-top: auto;
+    padding: 0 clamp(1.5rem, 2.2vw, 2rem) clamp(1.5rem, 2.2vw, 2rem);
+  }
+
+  @media (min-width: 48rem) {
+    .is-wide { flex-direction: row; align-items: center; }
+    .is-wide .bento-head { flex: 1; }
+    .is-wide .bento-visual { margin-top: 0; padding-left: 0; flex: none; width: 52%; }
+  }
+
+  .bento-icon {
+    display: grid; place-items: center;
+    width: 2.75rem; height: 2.75rem; flex: none;
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklch, var(--color-primary-500) 12%, transparent);
+    color: var(--color-primary-600);
+  }
+  :root[data-theme="dark"] .bento-icon { color: var(--color-primary-300); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .bento-icon { color: var(--color-primary-300); }
+  }
+  .bento-icon svg { width: 1.35rem; height: 1.35rem; }
+
+  .bento-title {
+    display: block; margin-top: 1.25rem;
+    font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem;
+    letter-spacing: -0.015em; color: var(--color-ink);
+  }
+  .span-3 .bento-title, .span-5 .bento-title { font-size: 1.4rem; }
+
+  .bento-desc {
+    display: block; margin-top: 0.5rem;
+    font-size: 0.9375rem; line-height: 1.65; color: var(--color-ink-muted);
+  }
+
+  .bento-more {
+    display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem;
+    font-size: 0.875rem; font-weight: 600; color: var(--color-primary-600);
+  }
+  :root[data-theme="dark"] .bento-more { color: var(--color-primary-300); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .bento-more { color: var(--color-primary-300); }
+  }
+  .bento-more svg { width: 1rem; height: 1rem; transition: translate 0.3s var(--ease-out-expo); }
+  .bento-card:hover .bento-more svg { translate: 0.25rem 0; }
+
+  /* ============ PANOUL VIZUAL COMUN ============ */
+  .viz {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 11.5rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-2);
+    overflow: hidden;
+  }
+
+  /* ============ 1. CODUL CARE SE SCRIE SINGUR ============
+     Fiecare linie se tastează în fereastra ei dintr-un ciclu comun de 10s.
+     Lățimile sunt în `ch` pe font mono, iar timing-ul e `steps(nr. caractere)` —
+     easing-ul se aplică per segment de keyframes, deci pașii cad exact pe litere.
+     Caretul e border-right-ul liniei, aprins doar în fereastra ei de tastare.
+     Editorul e închis la culoare în ambele teme, ca orice bloc de cod. */
+  .code { padding: 0; background: oklch(0.17 0.014 160); border-color: oklch(0.28 0.012 160); }
+  .cd-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.55rem 0.7rem;
+    border-bottom: 1px solid oklch(0.28 0.012 160);
+  }
+  .cd-chrome i { width: 0.42rem; height: 0.42rem; border-radius: 50%; background: oklch(0.38 0.012 160); }
+  .cd-tab {
+    margin-left: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.03em;
+    color: oklch(0.62 0.01 150);
+  }
+  .cd-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 1.1rem 1.2rem 1.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: oklch(0.88 0.01 150);
+  }
+  .cd-line {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid transparent;
+  }
+  .cd-line b { font-weight: 500; font-style: normal; }
+  .kw { color: oklch(0.76 0.10 155); }
+  .fn { color: oklch(0.80 0.12 205); }
+  .st { color: oklch(0.75 0.15 30); }
+  .nr { color: oklch(0.80 0.16 75); }
+  .pn { color: oklch(0.62 0.01 150); }
+  .cm { color: oklch(0.55 0.03 155); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .cd-line.l1 { animation: cd-l1 10s steps(20, end) infinite; }
+    .cd-line.l2 { animation: cd-l2 10s steps(19, end) infinite; }
+    .cd-line.l3 { animation: cd-l3 10s steps(17, end) infinite; }
+    .cd-line.l4 { animation: cd-l4 10s steps(14, end) infinite; }
+  }
+  /* ferestrele: l1 2–20%, l2 24–40%, l3 44–58%, l4 62–74%; ținere; reset la 98% */
+  @keyframes cd-l1 {
+    0%, 2% { width: 0; border-right-color: oklch(0.76 0.10 155); }
+    20% { width: 20ch; border-right-color: oklch(0.76 0.10 155); }
+    24%, 97% { width: 20ch; border-right-color: transparent; }
+    98%, 100% { width: 0; border-right-color: transparent; }
+  }
+  @keyframes cd-l2 {
+    0%, 24% { width: 0; border-right-color: transparent; }
+    24.01% { border-right-color: oklch(0.76 0.10 155); }
+    40% { width: 19ch; border-right-color: oklch(0.76 0.10 155); }
+    44%, 97% { width: 19ch; border-right-color: transparent; }
+    98%, 100% { width: 0; border-right-color: transparent; }
+  }
+  @keyframes cd-l3 {
+    0%, 44% { width: 0; border-right-color: transparent; }
+    44.01% { border-right-color: oklch(0.76 0.10 155); }
+    58% { width: 17ch; border-right-color: oklch(0.76 0.10 155); }
+    62%, 97% { width: 17ch; border-right-color: transparent; }
+    98%, 100% { width: 0; border-right-color: transparent; }
+  }
+  @keyframes cd-l4 {
+    0%, 62% { width: 0; border-right-color: transparent; }
+    62.01% { border-right-color: oklch(0.76 0.10 155); }
+    74% { width: 14ch; border-right-color: oklch(0.76 0.10 155); }
+    74.01%, 97% { width: 14ch; border-right-color: oklch(0.76 0.10 155); }
+    98%, 100% { width: 0; border-right-color: transparent; }
+  }
+
+  /* ============ 2. PAGE BUILDER: CURSORUL TRAGE UN BLOC ============
+     Mâna (bloc + cursor) e copil al slotului, cu poziția de repaus = andocată
+     perfect în el; keyframes o scot în afară și o aduc înapoi, deci „drop"-ul
+     cade la fix prin construcție. Slotul își aprinde conturul la apropiere, pe
+     aceleași procente. La reduced-motion starea implicită e blocul așezat. */
+  .builder {
+    gap: 0.55rem;
+    justify-content: center;
+  }
+  .pb-row {
+    display: block;
+    height: 1.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-3);
+    border: 1px solid var(--color-border);
+  }
+  .pb-row.title { width: 62%; }
+  .pb-slot {
+    position: relative;
+    display: block;
+    height: 3.4rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px dashed var(--color-border-strong);
+  }
+  .pb-hand {
+    position: absolute;
+    inset: 3px;
+    display: block;
+  }
+  .pb-block {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0 0.7rem;
+    border-radius: calc(var(--radius-sm) - 1px);
+    border: 1px solid color-mix(in srgb, var(--color-primary-500) 40%, var(--color-border));
+    background: color-mix(in srgb, var(--color-primary-500) 10%, var(--color-surface-3));
+    color: var(--color-primary-600);
+    box-shadow: none;
+  }
+  :root[data-theme="dark"] .pb-block { color: var(--color-primary-300); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .pb-block { color: var(--color-primary-300); }
+  }
+  .pb-block svg { width: 1.1rem; height: 1.1rem; flex: none; }
+  .pb-block i {
+    display: block;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: color-mix(in oklch, var(--color-primary-500) 30%, transparent);
+  }
+  .pb-block i:nth-of-type(1) { width: 34%; }
+  .pb-block i:nth-of-type(2) { width: 22%; }
+  .pb-cursor {
+    position: absolute;
+    left: 56%;
+    top: 52%;
+    width: 1.05rem;
+    height: 1.05rem;
+    fill: var(--color-ink);
+    stroke: var(--color-surface);
+    stroke-width: 1.2;
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .pb-hand { animation: pb-hand 7s cubic-bezier(0.45, 0, 0.25, 1) infinite; }
+    .pb-block { animation: pb-block 7s cubic-bezier(0.45, 0, 0.25, 1) infinite; }
+    .pb-cursor { animation: pb-cursor 7s cubic-bezier(0.45, 0, 0.25, 1) infinite; }
+    .pb-slot { animation: pb-slot 7s linear infinite; }
+  }
+  /* traseul: intră de sus-dreapta (10–45%), plutește, drop la 52%, repaus, reset */
+  @keyframes pb-hand {
+    0%, 10% { translate: 46% -205%; opacity: 0; }
+    16% { opacity: 1; }
+    34% { translate: 16% -78%; }
+    45%, 96% { translate: 0 0; opacity: 1; }
+    99%, 100% { translate: 0 0; opacity: 0; }
+  }
+  @keyframes pb-block {
+    0%, 10% { rotate: 3deg; scale: 0.96; box-shadow: var(--shadow-medium); }
+    45% { rotate: 2deg; scale: 0.98; box-shadow: var(--shadow-medium); }
+    52%, 100% { rotate: 0deg; scale: 1; box-shadow: none; }
+  }
+  @keyframes pb-cursor {
+    0%, 10% { opacity: 0; translate: 0 0; }
+    16%, 50% { opacity: 1; translate: 0 0; }
+    60%, 100% { opacity: 0; translate: 1.1rem 1.2rem; }
+  }
+  @keyframes pb-slot {
+    0%, 20% { border-color: var(--color-border-strong); }
+    34%, 50% { border-color: var(--color-primary-500); }
+    62%, 100% { border-color: var(--color-border-strong); }
+  }
+
+  /* ============ 3. SLIDERUL ÎNAINTE/DUPĂ ============ */
+  .compare { padding: 0; min-height: 11.5rem; }
+  .cmp-old, .cmp-new {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 1rem 1.1rem;
+  }
+  .cmp-old { background: var(--color-surface-2); }
+  .cmp-new { background: var(--color-surface-3); }
+  .cmp-tag {
+    align-self: flex-start;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .cmp-tag.new { color: var(--color-primary-600); }
+  :root[data-theme="dark"] .cmp-tag.new { color: var(--color-primary-300); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .cmp-tag.new { color: var(--color-primary-300); }
+  }
+  .cmp-hero {
+    height: 2.6rem;
+    border-radius: var(--radius-sm);
+  }
+  .cmp-hero.old { background: var(--color-border); }
+  .cmp-hero.new { background: color-mix(in oklch, var(--color-primary-500) 26%, transparent); }
+  .cmp-rows { display: flex; flex-direction: column; gap: 0.45rem; }
+  .cmp-rows i { height: 0.45rem; border-radius: 999px; background: var(--color-border-strong); }
+  .cmp-rows.new i { background: color-mix(in oklch, var(--color-primary-500) 38%, transparent); height: 0.55rem; }
+  /* mânerul și decupajul rulează pe aceleași keyframes → rămân sincron */
+  .cmp-new { clip-path: inset(0 55% 0 0); }
+  .cmp-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 45%;
+    width: 2px;
+    margin-left: -1px;
+    background: var(--color-primary-600);
+  }
+  .cmp-handle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary-600);
+    background: var(--color-surface-3);
+  }
+  .cmp-handle::before, .cmp-handle::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+  }
+  .cmp-handle::before { right: 100%; margin: -3px 7px 0 0; border-right-color: var(--color-ink-subtle); }
+  .cmp-handle::after { left: 100%; margin: -3px 0 0 7px; border-left-color: var(--color-ink-subtle); }
+  @media (prefers-reduced-motion: no-preference) {
+    .cmp-new { animation: cmp-clip 8s ease-in-out infinite; }
+    .cmp-handle { animation: cmp-slide 8s ease-in-out infinite; }
+  }
+  @keyframes cmp-clip {
+    0%, 100% { clip-path: inset(0 72% 0 0); }
+    50% { clip-path: inset(0 22% 0 0); }
+  }
+  @keyframes cmp-slide {
+    0%, 100% { left: 28%; }
+    50% { left: 78%; }
+  }
+
+  /* ============ 4. MOCKUP ÎN EVANTAI ============
+     Convenția prezentărilor de print: fața peste spate, ușor rotite. Cărțile sunt
+     desenate în CSS ca specimen pe paleta saitului — o poză reală, micșorată la
+     8rem, devenea ilizibilă și aglomerată. Plutire lentă în repaus; la hover
+     evantaiul se desface puțin. */
+  .print { align-items: center; gap: 1rem; }
+  .fan {
+    position: relative;
+    display: block;
+    height: 8rem;
+    aspect-ratio: 56 / 32;
+    max-width: 100%;
+    /* loc pentru cartea din spate, decalată sus-dreapta */
+    margin-top: 1.1rem;
+  }
+  .fcard {
+    position: absolute;
+    inset: 0;
+    display: block;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-medium);
+    transition: rotate 0.5s var(--ease-out-expo), translate 0.5s var(--ease-out-expo);
+  }
+  .fcard.back {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, oklch(0.33 0.10 155), oklch(0.24 0.07 158));
+    rotate: 5deg;
+    translate: 9% -10%;
+  }
+  .fc-mono {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.9rem;
+    color: oklch(0.97 0.01 155 / 0.92);
+  }
+  .fcard.front {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.2rem;
+    background: var(--color-surface-3);
+    border: 1px solid var(--color-border);
+    rotate: -3deg;
+    translate: -5% 5%;
+  }
+  .fc-logo {
+    display: grid;
+    place-items: center;
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.45rem;
+    background: var(--color-primary-600);
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 0.85rem;
+  }
+  .fc-name {
+    display: block;
+    width: 52%;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: var(--color-ink);
+    opacity: 0.85;
+  }
+  .fc-line {
+    display: block;
+    width: 68%;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: var(--color-border-strong);
+  }
+  .fc-line.short { width: 44%; }
+
+  /* Plutirea e pe `translate` (compozitată pe GPU), pe tot evantaiul: animarea
+     lui margin-top sărea în pași de reflow și împingea și pastilele de dedesubt. */
+  @media (prefers-reduced-motion: no-preference) {
+    .fan { animation: fan-float 9s ease-in-out infinite; }
+  }
+  @keyframes fan-float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -7px; }
+  }
+  /* la hover evantaiul se desface puțin */
+  .bento-card:hover .fcard.front { rotate: -5deg; translate: -7% 7%; }
+  .bento-card:hover .fcard.back { rotate: 7deg; translate: 11% -12%; }
+
+  .pills { display: flex; justify-content: center; gap: 0.4rem; }
+  .pill {
+    padding: 0.22rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-3);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-muted);
+  }
+
+  /* ============ 5. BRAND BOARD ============ */
+  .brand {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.9rem, 2vw, 1.6rem);
+    min-height: 9.5rem;
+  }
+  .bd-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .bd-tile {
+    display: grid;
+    place-items: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-3);
+    box-shadow: var(--shadow-soft);
+  }
+  .bd-tile.logo {
+    background: var(--color-primary-600);
+    border-color: var(--color-primary-600);
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.3rem;
+  }
+  .bd-tile.type {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.25rem;
+    color: var(--color-ink);
+  }
+  .bd-tile.guide { color: var(--color-ink-muted); }
+  .bd-tile.guide svg { width: 1.4rem; height: 1.4rem; }
+  .bd-strip { display: flex; gap: 0.3rem; }
+  .bd-strip i {
+    width: 1.5rem;
+    height: 3.6rem;
+    border-radius: var(--radius-sm);
+    background: var(--c);
+    box-shadow: var(--shadow-soft);
+  }
+  .bd-cap { font-size: 0.62rem; letter-spacing: 0.06em; }
+  @media (prefers-reduced-motion: no-preference) {
+    .bd-item {
+      animation: bd-in 0.55s var(--ease-spring) both;
+      animation-timeline: view();
+      /* pe un timeline de scroll delay-ul în secunde e ignorat — eșalonarea se
+         face din fereastra de range, decalată cu --i */
+      animation-range: entry calc(15% + var(--i) * 9%) entry calc(55% + var(--i) * 9%);
+    }
+  }
+  @keyframes bd-in {
+    from { scale: 0.75; opacity: 0; }
+    to { scale: 1; opacity: 1; }
+  }
+
+  /* ============ MOBIL ============ */
+  @media (max-width: 47.999rem) {
+    .viz { min-height: 10rem; padding: 1rem; }
+    .editor, .compare { padding: 0; }
+    .crow { grid-template-columns: 4.6rem 1fr 2rem; }
+    .brand { flex-wrap: wrap; }
+  }
+</style>

@@ -25,6 +25,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+// ~200 de cuvinte pe minut, din corpul markdown
+const minutes = Math.max(1, Math.round((post.body ?? '').split(/\s+/).filter(Boolean).length / 200));
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -44,7 +46,7 @@ const formatDate = (d: Date) =>
     { name: dict.breadcrumb.blog, href: blogHref },
     { name: post.data.title, href: routePath(Astro.url) },
   ]} />
-  <article class="pb-section pt-10 sm:pt-14">
+  <article class="rails pb-section pt-10 sm:pt-14">
     <div class="container">
       <div class="mx-auto max-w-3xl">
         <nav class="text-sm text-ink-subtle" aria-label="Breadcrumb">
@@ -76,6 +78,7 @@ const formatDate = (d: Date) =>
             <p class="font-semibold text-ink">Alexandru Bancila</p>
             <p class="mt-0.5 text-ink-subtle">
               <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              <span> · {minutes} min read</span>
               {post.data.updated && (<span> · updated <time datetime={post.data.updated.toISOString()}>{formatDate(post.data.updated)}</time></span>)}
             </p>
           </div>

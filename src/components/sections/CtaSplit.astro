@@ -1,0 +1,127 @@
+---
+/**
+ * CTA final: secțiune pe două coloane, după designul cerut (21st.dev /
+ * „Integrations Grid"): stânga titlu + subtext + butoane, dreapta o grilă în șah
+ * de plăcuțe rotunjite cu logo-urile stack-ului, cu câteva plăcuțe goale pentru
+ * ritm. Înlocuiește panoul verde închis de dinainte.
+ *
+ * Logo-urile vin din `simple-icons`, inlineate la build (aceeași decizie ca la
+ * orbite): culori oficiale de brand, garantate doar pe plăcuță deschisă — deci
+ * plăcuța rămâne deschisă în ambele teme. Plutire lentă pe translate, eșalonată
+ * pe diagonală; la reduced-motion grila stă. Zero JS.
+ */
+import Button from '@components/ui/Button.astro';
+import {
+  siAstro, siNextdotjs, siTypescript, siTailwindcss, siJavascript,
+  siWordpress, siCloudflare, siVercel, siHtml5, siCss,
+} from 'simple-icons';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  primary: string;
+  primaryHref: string;
+  secondary: string;
+  secondaryHref: string;
+}
+
+const { title, subtitle, primary, primaryHref, secondary, secondaryHref } = Astro.props;
+
+// Tabla de șah: coloană, rând, logo (fără logo = plăcuță goală, estompată).
+const CELLS: { c: number; r: number; icon?: { title: string; path: string; hex: string } }[] = [
+  { c: 2, r: 1 },
+  { c: 4, r: 1, icon: siAstro },
+  { c: 1, r: 2, icon: siCss },
+  { c: 3, r: 2, icon: siTypescript },
+  { c: 5, r: 2, icon: siVercel },
+  { c: 2, r: 3, icon: siTailwindcss },
+  { c: 4, r: 3, icon: siJavascript },
+  { c: 1, r: 4 },
+  { c: 3, r: 4, icon: siNextdotjs },
+  { c: 5, r: 4, icon: siCloudflare },
+  { c: 2, r: 5, icon: siWordpress },
+  { c: 4, r: 5, icon: siHtml5 },
+];
+---
+
+<div class="cta-split">
+  <div class="cta-copy">
+    <h2 class="text-headline font-heading font-black text-ink">{title}</h2>
+    <p class="mt-4 max-w-lg text-lg text-ink-muted">{subtitle}</p>
+    <div class="mt-8 flex flex-wrap gap-3 sm:gap-4">
+      <Button href={primaryHref} variant="primary" size="lg">{primary}</Button>
+      <Button href={secondaryHref} variant="secondary">{secondary}</Button>
+    </div>
+  </div>
+
+  <div class="cta-grid" aria-hidden="true">
+    {CELLS.map((cell) => (
+      <span
+        class:list={['tile', !cell.icon && 'empty']}
+        style={`grid-column: ${cell.c}; grid-row: ${cell.r}; --d: ${(cell.c + cell.r) * 0.35}s;`}
+      >
+        {cell.icon && (
+          <svg viewBox="0 0 24 24" role="img">
+            <title>{cell.icon.title}</title>
+            <path d={cell.icon.path} fill={`#${cell.icon.hex}`} />
+          </svg>
+        )}
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .cta-split {
+    display: grid;
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+  @media (min-width: 64rem) {
+    .cta-split { grid-template-columns: 1fr auto; }
+  }
+
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(5, var(--tile));
+    grid-template-rows: repeat(5, var(--tile));
+    gap: 0;
+    justify-content: center;
+    --tile: clamp(3.2rem, 6vw, 4.6rem);
+  }
+
+  .tile {
+    display: grid;
+    place-items: center;
+    width: var(--tile);
+    height: var(--tile);
+    border-radius: var(--radius-lg);
+    /* plăcuță deschisă FIX în ambele teme — culorile de brand cer fundal deschis */
+    border: 1px solid oklch(0.9 0.005 150);
+    background: oklch(0.99 0.003 150);
+    box-shadow: var(--shadow-soft);
+  }
+  .tile svg { width: 38%; height: 38%; }
+  .tile.empty {
+    opacity: 0.45;
+    box-shadow: none;
+  }
+  :root[data-theme="dark"] .tile { border-color: oklch(0.45 0.01 160); }
+  :root[data-theme="dark"] .tile.empty { opacity: 0.14; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .tile { border-color: oklch(0.45 0.01 160); }
+    :root:not([data-theme="light"]) .tile.empty { opacity: 0.14; }
+  }
+
+  /* plutire lentă, eșalonată pe diagonală; doar translate — compozitată */
+  @media (prefers-reduced-motion: no-preference) {
+    .tile:not(.empty) {
+      animation: tile-float 7s ease-in-out infinite;
+      animation-delay: var(--d);
+    }
+  }
+  @keyframes tile-float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -6px; }
+  }
+</style>

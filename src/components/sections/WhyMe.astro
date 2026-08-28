@@ -1,0 +1,96 @@
+---
+/**
+ * „De ce să lucrezi cu mine" — trei coloane editoriale, nu încă un rând de cutii:
+ * secțiunea stă între bento-ul de servicii și portofoliu, ambele deja „în cutii",
+ * așa că aici ritmul e altul — coloane despărțite de hairline-uri, fiecare
+ * ancorată de o cifră mare. Cifrele sunt afirmațiile deja făcute pe sait
+ * (95+ PageSpeed, 20+ proiecte livrate, răspuns în 24h), nu inventate.
+ */
+import { resolveLocale, getDict } from '@/i18n';
+
+const locale = resolveLocale(Astro.currentLocale);
+const dict = getDict(locale);
+
+const H = locale === 'ru' ? 'ч' : 'h';
+const COLS = [
+  { value: '95+', unit: 'PageSpeed', title: dict.whyMe.fast, desc: dict.whyMe.fastDesc },
+  { value: '20+', unit: { ro: 'proiecte', ru: 'проектов', en: 'projects' }[locale], title: dict.whyMe.results, desc: dict.whyMe.resultsDesc },
+  { value: `24${H}`, unit: { ro: 'răspuns', ru: 'ответ', en: 'response' }[locale], title: dict.whyMe.direct, desc: dict.whyMe.directDesc },
+];
+---
+
+<div class="why">
+  {COLS.map((c, i) => (
+    <div class="why-col reveal" style={`--i: ${i};`}>
+      <p class="why-figure">
+        {c.value}
+        <span class="why-unit spec">{c.unit}</span>
+      </p>
+      <h3 class="why-title">{c.title}</h3>
+      <p class="why-desc">{c.desc}</p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .why {
+    display: grid;
+    max-width: 64rem;
+    margin: 3.5rem auto 0;
+  }
+  @media (min-width: 48rem) {
+    .why { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  .why-col {
+    position: relative;
+    padding: 0.5rem 2.25rem 0.75rem;
+  }
+  /* hairline-uri între coloane — pe verticală la desktop, pe orizontală la mobil */
+  @media (min-width: 48rem) {
+    .why-col + .why-col { border-left: 1px solid var(--color-border); }
+    .why-col:first-child { padding-left: 0; }
+    .why-col:last-child { padding-right: 0; }
+  }
+  @media (max-width: 47.999rem) {
+    .why-col { padding: 1.5rem 0; }
+    .why-col + .why-col { border-top: 1px solid var(--color-border); }
+    .why-col:first-child { padding-top: 0; }
+  }
+
+  .why-figure {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 3.4vw, 3.4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--color-primary-600);
+  }
+  :root[data-theme="dark"] .why-figure { color: var(--color-primary-300); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .why-figure { color: var(--color-primary-300); }
+  }
+  .why-unit {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .why-title {
+    margin-top: 1.1rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+  .why-desc {
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+  }
+</style>

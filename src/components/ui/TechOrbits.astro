@@ -1,0 +1,197 @@
+---
+/**
+ * Orbite concentrice — semnătura hero-ului.
+ *
+ * Trei inele punctate cu chipsurile stack-ului, care se rotesc în sensuri
+ * alternante. Logo-urile vin din `simple-icons` (licență liberă), inlineate la
+ * build ca `path` + culoarea oficială: exacte, fără cereri de rețea, zero JS.
+ *
+ * DECIZIE: nimic nu se taie. Zona are dimensiune proprie și cercurile încap
+ * întregi în ea, cu tot cu chipsuri — deci nu există `overflow: hidden`, nici
+ * mască de opacitate. Variantele anterioare tăiau la marginea zonei și feliau
+ * chipsurile pe sus, pe jos și lângă șina verticală, ceea ce arăta prost oricât
+ * de fin reglam poziția tăieturii.
+ *
+ * Tot ce e dimensionat aici e relativ la latura zonei (procente), deci scalează
+ * fără să iasă nimic în afară. Razele sunt fracțiuni din diametru: 0.28 / 0.36 /
+ * 0.44 — la 0.44 raza plus chipsul stau sub jumătatea laturii.
+ *
+ * Rotația e pe `rotate` (proprietate separată de `transform`), ca fiecare nivel
+ * să-și țină rotația proprie: inelul se rotește, brațul stă la unghiul lui, iar
+ * chipsul contra-rotește ca logo-ul să rămână drept. Sensul vine din clasă, nu
+ * din `animation-direction: var(...)` — cu var() acolo animația nu se aplica.
+ */
+import {
+  siAstro, siNextdotjs, siTypescript, siTailwindcss, siJavascript,
+  siWordpress, siCloudflare, siVercel, siHtml5, siCss,
+} from 'simple-icons';
+
+const RINGS = [
+  { f: 0.56, dur: '52s', rev: false, chips: [
+      { a: '0deg',   icon: siAstro },
+      { a: '90deg',  icon: siTypescript },
+      { a: '180deg', icon: siTailwindcss },
+      { a: '270deg', icon: siJavascript },
+  ]},
+  { f: 0.72, dur: '68s', rev: true, chips: [
+      { a: '40deg',  icon: siNextdotjs },
+      { a: '160deg', icon: siWordpress },
+      { a: '280deg', icon: siHtml5 },
+  ]},
+  { f: 0.88, dur: '86s', rev: false, chips: [
+      { a: '15deg',  icon: siCloudflare },
+      { a: '135deg', icon: siVercel },
+      { a: '255deg', icon: siCss },
+  ]},
+];
+---
+
+<div class="orbits" aria-hidden="true">
+  <svg class="orbit-rings" viewBox="0 0 100 100" fill="none" >
+    {RINGS.map((ring) => (
+      <circle
+        cx="50" cy="50" r={ring.f * 50}
+        stroke="var(--color-border-strong)"
+        stroke-width="1.5"
+        stroke-dasharray="1.5 4.5"
+        vector-effect="non-scaling-stroke"
+      />
+    ))}
+  </svg>
+
+  {RINGS.map((ring) => (
+    <div class:list={['orbit-spin', ring.rev && 'rev']} style={`--f: ${ring.f}; --dur: ${ring.dur};`}>
+      {ring.chips.map((chip) => (
+        <i class="arm" style={`--a: ${chip.a};`}>
+          <span class="chip">
+            <span class="chip-in">
+              <svg viewBox="0 0 24 24" role="img">
+                <title>{chip.icon.title}</title>
+                <path d={chip.icon.path} fill={`#${chip.icon.hex}`} />
+              </svg>
+            </span>
+          </span>
+        </i>
+      ))}
+    </div>
+  ))}
+</div>
+
+<style>
+  /* Strat suprapus pe SECȚIUNE, tăiat exact pe bordurile hero-ului.
+     Vertical: `top/bottom: 0` → tăierea cade pe liniile orizontale care despart
+     secțiunile. Orizontal: cutia reproduce cadrul șinelor (`--rail-frame` +
+     `margin-inline: auto`, exact ca `.rails::before`), iar `clip-path` o retrage
+     cu jumătate de padding — adică fix pe linia verticală.
+     Trebuie să fie copil al secțiunii, nu al containerului: containerul e centrat
+     vertical de flex, deci marginile lui cad în aer, nu pe borduri. */
+  /* Pe telefon nu e loc: chipsurile cad lângă butoane și arată aleatoriu, iar
+     textul ocupă toată lățimea. De la tabletă în sus apar în colțul dreapta-jos,
+     iar de la 64rem trec pe ancora din dreapta, centrate vertical. */
+  .orbits { display: none; }
+
+  @media (min-width: 48rem) {
+    .orbits { display: block; }
+  }
+
+  .orbits {
+    --orbit-size: 26rem;
+    --cx: 100%;
+    --cy: 100%;
+    --chip: 2.25rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: var(--rail-frame);
+    margin-inline: auto;
+    pointer-events: none;
+    /* sub șine (z-index 1), ca muchia tăiată să dispară sub linie */
+    z-index: 0;
+    clip-path: inset(0 calc(var(--container-padding) / 2));
+  }
+
+  /* Cercurile — centrul cade pe șina din dreapta. */
+  .orbit-rings {
+    position: absolute;
+    left: var(--cx);
+    top: var(--cy);
+    width: var(--orbit-size);
+    height: var(--orbit-size);
+    translate: -50% -50%;
+  }
+
+  /* Un strat rotitor per inel, dimensionat ca fracțiune din latura zonei. */
+  .orbit-spin {
+    position: absolute;
+    left: var(--cx);
+    top: var(--cy);
+    width: calc(var(--f) * var(--orbit-size));
+    aspect-ratio: 1;
+    translate: -50% -50%;
+  }
+
+  /* Brațul doar poziționează chipsul pe inel, la unghiul lui. */
+  .arm {
+    position: absolute;
+    inset: 0;
+    rotate: var(--a);
+  }
+  .chip {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50% -50%;
+    /* contrează unghiul brațului */
+    rotate: calc(var(--a) * -1);
+  }
+  .chip-in {
+    display: grid;
+    place-items: center;
+    width: var(--chip);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    /* Fundal deschis FIX, în ambele teme: logo-urile poartă culorile oficiale
+       de brand, iar Next.js și Vercel sunt negre — pe chipsul din tokenul
+       surface-3 (aproape negru în dark) dispăreau complet. Insigna rămâne albă. */
+    border: 1px solid oklch(0.88 0.006 150);
+    background: oklch(0.99 0.003 150);
+    box-shadow: var(--shadow-medium);
+  }
+  .chip-in svg {
+    display: block;
+    width: 45%;
+    height: 45%;
+  }
+
+  /* Ancora din dreapta, centrată vertical, doar de la 80rem: sub asta coloana de
+     text ajunge până aproape de inelul exterior, iar chipsurile îi atingeau
+     marginea (verificat la 1024 — pătrundeau ~4px). Între 48 și 80rem rămâne
+     varianta din colț, care nu se atinge de text. */
+  @media (min-width: 80rem) {
+    .orbits {
+      --orbit-size: 52rem;
+      --cx: calc(100% - var(--container-padding) / 2);
+      --cy: 50%;
+      --chip: 3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .orbit-spin { animation: orbit-spin var(--dur) linear infinite; }
+    .orbit-spin.rev { animation-direction: reverse; }
+
+    /* Aceeași durată, sens opus: contrează rotația inelului, deci logo-ul rămâne
+       drept cât timp chipsul se plimbă pe orbită. */
+    .chip-in {
+      animation: orbit-spin var(--dur) linear infinite;
+      animation-direction: reverse;
+    }
+    .orbit-spin.rev .chip-in { animation-direction: normal; }
+  }
+
+  @keyframes orbit-spin {
+    to { rotate: 360deg; }
+  }
+</style>

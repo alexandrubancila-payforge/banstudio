@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@components/ui/Section.astro';
+import CtaSplit from '@components/sections/CtaSplit.astro';
 import { route } from '@/i18n';
 
 const groups = [
@@ -57,7 +58,7 @@ const groups = [
   description="Professional web development and design services in Chisinau: website creation, WordPress, redesign, business cards, brand identity. Quote within 24 hours."
 >
   <!-- Hero -->
-  <section class="relative overflow-hidden">
+  <section class="rails relative overflow-hidden">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container relative pb-section pt-16 sm:pt-20">
       <div class="max-w-3xl">
@@ -93,7 +94,7 @@ const groups = [
             {group.services.map((s) => (
               <a
                 href={s.href}
-                class="group reveal flex flex-col rounded-2xl border border-border bg-surface-3 p-6 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-primary-400 hover:shadow-medium"
+                class="group reveal flex flex-col rounded-2xl border border-border bg-surface-3 p-6 transition-[border-color,box-shadow] duration-300 hover:border-primary-400 hover:shadow-medium"
               >
                 <span class="flex size-12 items-center justify-center rounded-xl bg-primary-500/12 text-primary-600 transition-transform duration-300 group-hover:scale-110 dark:text-primary-300" aria-hidden="true">
                   <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor">
@@ -126,21 +127,14 @@ const groups = [
 
   <!-- CTA -->
   <Section>
-    <div class="cta-panel reveal relative overflow-hidden rounded-3xl px-6 py-16 text-center sm:px-12 sm:py-20">
-      <div class="relative mx-auto max-w-2xl">
-        <h2 class="text-headline font-heading font-black text-white">
-          Not sure what you need?
-        </h2>
-        <p class="mt-4 text-lg text-white/70">
-          Tell me about your business and I will help you pick the right solution. The first consultation is free.
-        </p>
-        <div class="mt-8">
-          <a href={route('contact', 'en')} class="inline-flex items-center justify-center rounded-lg bg-white px-7 py-3.5 text-base font-semibold text-neutral-950 transition-transform duration-200 hover:-translate-y-0.5 sm:text-lg">
-            Get in touch for free
-          </a>
-        </div>
-      </div>
-    </div>
+    <CtaSplit
+      title="Not sure what you need?"
+      subtitle="Tell me about your business and I will help you pick the right solution. The first consultation is free."
+      primary="Get in touch for free"
+      primaryHref={route('contact', 'en')}
+      secondary="See the portfolio"
+      secondaryHref={route('portfolio', 'en')}
+    />
   </Section>
 </BaseLayout>
 
@@ -157,18 +151,9 @@ const groups = [
     content: "";
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(to right, var(--color-hairline) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--color-hairline) 1px, transparent 1px);
-    background-size: 4rem 4rem;
+    background-image: radial-gradient(var(--color-rail) 1px, transparent 1px);
+    background-size: 1.375rem 1.375rem;
     mask-image: radial-gradient(50rem 32rem at 30% 0%, black, transparent 75%);
     opacity: 0.5;
-  }
-  .cta-panel {
-    background:
-      radial-gradient(40rem 20rem at 80% -20%, oklch(0.55 0.17 155 / 0.45), transparent 60%),
-      radial-gradient(30rem 18rem at 10% 120%, oklch(0.65 0.20 30 / 0.30), transparent 60%),
-      linear-gradient(135deg, oklch(0.27 0.08 155), oklch(0.14 0.02 160));
-    box-shadow: var(--shadow-strong);
   }
 </style>

@@ -3,9 +3,11 @@ import type { HTMLAttributes } from 'astro/types';
 
 interface Props extends HTMLAttributes<'section'> {
   background?: 'white' | 'muted';
+  /** Șinele verticale care încadrează coloana de conținut. */
+  rails?: boolean;
 }
 
-const { background = 'white', class: className, ...rest } = Astro.props;
+const { background = 'white', rails = true, class: className, ...rest } = Astro.props;
 
 const backgrounds = {
   white: '',
@@ -14,7 +16,7 @@ const backgrounds = {
 ---
 
 <section
-  class:list={['py-section', backgrounds[background], className]}
+  class:list={['py-section', rails && 'rails', backgrounds[background], className]}
   {...rest}
 >
   <div class="container">

@@ -7,8 +7,8 @@ image: "/images/portofoliu/anastasia-solomon.webp"
 imageAlt: "Screenshot of the Anastasia Solomon website showing the psychology practice homepage"
 tags: ["Business card site", "Psychology", "Multilingual"]
 url: "https://anastasiasolomon.md/"
-featured: false
-order: 8
+featured: true
+order: 5
 lang: en
 ---
 

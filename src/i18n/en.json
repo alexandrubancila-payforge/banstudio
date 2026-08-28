@@ -34,27 +34,52 @@
       {
         "title": "Custom-coded website",
         "description": "Fast, SEO-optimised websites built with modern technologies. No templates — every project is unique.",
-        "href": "/en/services/web-development"
+        "href": "/en/services/web-development",
+        "features": [
+          "Unique design, no templates",
+          "PageSpeed score of 100",
+          "Clean code — Astro / Next.js"
+        ]
       },
       {
         "title": "WordPress website",
         "description": "Professional WordPress websites you can manage yourself. Custom themes, not slow page builders.",
-        "href": "/en/services/wordpress-website"
+        "href": "/en/services/wordpress-website",
+        "features": [
+          "Custom theme, no page builders",
+          "Easy to manage yourself",
+          "Fast and secure"
+        ]
       },
       {
         "title": "Website redesign",
         "description": "Turn an outdated website into one that is modern, fast and brings in clients. We keep what works and improve the rest.",
-        "href": "/en/services/website-redesign"
+        "href": "/en/services/website-redesign",
+        "features": [
+          "A complete modernisation",
+          "We keep what works",
+          "Faster, more conversions"
+        ]
       },
       {
         "title": "Business cards",
         "description": "Professional design that makes you memorable. Print-ready, delivered fast.",
-        "href": "/en/services/business-cards"
+        "href": "/en/services/business-cards",
+        "features": [
+          "Memorable design",
+          "Print-ready files",
+          "Several concepts"
+        ]
       },
       {
         "title": "Brand identity",
         "description": "Logo, colour palette, typography — everything your brand needs to look coherent and professional.",
-        "href": "/en/services/brand-identity"
+        "href": "/en/services/brand-identity",
+        "features": [
+          "Logo + palette + typography",
+          "Brand guidelines",
+          "Consistency across channels"
+        ]
       }
     ],
     "notSure": "Not sure what you need?",
@@ -110,7 +135,13 @@
     "formServiceDefault": "Choose a service...",
     "formBudget": "Estimated budget",
     "formBudgetDefault": "Select...",
-    "formBudgetOptions": ["Under €500", "€500 – €1,000", "€1,000 – €2,000", "Over €2,000", "Not sure yet"],
+    "formBudgetOptions": [
+      "Under €500",
+      "€500 – €1,000",
+      "€1,000 – €2,000",
+      "Over €2,000",
+      "Not sure yet"
+    ],
     "formMessage": "Message *",
     "formMessagePlaceholder": "Briefly describe your project — what kind of website you need, for what business, which features...",
     "formSubmit": "Send message",

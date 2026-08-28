@@ -14,9 +14,11 @@ interface Props {
   tags?: string[];
   image?: string;
   imageAlt?: string;
+  /** Timp de citire (minute), calculat de pagină din corpul markdown. */
+  minutes?: number;
 }
 
-const { title, description, date, updated, tags = [], image, imageAlt } = Astro.props;
+const { title, description, date, updated, tags = [], image, imageAlt, minutes } = Astro.props;
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -36,7 +38,7 @@ const formatDate = (d: Date) =>
     { name: 'Blog', href: '/blog' },
     { name: title, href: routePath(Astro.url) },
   ]} />
-  <article class="pb-section pt-10 sm:pt-14">
+  <article class="rails pb-section pt-10 sm:pt-14">
     <div class="container">
       <div class="mx-auto max-w-3xl">
         <nav class="text-sm text-ink-subtle" aria-label="Breadcrumb">
@@ -68,6 +70,7 @@ const formatDate = (d: Date) =>
             <p class="font-semibold text-ink">Alexandru Bancilă</p>
             <p class="mt-0.5 text-ink-subtle">
               <time datetime={date.toISOString()}>{formatDate(date)}</time>
+              {minutes && <span> · {minutes} min de citit</span>}
               {updated && (<span> · actualizat <time datetime={updated.toISOString()}>{formatDate(updated)}</time></span>)}
             </p>
           </div>

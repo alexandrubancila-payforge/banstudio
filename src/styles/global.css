@@ -93,6 +93,9 @@
   --color-border: oklch(0.90 0.006 150);         /* borduri */
   --color-border-strong: oklch(0.82 0.008 150);
   --color-hairline: oklch(0.93 0.005 150);       /* linii foarte subtile */
+  /* Șinele verticale: trebuie să se vadă egal pe `surface` ȘI pe `surface-2`,
+     de-aia sunt mai închise decât hairline — altfel dispar pe banda colorată. */
+  --color-rail: oklch(0.895 0.007 150);
 
   /* Fonturi — Satoshi (heading editorial) + Inter (body, lizibil) */
   --font-heading: 'Satoshi', system-ui, sans-serif;
@@ -133,6 +136,15 @@
   --container-padding: clamp(1rem, 4vw, 2rem);
 }
 
+/* Lățimea cadrului șinelor = lățimea reală a `.container`, dată de utilitarul
+   Tailwind în praguri. Ține-le sincronizate. */
+:root { --rail-frame: 100%; }
+@media (min-width: 40rem) { :root { --rail-frame: 40rem; } }
+@media (min-width: 48rem) { :root { --rail-frame: 48rem; } }
+@media (min-width: 64rem) { :root { --rail-frame: 64rem; } }
+@media (min-width: 80rem) { :root { --rail-frame: 80rem; } }
+@media (min-width: 96rem) { :root { --rail-frame: 96rem; } }
+
 /* ============================================================
    DARK MODE — auto (prefers-color-scheme) + override manual
    Overriding tokeni semantici => tot site-ul se inversează.
@@ -148,6 +160,7 @@
     --color-border: oklch(0.30 0.012 160);
     --color-border-strong: oklch(0.40 0.014 160);
     --color-hairline: oklch(0.26 0.010 160);
+    --color-rail: oklch(0.315 0.012 160);
 
     --shadow-soft: 0 2px 8px oklch(0 0 0 / 0.3), 0 1px 3px oklch(0 0 0 / 0.25);
     --shadow-medium: 0 8px 24px oklch(0 0 0 / 0.4), 0 3px 8px oklch(0 0 0 / 0.3);
@@ -166,6 +179,7 @@
   --color-border: oklch(0.30 0.012 160);
   --color-border-strong: oklch(0.40 0.014 160);
   --color-hairline: oklch(0.26 0.010 160);
+  --color-rail: oklch(0.315 0.012 160);
 
   --shadow-soft: 0 2px 8px oklch(0 0 0 / 0.3), 0 1px 3px oklch(0 0 0 / 0.25);
   --shadow-medium: 0 8px 24px oklch(0 0 0 / 0.4), 0 3px 8px oklch(0 0 0 / 0.3);
@@ -239,6 +253,74 @@
     max-width: var(--container-max);
     margin-inline: auto;
     padding-inline: var(--container-padding);
+  }
+
+  /* ---- ȘINE VERTICALE ----
+     Două linii de 1px care încadrează coloana de conținut pe toată pagina.
+
+     Le desenează fiecare secțiune, cu `top: 0; bottom: 0` — adică exact cutia
+     ei, padding inclus. Cum secțiunile se ating, liniile se continuă una pe alta
+     fără nicio îmbinare: nu există compensări calculate din padding care s-ar
+     putea desincroniza și ar tăia linia la granițe.
+
+     Pe secțiune, nu pe un overlay global, ca fiecare bandă să-și păstreze
+     fundalul: overlay-ul ar fi acoperit de `bg-surface-2`, sau ar acoperi textul.
+
+     Pe orizontală, pseudo-elementul repetă cutia containerului (`max-width` +
+     `margin-inline: auto`), iar liniile stau la jumătatea gutter-ului, ca să aibă
+     aer față de conținut. `--rail-frame` oglindește pragurile utilitarului
+     `container` din Tailwind, pentru că EL dă `max-width` containerului, nu
+     `--container-max` din @theme (care e suprascris). Dacă se schimbă
+     configurația `container`, aici e singurul loc de actualizat.
+
+     Sub 48rem nu le arătăm: cu 1rem de gutter ar strânge textul de margine. */
+  .rails { position: relative; }
+  .rails > .container { position: relative; z-index: 2; }
+
+  /* Linia orizontală dintre secțiuni: 1px continuu pe toată lățimea, la limita
+     de sus a fiecărei secțiuni. Împreună cu șinele verticale dă o grilă —
+     intersecțiile se citesc ca într-un desen tehnic.
+     O primește și prima secțiune: headerul are bordura proprie doar la scroll,
+     deci sus, la pornire, linia de aici e singura muchie dintre header și pagină.
+     Footerul are deja `border-t`, deci îl sărim ca să nu iasă linie dublă.
+     Rămâne activă și pe mobil, unde șinele verticale sunt ascunse. */
+  .rails::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    z-index: 1;
+    pointer-events: none;
+    background: var(--color-rail);
+  }
+  footer.rails::after { content: none; }
+
+  @media (min-width: 48rem) {
+    .rails::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: var(--rail-frame);
+      margin-inline: auto;
+      /* Deasupra straturilor decorative (z-index 0), sub conținut (z-index 2):
+         orice desen tăiat pe linie își ascunde muchia sub ea, deci pare că intră
+         sub linie, nu că e retezat lângă ea. */
+      z-index: 1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--color-rail), var(--color-rail)),
+        linear-gradient(var(--color-rail), var(--color-rail));
+      background-size: 1px 100%, 1px 100%;
+      background-position:
+        left calc(var(--container-padding) / 2) top,
+        right calc(var(--container-padding) / 2) top;
+      background-repeat: no-repeat;
+    }
   }
 
   /* Eyebrow / label — voce mono de developer */

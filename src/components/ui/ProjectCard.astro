@@ -1,0 +1,126 @@
+---
+/**
+ * Cardul de proiect — folosit și pe home (Proiecte recente) și pe paginile de
+ * portofoliu, ca să nu existe două implementări.
+ *
+ * Fără stivă de text: tag-urile stau pe imagine ca pastile translucide (max 2),
+ * iar corpul are doar titlu + client + săgeata de hover. Descrierea trăiește pe
+ * pagina proiectului, nu pe card — patru straturi de text pe un card citeau
+ * ca zgomot.
+ */
+interface Props {
+  href: string;
+  image: string;
+  imageAlt: string;
+  title: string;
+  client: string;
+  tags?: string[];
+}
+
+const { href, image, imageAlt, title, client, tags = [] } = Astro.props;
+---
+
+<a href={href} class="pc reveal">
+  <span class="pc-media">
+    <img src={image} alt={imageAlt} width="720" height="378" decoding="async" loading="lazy" />
+    {tags.length > 0 && (
+      <span class="pc-tags">
+        {tags.slice(0, 2).map((tag) => <span class="pc-tag">{tag}</span>)}
+      </span>
+    )}
+  </span>
+  <span class="pc-body">
+    <span class="pc-title">{title}</span>
+    <span class="pc-client spec">{client}</span>
+    <svg class="pc-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12l-7.5 7.5M3 12h18" />
+    </svg>
+  </span>
+</a>
+
+<style>
+  .pc {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-3);
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .pc:hover {
+    border-color: var(--color-primary-400);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .pc-media {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--color-surface-2);
+  }
+  .pc-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.6s var(--ease-out-expo);
+  }
+  .pc:hover .pc-media img { scale: 1.05; }
+
+  .pc-body {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 0.75rem;
+    row-gap: 0.2rem;
+    padding: 1.1rem 1.25rem;
+  }
+  .pc-title {
+    grid-column: 1;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.02rem;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--color-ink);
+  }
+  .pc-client { grid-column: 1; font-size: 0.7rem; }
+  .pc-arrow {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 1.1rem;
+    height: 1.1rem;
+    color: var(--color-primary-600);
+    opacity: 0;
+    translate: -0.3rem 0;
+    transition: opacity 0.3s, translate 0.3s var(--ease-out-expo);
+  }
+  :root[data-theme="dark"] .pc-arrow { color: var(--color-primary-300); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .pc-arrow { color: var(--color-primary-300); }
+  }
+  .pc:hover .pc-arrow { opacity: 1; translate: 0 0; }
+
+  .pc-tags {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    display: flex;
+    gap: 0.35rem;
+  }
+  .pc-tag {
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    /* translucid deschis FIX: stă pe fotografii, nu pe suprafețele temei */
+    background: oklch(0.99 0.003 150 / 0.88);
+    backdrop-filter: blur(6px);
+    border: 1px solid oklch(1 0 0 / 0.5);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.03em;
+    color: oklch(0.3 0.01 160);
+  }
+</style>

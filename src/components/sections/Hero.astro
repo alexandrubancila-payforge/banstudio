@@ -1,0 +1,111 @@
+---
+/**
+ * Hero: panou cu bordură rotunjită — text pe stânga (pill, titlu, subtitlu,
+ * butoane), orbite concentrice pe dreapta. Structura vine din designul cerut;
+ * conținutul îl dă fiecare limbă.
+ */
+import Button from '@components/ui/Button.astro';
+import TechOrbits from '@components/ui/TechOrbits.astro';
+
+interface Props {
+  badge: string;
+  title: string;
+  titleHighlight: string;
+  subtitle: string;
+  ctaPrimary: string;
+  ctaPrimaryHref: string;
+  ctaSecondary: string;
+  ctaSecondaryHref: string;
+}
+
+const {
+  badge, title, titleHighlight, subtitle,
+  ctaPrimary, ctaPrimaryHref, ctaSecondary, ctaSecondaryHref,
+} = Astro.props;
+---
+
+<section class="hero-shell rails hero-tall relative overflow-hidden">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <TechOrbits />
+  <div class="container relative py-section">
+    <div class="hero-copy">
+      <span class="hero-badge enter" style="--i: 0;">
+        <span class="relative flex size-1.5">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-primary-500 opacity-60"></span>
+            <span class="relative inline-flex size-1.5 rounded-full bg-primary-500"></span>
+          </span>
+          {badge}
+        </span>
+
+        <h1 class="enter mt-7 font-heading text-display font-black leading-[0.98] text-ink" style="--i: 1;">
+          {title}{' '}
+          <span class="text-primary-600 dark:text-primary-400">{titleHighlight}</span>
+        </h1>
+
+        <p class="enter mt-6 max-w-lg text-lg text-ink-muted" style="--i: 2;">
+          {subtitle}
+        </p>
+
+        <div class="enter mt-9 flex flex-wrap gap-3 sm:gap-4" style="--i: 3;">
+          <Button href={ctaPrimaryHref} variant="primary" size="lg" class="w-full sm:w-auto">{ctaPrimary}</Button>
+          <Button href={ctaSecondaryHref} variant="secondary" size="lg" class="w-full sm:w-auto">{ctaSecondary}</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hero-ul are înălțime proprie, nu doar cât îl fac textul și padding-ul:
+     dă prezență și lasă orbitele să respire. */
+  .hero-tall {
+    display: flex;
+    align-items: center;
+    /* Pe mobil nu are rost 40rem cât pe desktop, dar 32rem lăsa secțiunea să se
+       termine lipită de buton. */
+    min-height: 36rem;
+  }
+  @media (min-width: 80rem) {
+    .hero-tall { min-height: clamp(40rem, 80vh, 50rem); }
+  }
+  .hero-tall > .container { width: 100%; }
+
+  /* Fundal: mesh gradient cald + grilă de puncte, stinsă spre margini */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(50rem 30rem at 78% -10%, oklch(0.55 0.17 155 / 0.16), transparent 60%),
+      radial-gradient(38rem 26rem at 8% 8%, oklch(0.65 0.20 30 / 0.10), transparent 55%);
+  }
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--color-rail) 1px, transparent 1px);
+    background-size: 1.375rem 1.375rem;
+    mask-image: radial-gradient(60rem 40rem at 50% 0%, black, transparent 75%);
+    opacity: 0.5;
+  }
+
+  .hero-copy { position: relative; z-index: 1; max-width: 36rem; }
+
+  /* Pastila de disponibilitate — ușoară: tentă abia vizibilă + bordură subțire,
+     text normal. Varianta plină, neagră, cu mono uppercase apăsa prea tare. */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklch, var(--color-primary-500) 25%, var(--color-border));
+    background: color-mix(in oklch, var(--color-primary-500) 7%, transparent);
+    color: var(--color-ink-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-ping { animation: none; }
+  }
+</style>

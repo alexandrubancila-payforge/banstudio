@@ -7,8 +7,8 @@ image: "/images/portofoliu/anastasia-solomon.webp"
 imageAlt: "Screenshot site Anastasia Solomon cu pagina principală a cabinetului de psihologie"
 tags: ["Carte de vizită", "Psihologie", "Multilingv"]
 url: "https://anastasiasolomon.md/"
-featured: false
-order: 8
+featured: true
+order: 5
 lang: ro
 ---
 

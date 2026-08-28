@@ -32,29 +32,54 @@
     "pageSubtitle": "De la un site simplu de prezentare la o platforma complexa cu e-commerce. Alege ce ai nevoie sau contacteaza-ma pentru o solutie personalizata.",
     "items": [
       {
-        "title": "Site web in cod",
-        "description": "Site-uri rapide, optimizate SEO, construite cu tehnologii moderne. Fara template-uri — fiecare proiect e unic.",
-        "href": "/servicii/creare-site-web"
+        "title": "Site web în cod",
+        "description": "Site-uri rapide, optimizate SEO, construite cu tehnologii moderne. Fără template-uri — fiecare proiect e unic.",
+        "href": "/servicii/creare-site-web",
+        "features": [
+          "Design unic, fără template",
+          "Scor PageSpeed 100",
+          "Cod curat — Astro / Next.js"
+        ]
       },
       {
         "title": "Site WordPress",
-        "description": "Site-uri WordPress profesionale pe care le poti gestiona singur. Teme custom, nu page builders lente.",
-        "href": "/servicii/site-wordpress"
+        "description": "Site-uri WordPress profesionale pe care le poți gestiona singur. Teme custom, nu page builders lente.",
+        "href": "/servicii/site-wordpress",
+        "features": [
+          "Temă custom, fără page builders",
+          "Îl administrezi singur, ușor",
+          "Rapid și sigur"
+        ]
       },
       {
         "title": "Redesign site",
-        "description": "Transforma un site vechi intr-unul modern, rapid si care aduce clienti. Pastram ce functioneaza, imbunatatim restul.",
-        "href": "/servicii/redesign-site"
+        "description": "Transformă un site vechi într-unul modern, rapid și care aduce clienți. Păstrăm ce funcționează, îmbunătățim restul.",
+        "href": "/servicii/redesign-site",
+        "features": [
+          "Modernizare completă",
+          "Păstrăm ce funcționează",
+          "Mai rapid, mai multe conversii"
+        ]
       },
       {
-        "title": "Carti de vizita",
-        "description": "Design profesional care te face memorabil. Print-ready, livrare rapida.",
-        "href": "/servicii/carti-de-vizita"
+        "title": "Cărți de vizită",
+        "description": "Design profesional care te face memorabil. Print-ready, livrare rapidă.",
+        "href": "/servicii/carti-de-vizita",
+        "features": [
+          "Design memorabil",
+          "Print-ready",
+          "Mai multe variante"
+        ]
       },
       {
-        "title": "Identitate vizuala",
-        "description": "Logo, paleta de culori, tipografie — tot ce ai nevoie ca brandul tau sa arate coerent si profesional.",
-        "href": "/servicii/identitate-vizuala"
+        "title": "Identitate vizuală",
+        "description": "Logo, paletă de culori, tipografie — tot ce ai nevoie ca brandul tău să arate coerent și profesional.",
+        "href": "/servicii/identitate-vizuala",
+        "features": [
+          "Logo + paletă + tipografie",
+          "Ghid de brand",
+          "Coerență pe toate canalele"
+        ]
       }
     ],
     "notSure": "Nu esti sigur ce ai nevoie?",
@@ -63,14 +88,14 @@
     "learnMore": "Află mai multe"
   },
   "whyMe": {
-    "title": "De ce sa lucrezi cu mine",
-    "subtitle": "Nu sunt o agentie cu 50 de oameni. Sunt o singura persoana care-ti da toata atentia.",
+    "title": "De ce să lucrezi cu mine",
+    "subtitle": "Nu sunt o agenție cu 50 de oameni. Sunt o singură persoană care-ți dă toată atenția.",
     "fast": "Rapid",
-    "fastDesc": "Site-uri cu scor 95+ pe PageSpeed. Fiecare milisecunda conteaza pentru conversii si SEO.",
+    "fastDesc": "Site-uri cu scor 95+ pe PageSpeed. Fiecare milisecundă contează pentru conversii și SEO.",
     "results": "Focusat pe rezultate",
-    "resultsDesc": "Nu fac site-uri frumoase si atat. Fac site-uri care aduc clienti, vanzari si vizibilitate.",
-    "direct": "Comunicare directa",
-    "directDesc": "Vorbesti direct cu mine, nu cu un manager de proiect. Raspuns rapid, zero birocratie."
+    "resultsDesc": "Nu fac site-uri frumoase și atât. Fac site-uri care aduc clienți, vânzări și vizibilitate.",
+    "direct": "Comunicare directă",
+    "directDesc": "Vorbești direct cu mine, nu cu un manager de proiect. Răspuns rapid, zero birocrație."
   },
   "cta": {
     "title": "Hai sa construim ceva impreuna",
@@ -110,7 +135,13 @@
     "formServiceDefault": "Alege un serviciu...",
     "formBudget": "Buget estimativ",
     "formBudgetDefault": "Selecteaza...",
-    "formBudgetOptions": ["Sub 500 €", "500 – 1.000 €", "1.000 – 2.000 €", "Peste 2.000 €", "Nu sunt sigur"],
+    "formBudgetOptions": [
+      "Sub 500 €",
+      "500 – 1.000 €",
+      "1.000 – 2.000 €",
+      "Peste 2.000 €",
+      "Nu sunt sigur"
+    ],
     "formMessage": "Mesaj *",
     "formMessagePlaceholder": "Descrie pe scurt proiectul tau — ce fel de site ai nevoie, pentru ce afacere, ce functionalitati...",
     "formSubmit": "Trimite mesajul",
