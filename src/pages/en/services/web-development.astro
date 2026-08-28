@@ -1,0 +1,86 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Website development"
+  seoTitle="Website development in Chisinau and Moldova"
+  description="Website development in Chisinau: professional websites built in code, unique design, excellent performance and SEO optimisation. Request a quote."
+  badge="Core service"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-ink">What you get</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Unique design</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          Every website is designed from scratch for your business. No generic templates — the design reflects your brand.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Performance 95+</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          Clean code, optimised images, zero bloat. A PageSpeed score of 95-100 on mobile and desktop — and Google rewards that.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">SEO built in</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          Meta tags, schema markup, sitemap, Core Web Vitals — everything is optimised from the start so you get found on Google.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Perfectly responsive</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          The site looks flawless on phone, tablet and desktop. A mobile-first approach — because 70%+ of traffic comes from mobile.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Security</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          A static site means zero server-side vulnerabilities. HTTPS, security headers, full protection.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Hosting included</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          I help you deploy on Cloudflare Pages or Vercel — fast, free hosting with a global CDN.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-ink">How we work</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { step: '01', title: 'Discovery', desc: 'I get to know your business, your audience and the goals of the site.' },
+        { step: '02', title: 'Design', desc: 'I create mockups and we refine them together until they are right.' },
+        { step: '03', title: 'Development', desc: 'I build the site in code with a focus on performance and SEO.' },
+        { step: '04', title: 'Launch', desc: 'Final testing, deployment, and post-launch support included.' },
+      ].map(({ step, title, desc }) => (
+        <div class="reveal">
+          <span class="font-heading text-3xl font-black text-primary-500 dark:text-primary-300">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-ink">{title}</h3>
+          <p class="mt-2 text-sm text-ink-muted">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-ink">Technologies I use</h2>
+    <p class="mt-4 max-w-2xl text-ink-muted">
+      I pick the right technology for each project. A presentation site? Astro. An interactive app? Next.js. A simple landing page? Plain HTML/CSS.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      {['Astro', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML/CSS', 'JavaScript', 'Cloudflare Pages', 'Vercel'].map((tech) => (
+        <span class="reveal rounded-full border border-border bg-surface-3 px-4 py-2 text-sm font-medium text-ink-muted">
+          {tech}
+        </span>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

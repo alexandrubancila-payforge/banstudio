@@ -1,0 +1,227 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import Section from '@components/ui/Section.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ServiceCard from '@components/ui/ServiceCard.astro';
+import Card from '@components/ui/Card.astro';
+import FeaturedProjects from '@components/sections/FeaturedProjects.astro';
+import PerfGauge from '@components/ui/PerfGauge.astro';
+import SchemaLocalBusiness from '@components/seo/SchemaLocalBusiness.astro';
+import SchemaFAQ from '@components/seo/SchemaFAQ.astro';
+import { getDict, route } from '@/i18n';
+
+const dict = getDict('en');
+const services = dict.services.items;
+
+const faqs = [
+  { q: 'How much does a website cost?', a: 'For a small business, a professional presentation website usually costs between €400 and €1,200, depending on the design, the number of pages and the features. I will send you an exact quote within 24 hours.' },
+  { q: 'How long does it take to build?', a: 'A presentation website takes 1–3 weeks on average, depending on complexity and on how quickly I receive your content (copy and photos).' },
+  { q: 'Custom code or WordPress — which one is right for me?', a: 'It depends on your needs: custom code for maximum speed and SEO, WordPress if you want to edit content yourself often. I will honestly recommend the option that fits you.' },
+  { q: 'Do you also handle SEO?', a: 'Yes. Every website is built optimised for search engines and for speed — many of them reach a score of 100 on Google PageSpeed.' },
+  { q: 'Do you only work in Chisinau?', a: 'I am based in Chisinau, but I work remotely with clients across Moldova, Romania and the rest of Europe. Everything can be done online.' },
+];
+---
+
+<BaseLayout
+  title="Web Developer in Chisinau — Freelance Website Development"
+  description="Freelance web developer in Chisinau. I build fast, SEO-optimised websites with a PageSpeed score of 100 — no templates. Get a quote within 24 hours."
+>
+  <SchemaLocalBusiness />
+  <!-- Editorial hero -->
+  <section class="hero-shell relative overflow-hidden">
+    <div class="hero-bg grain" aria-hidden="true"></div>
+    <div class="container relative py-section">
+      <div class="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <!-- Text -->
+        <div class="max-w-2xl">
+          <span class="eyebrow enter" style="--i: 0;">
+            <span class="relative flex size-2">
+              <span class="absolute inline-flex size-full animate-ping rounded-full bg-primary-500 opacity-60"></span>
+              <span class="relative inline-flex size-2 rounded-full bg-primary-500"></span>
+            </span>
+            {dict.hero.badge}
+          </span>
+          <h1 class="enter mt-6 font-heading text-mega font-black leading-[0.95] text-ink" style="--i: 1;">
+            Websites that<br />
+            <span class="ink-highlight text-primary-600 dark:text-primary-400">deliver results.</span>
+          </h1>
+          <p class="enter mt-7 max-w-xl text-lg text-ink-muted sm:text-xl" style="--i: 2;">
+            {dict.hero.subtitle}
+          </p>
+          <div class="enter mt-9 flex flex-wrap gap-3 sm:gap-4" style="--i: 3;">
+            <Button href={route('contact', 'en')} variant="primary" size="lg">
+              {dict.hero.ctaPrimary}
+            </Button>
+            <Button href={route('portfolio', 'en')} variant="secondary" size="lg">
+              {dict.hero.ctaSecondary}
+            </Button>
+          </div>
+          <!-- Spec line — the developer's data voice -->
+          <p class="spec enter mt-10 border-t border-border pt-6" style="--i: 4;">
+            <span class="text-primary-600 dark:text-primary-400">20+</span> projects delivered
+            <span class="mx-2 text-border-strong">/</span>
+            reply within <span class="text-primary-600 dark:text-primary-400">24h</span>
+            <span class="mx-2 text-border-strong">/</span>
+            <span class="text-primary-600 dark:text-primary-400">zero</span> templates
+          </p>
+        </div>
+        <!-- Signature: performance gauge -->
+        <div class="enter justify-self-center" style="--i: 3;">
+          <PerfGauge />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <Section background="muted">
+    <SectionHeading
+      eyebrow="What I do"
+      title={dict.services.sectionTitle}
+      subtitle={dict.services.sectionSubtitle}
+    />
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <div class="reveal"><ServiceCard {...service} /></div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Featured portfolio -->
+  <Section>
+    <FeaturedProjects />
+  </Section>
+
+  <!-- Why me -->
+  <Section>
+    <SectionHeading
+      eyebrow="Why me"
+      title={dict.whyMe.title}
+      subtitle={dict.whyMe.subtitle}
+      align="center"
+    />
+    <div class="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="reveal">
+        <Card hover>
+          <div class="flex size-12 items-center justify-center rounded-xl bg-primary-500/12 text-primary-600 dark:text-primary-300" aria-hidden="true">
+            <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+          </div>
+          <h3 class="mt-4 font-heading text-xl font-bold text-ink">{dict.whyMe.fast}</h3>
+          <p class="mt-2 text-sm text-ink-muted">
+            {dict.whyMe.fastDesc}
+          </p>
+        </Card>
+      </div>
+      <div class="reveal">
+        <Card hover>
+          <div class="flex size-12 items-center justify-center rounded-xl bg-primary-500/12 text-primary-600 dark:text-primary-300" aria-hidden="true">
+            <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+          </div>
+          <h3 class="mt-4 font-heading text-xl font-bold text-ink">{dict.whyMe.results}</h3>
+          <p class="mt-2 text-sm text-ink-muted">
+            {dict.whyMe.resultsDesc}
+          </p>
+        </Card>
+      </div>
+      <div class="reveal">
+        <Card hover>
+          <div class="flex size-12 items-center justify-center rounded-xl bg-primary-500/12 text-primary-600 dark:text-primary-300" aria-hidden="true">
+            <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+            </svg>
+          </div>
+          <h3 class="mt-4 font-heading text-xl font-bold text-ink">{dict.whyMe.direct}</h3>
+          <p class="mt-2 text-sm text-ink-muted">
+            {dict.whyMe.directDesc}
+          </p>
+        </Card>
+      </div>
+    </div>
+  </Section>
+
+  <!-- FAQ -->
+  <Section background="muted">
+    <SchemaFAQ items={faqs} />
+    <SectionHeading
+      eyebrow="Frequently asked questions"
+      title="Frequently asked questions"
+      align="center"
+    />
+    <div class="mx-auto mt-10 max-w-3xl divide-y divide-border">
+      {faqs.map((f) => (
+        <details class="faq reveal py-5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-lg font-bold text-ink">
+            {f.q}
+            <svg class="faq-chevron size-5 shrink-0 text-ink-subtle transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </summary>
+          <p class="mt-3 text-ink-muted">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section>
+    <div class="cta-panel grain reveal relative overflow-hidden rounded-3xl px-6 py-16 text-center sm:px-12 sm:py-20">
+      <div class="relative mx-auto max-w-2xl">
+        <h2 class="text-headline font-heading font-black text-white">
+          {dict.cta.title}
+        </h2>
+        <p class="mt-4 text-lg text-white/70">
+          {dict.cta.subtitle}
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href={route('contact', 'en')} class="inline-flex items-center justify-center rounded-lg bg-white px-7 py-3.5 text-base font-semibold text-neutral-950 transition-transform duration-200 hover:-translate-y-0.5 sm:text-lg">
+            {dict.cta.primary}
+          </a>
+          <a href={route('services', 'en')} class="inline-flex items-center justify-center rounded-lg border border-white/25 px-7 py-3.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-white/10 sm:text-lg">
+            {dict.cta.secondary}
+          </a>
+        </div>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(50rem 30rem at 78% -10%, oklch(0.55 0.17 155 / 0.16), transparent 60%),
+      radial-gradient(38rem 26rem at 8% 8%, oklch(0.65 0.20 30 / 0.10), transparent 55%);
+  }
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--color-hairline) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-hairline) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: radial-gradient(60rem 40rem at 50% 0%, black, transparent 75%);
+    opacity: 0.5;
+  }
+  .cta-panel {
+    background:
+      radial-gradient(40rem 20rem at 80% -20%, oklch(0.55 0.17 155 / 0.45), transparent 60%),
+      radial-gradient(30rem 18rem at 10% 120%, oklch(0.65 0.20 30 / 0.30), transparent 60%),
+      linear-gradient(135deg, oklch(0.27 0.08 155), oklch(0.14 0.02 160));
+    box-shadow: var(--shadow-strong);
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq[open] .faq-chevron { transform: rotate(180deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-ping { animation: none; }
+  }
+</style>

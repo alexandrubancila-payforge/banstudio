@@ -1,0 +1,73 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Website redesign"
+  seoTitle="Website redesign and rebuild in Moldova"
+  description="Website redesign: turn an outdated site into one that is modern, fast and brings in clients. We keep what works and improve the rest."
+  badge="Modernisation"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-ink">Signs you need a redesign</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      {[
+        'The site loads slowly (over 3 seconds)',
+        'It doesn\'t look good on a phone',
+        'The design looks dated (older than 3-4 years)',
+        'You don\'t show up on Google for your services',
+        'Visitors leave without contacting you',
+        'You can\'t update the content easily',
+      ].map((sign) => (
+        <div class="reveal flex items-start gap-3 rounded-lg border border-border bg-surface-3 p-4">
+          <span class="mt-0.5 text-accent-500">✗</span>
+          <p class="text-sm text-ink-muted">{sign}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-ink">What I do differently</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">A full audit</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          I analyse your current site: performance, SEO, UX, content. I pinpoint exactly what has to change and what is worth keeping.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Migration without losses</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          I keep your existing URLs or set up 301 redirects. Zero loss of traffic and search rankings.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Measurable results</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          I compare the metrics before and after: PageSpeed, Core Web Vitals, bounce rate, conversions. You see the difference in numbers.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-ink">The redesign process</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { step: '01', title: 'Audit', desc: 'I analyse the current site and identify the problems and the opportunities.' },
+        { step: '02', title: 'Strategy', desc: 'We plan the new structure, the content and the goals.' },
+        { step: '03', title: 'Redesign', desc: 'I create the new design and build the site on a modern stack.' },
+        { step: '04', title: 'Migration', desc: 'I launch the new site with redirects, full testing and monitoring.' },
+      ].map(({ step, title, desc }) => (
+        <div class="reveal">
+          <span class="font-heading text-3xl font-black text-primary-500 dark:text-primary-300">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-ink">{title}</h3>
+          <p class="mt-2 text-sm text-ink-muted">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

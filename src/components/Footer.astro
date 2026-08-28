@@ -1,12 +1,12 @@
 ---
 import { SOCIAL_LINKS } from '@lib/constants';
-import { resolveLocale, getNavLinks, getDict } from '@/i18n';
+import { resolveLocale, getNavLinks, getDict, route } from '@/i18n';
 
 const locale = resolveLocale(Astro.currentLocale);
 const navLinks = getNavLinks(locale);
 const dict = getDict(locale);
 const year = new Date().getFullYear();
-const homeHref = locale === 'ru' ? '/ru' : '/';
+const homeHref = route('home', locale);
 ---
 
 <footer class="border-t border-border bg-surface-2">

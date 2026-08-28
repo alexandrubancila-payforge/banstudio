@@ -3,12 +3,11 @@ import SectionHeading from '@components/ui/SectionHeading.astro';
 import Badge from '@components/ui/Badge.astro';
 import Button from '@components/ui/Button.astro';
 import { getCollection } from 'astro:content';
-import { resolveLocale, getDict } from '@/i18n';
+import { resolveLocale, getDict, route } from '@/i18n';
 
 const locale = resolveLocale(Astro.currentLocale);
 const dict = getDict(locale);
-const portfolioPrefix = locale === 'ru' ? '/ru/portfolio' : '/portofoliu';
-const portfolioHref = locale === 'ru' ? '/ru/portfolio' : '/portofoliu';
+const portfolioHref = route('portfolio', locale);
 
 const featured = (await getCollection('portofoliu'))
   .filter((p) => p.data.featured && (p.data.lang === locale || (!p.data.lang && locale === 'ro')))
@@ -26,7 +25,7 @@ const featured = (await getCollection('portofoliu'))
     <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {featured.map((project) => (
         <a
-          href={`${portfolioPrefix}/${project.id}`}
+          href={`${portfolioHref}/${project.id}`}
           class="group reveal overflow-hidden rounded-2xl border border-border bg-surface-3 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-primary-400 hover:shadow-medium"
         >
           <div class="aspect-video overflow-hidden bg-surface-2">

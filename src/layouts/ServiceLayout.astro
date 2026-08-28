@@ -5,7 +5,7 @@ import Badge from '@components/ui/Badge.astro';
 import Section from '@components/ui/Section.astro';
 import SchemaService from '@components/seo/SchemaService.astro';
 import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
-import { resolveLocale, getDict } from '@/i18n';
+import { resolveLocale, getDict, route } from '@/i18n';
 import { routePath } from '@lib/paths';
 
 interface Props {
@@ -19,11 +19,10 @@ interface Props {
 const { title, seoTitle, description, badge } = Astro.props;
 const locale = resolveLocale(Astro.currentLocale);
 const dict = getDict(locale);
-const isRu = locale === 'ru';
-const homeHref = isRu ? '/ru' : '/';
-const servicesHref = isRu ? '/ru/uslugi' : '/servicii';
-const contactHref = isRu ? '/ru/kontakt' : '/contact';
-const portfolioHref = isRu ? '/ru/portfolio' : '/portofoliu';
+const homeHref = route('home', locale);
+const servicesHref = route('services', locale);
+const contactHref = route('contact', locale);
+const portfolioHref = route('portfolio', locale);
 ---
 
 <BaseLayout title={seoTitle ?? title} description={description}>

@@ -1,0 +1,87 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="Brand identity"
+  description="Logo, colour palette, typography, brand guidelines — everything your business needs to look professional and coherent."
+  badge="Branding"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-ink">What the full package includes</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Logo design</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          3 logo concepts, refinement and a final version. You get colour and black-and-white variants plus a standalone icon.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Colour palette</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          Primary, secondary and neutral colours chosen strategically. With HEX, RGB and CMYK codes for every medium.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Typography</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          Fonts for headings and body copy, with usage rules. I pick typefaces that are readable and have character.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Brand guidelines</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          A PDF document with every visual rule. Anyone working on your brand knows exactly what to do and how.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Business cards</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          Business card design is included in the identity package. Consistent with the rest of the brand.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Social media kit</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          Avatar, cover photo and post templates for Facebook, Instagram and LinkedIn.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-ink">The branding process</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { step: '01', title: 'Brief', desc: 'You fill in a questionnaire about your business, values, audience and visual preferences.' },
+        { step: '02', title: 'Research', desc: 'I analyse the competition and the market. I find what works and where you can stand out.' },
+        { step: '03', title: 'Concepts', desc: 'I create 3 different visual directions. I present the moodboards and we discuss them.' },
+        { step: '04', title: 'Refinement', desc: 'I develop the chosen direction, apply it across all materials and deliver the final files.' },
+      ].map(({ step, title, desc }) => (
+        <div class="reveal">
+          <span class="font-heading text-3xl font-black text-primary-500 dark:text-primary-300">{step}</span>
+          <h3 class="mt-2 font-heading text-lg font-bold text-ink">{title}</h3>
+          <p class="mt-2 text-sm text-ink-muted">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-ink">Why brand identity matters</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-3">
+      {[
+        { stat: '75%', desc: 'of consumers judge a business\'s credibility by its design' },
+        { stat: '80%', desc: 'increase in brand recognition with a consistent visual identity' },
+        { stat: '3s', desc: 'is all a visitor needs to form a first impression' },
+      ].map(({ stat, desc }) => (
+        <div class="reveal text-center">
+          <p class="font-heading text-4xl font-black text-primary-600 dark:text-primary-300">{stat}</p>
+          <p class="mt-2 text-sm text-ink-muted">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

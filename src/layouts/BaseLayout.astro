@@ -2,7 +2,7 @@
 import '@/styles/global.css';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
-import { resolveLocale, getSiteConfig, getTranslatedPath } from '@/i18n';
+import { resolveLocale, getSiteConfig, getTranslatedPath, LOCALES } from '@/i18n';
 import { routePath } from '@lib/paths';
 
 interface Props {
@@ -30,10 +30,13 @@ const fullTitle = title === 'Home' ? `${site.name} — ${description}` : `${titl
 // NU emitem adnotarea, pentru că un hreflang care indică un 404 e ignorat de Google
 // pentru toată perechea de pagini.
 const currentPath = routePath(Astro.url);
-const roPath = locale === 'ro' ? currentPath : getTranslatedPath(currentPath, 'ro');
-const ruPath = locale === 'ru' ? currentPath : getTranslatedPath(currentPath, 'ru');
-const roURL = roPath ? new URL(roPath, site.url) : null;
-const ruURL = ruPath ? new URL(ruPath, site.url) : null;
+const alternates = LOCALES.map((l) => {
+  const path = l === locale ? currentPath : getTranslatedPath(currentPath, l);
+  return { hreflang: l, url: path ? new URL(path, site.url) : null };
+}).filter((a): a is { hreflang: typeof LOCALES[number]; url: URL } => a.url !== null);
+
+// x-default = româna, limba implicită a site-ului.
+const defaultURL = alternates.find((a) => a.hreflang === 'ro')?.url ?? null;
 ---
 
 <!doctype html>
@@ -65,9 +68,8 @@ const ruURL = ruPath ? new URL(ruPath, site.url) : null;
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Hreflang -->
-    {roURL && <link rel="alternate" hreflang="ro" href={roURL} />}
-    {ruURL && <link rel="alternate" hreflang="ru" href={ruURL} />}
-    {roURL && <link rel="alternate" hreflang="x-default" href={roURL} />}
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.url} />)}
+    {defaultURL && <link rel="alternate" hreflang="x-default" href={defaultURL} />}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

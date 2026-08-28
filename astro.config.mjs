@@ -9,7 +9,7 @@ export default defineConfig({
 
   i18n: {
     defaultLocale: 'ro',
-    locales: ['ro', 'ru'],
+    locales: ['ro', 'ru', 'en'],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -19,7 +19,7 @@ export default defineConfig({
     sitemap({
       i18n: {
         defaultLocale: 'ro',
-        locales: { ro: 'ro-MD', ru: 'ru-RU' },
+        locales: { ro: 'ro-MD', ru: 'ru-RU', en: 'en' },
       },
     }),
   ],

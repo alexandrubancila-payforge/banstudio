@@ -1,5 +1,6 @@
 ---
 import { SITE } from '@lib/constants';
+import { resolveLocale, getSiteConfig } from '@/i18n';
 
 interface Props {
   title: string;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const { title, description, date, updated, image, url } = Astro.props;
+const site = getSiteConfig(resolveLocale(Astro.currentLocale));
 
 const schema = {
   '@context': 'https://schema.org',
@@ -23,7 +25,7 @@ const schema = {
   url: `${SITE.url}${url}`,
   author: {
     '@type': 'Person',
-    name: SITE.author,
+    name: site.author,
     url: SITE.url,
   },
   publisher: {
@@ -31,7 +33,7 @@ const schema = {
     name: SITE.name,
     url: SITE.url,
   },
-  inLanguage: SITE.language,
+  inLanguage: site.language,
 };
 ---
 

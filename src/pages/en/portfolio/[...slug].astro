@@ -1,0 +1,117 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
+import { getCollection, render } from 'astro:content';
+import { getDict, route } from '@/i18n';
+
+const dict = getDict('en');
+const homeHref = route('home', 'en');
+const portfolioHref = route('portfolio', 'en');
+const contactHref = route('contact', 'en');
+
+export async function getStaticPaths() {
+  const projects = await getCollection('portofoliu');
+  return projects
+    .filter((p) => p.data.lang === 'en')
+    .map((project) => ({
+      params: { slug: project.id },
+      props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={project.data.title}
+  description={project.data.description}
+  ogImage={project.data.image}
+>
+  <SchemaBreadcrumb items={[
+    { name: dict.breadcrumb.home, href: homeHref },
+    { name: dict.breadcrumb.portfolio, href: portfolioHref },
+    { name: project.data.title, href: `${portfolioHref}/${project.id}` },
+  ]} />
+  <article class="pb-section pt-10 sm:pt-14">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm text-ink-subtle" aria-label="Breadcrumb">
+        <a href={homeHref} class="transition-colors hover:text-ink">{dict.breadcrumb.home}</a>
+        <span class="mx-1.5 text-border-strong">/</span>
+        <a href={portfolioHref} class="transition-colors hover:text-ink">{dict.breadcrumb.portfolio}</a>
+      </nav>
+
+      <!-- Header -->
+      <div class="max-w-3xl">
+        <div class="flex flex-wrap gap-2">
+          {project.data.tags.map((tag) => (
+            <Badge variant="primary">{tag}</Badge>
+          ))}
+        </div>
+        <h1 class="mt-4 text-display font-heading font-black text-ink">
+          {project.data.title}
+        </h1>
+        <p class="mt-4 text-lg text-ink-muted sm:text-xl">
+          {project.data.description}
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 rounded-2xl border border-border bg-surface-2 px-6 py-5">
+          <dl class="flex flex-wrap gap-x-8 gap-y-4">
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wider text-ink-subtle">{dict.portfolio.client}</dt>
+              <dd class="mt-1 font-semibold text-ink">{project.data.client}</dd>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wider text-ink-subtle">{dict.portfolio.year}</dt>
+              <dd class="mt-1 font-semibold text-ink">{project.data.date.getFullYear()}</dd>
+            </div>
+          </dl>
+          {project.data.url && (
+            <a
+              href={project.data.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="ml-auto inline-flex items-center gap-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-semibold text-surface transition-transform duration-200 hover:-translate-y-0.5"
+            >
+              Visit the site
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Main image -->
+      <div class="mt-10 overflow-hidden rounded-xl border border-border bg-surface-2">
+        <img
+          src={project.data.image}
+          alt={project.data.imageAlt}
+          width="720"
+          height="378"
+          class="w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+
+      <!-- Case study content -->
+      <div class="prose mx-auto mt-12 max-w-3xl">
+        <Content />
+      </div>
+
+      <!-- Navigation -->
+      <div class="mt-16 flex flex-wrap justify-center gap-4 border-t border-border pt-10">
+        <Button href={portfolioHref} variant="secondary">
+          ← {dict.portfolio.allProjects}
+        </Button>
+        <Button href={contactHref} variant="primary">
+          {dict.portfolio.similarProject}
+        </Button>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

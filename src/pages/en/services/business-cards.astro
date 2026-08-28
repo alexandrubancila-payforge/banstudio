@@ -1,0 +1,67 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+import { route } from '@/i18n';
+---
+
+<ServiceLayout
+  title="Business cards"
+  description="Professional business card design that makes you memorable. Print-ready, several concepts, delivered fast."
+  badge="Print design"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-ink">What the package includes</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">2-3 concepts</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          You get several design directions to choose from. We refine them together until you are happy.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Front + back</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          A complete design on both sides. Contact details, logo, visual elements — all laid out professionally.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Print-ready</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          The files are prepared for the print shop: CMYK, bleed, 300 DPI. Send them straight to print, no adjustments needed.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Multiple formats</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          You get the files as PDF, AI/PSD and PNG. Everything you need for print and for digital.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Revisions included</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          Up to 3 rounds of changes are included in the price. We adjust colours, fonts or layout until it is right.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Fast delivery</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          First concepts in 2-3 working days. Final design within a week at most.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-ink">Recommended pairing</h2>
+    <p class="mt-4 max-w-2xl text-ink-muted">
+      Business cards have the biggest impact when they are part of a complete visual identity. Combine them with the brand identity service for a coherent brand.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href={route('services.brand', 'en')} class="rounded-xl border border-primary-200 bg-primary-50 p-5 transition-colors hover:bg-primary-100 dark:bg-primary-500/10 dark:hover:bg-primary-500/15">
+        <h3 class="font-heading font-bold text-primary-700 dark:text-primary-300">Brand identity</h3>
+        <p class="mt-1 text-sm text-primary-600/70 dark:text-primary-300">Logo + colours + typography + business cards</p>
+      </a>
+    </div>
+  </Section>
+</ServiceLayout>

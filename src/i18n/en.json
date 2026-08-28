@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact",
+    "cta": "Request a quote"
+  },
+  "header": {
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "themeToggle": "Toggle theme",
+    "mainNav": "Main navigation",
+    "language": "Language"
+  },
+  "hero": {
+    "badge": "Available for new projects",
+    "title": "I build websites that",
+    "titleHighlight": "deliver results",
+    "subtitle": "Freelance web developer in Chisinau. Modern design, clean code, excellent performance — your website deserves more than a template.",
+    "ctaPrimary": "Request a quote",
+    "ctaSecondary": "See the portfolio"
+  },
+  "stats": {
+    "pagespeed": "PageSpeed score",
+    "projects": "Projects delivered",
+    "response": "Response time"
+  },
+  "services": {
+    "sectionTitle": "Services",
+    "sectionSubtitle": "From an idea to a website that works for you. Pick what you need.",
+    "pageSubtitle": "From a simple presentation site to a complex e-commerce platform. Pick what you need or get in touch for a custom solution.",
+    "items": [
+      {
+        "title": "Custom-coded website",
+        "description": "Fast, SEO-optimised websites built with modern technologies. No templates — every project is unique.",
+        "href": "/en/services/web-development"
+      },
+      {
+        "title": "WordPress website",
+        "description": "Professional WordPress websites you can manage yourself. Custom themes, not slow page builders.",
+        "href": "/en/services/wordpress-website"
+      },
+      {
+        "title": "Website redesign",
+        "description": "Turn an outdated website into one that is modern, fast and brings in clients. We keep what works and improve the rest.",
+        "href": "/en/services/website-redesign"
+      },
+      {
+        "title": "Business cards",
+        "description": "Professional design that makes you memorable. Print-ready, delivered fast.",
+        "href": "/en/services/business-cards"
+      },
+      {
+        "title": "Brand identity",
+        "description": "Logo, colour palette, typography — everything your brand needs to look coherent and professional.",
+        "href": "/en/services/brand-identity"
+      }
+    ],
+    "notSure": "Not sure what you need?",
+    "notSureDesc": "Tell me about your business and I will help you pick the right solution. The first consultation is free.",
+    "notSureCta": "Get in touch for free",
+    "learnMore": "Learn more"
+  },
+  "whyMe": {
+    "title": "Why work with me",
+    "subtitle": "I am not an agency with 50 people. I am one person giving your project full attention.",
+    "fast": "Fast",
+    "fastDesc": "Websites scoring 95+ on PageSpeed. Every millisecond counts for conversions and SEO.",
+    "results": "Focused on results",
+    "resultsDesc": "I don't just build good-looking websites. I build websites that bring clients, sales and visibility.",
+    "direct": "Direct communication",
+    "directDesc": "You talk to me directly, not to a project manager. Fast replies, zero bureaucracy."
+  },
+  "cta": {
+    "title": "Let's build something together",
+    "subtitle": "Tell me about your project and I will send you a tailored quote within 24 hours.",
+    "primary": "Get in touch",
+    "secondary": "See all services"
+  },
+  "portfolio": {
+    "title": "Recent projects",
+    "subtitle": "A selection of my work for clients in Moldova, Romania and Italy.",
+    "pageSubtitle": "Every project is a story. Here are some of my most recent ones.",
+    "viewAll": "See all projects",
+    "allProjects": "All projects",
+    "similarProject": "Have a similar project? Get in touch",
+    "client": "Client",
+    "year": "Year",
+    "liveSite": "Live site",
+    "visit": "Visit"
+  },
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "Have a project in mind? Tell me about it and I will send you a tailored quote within 24 hours. The first consultation is free.",
+    "email": "Email",
+    "location": "Location",
+    "locationValue": "Chisinau, Moldova",
+    "phone": "Phone",
+    "responseTime": "Response time",
+    "responseTimeValue": "Within 24 hours",
+    "writeDirectly": "Message me directly",
+    "formName": "Full name *",
+    "formNamePlaceholder": "John Smith",
+    "formEmail": "Email *",
+    "formEmailPlaceholder": "john@example.com",
+    "formPhone": "Phone",
+    "formPhonePlaceholder": "+373 69 123 456",
+    "formService": "Which service are you interested in?",
+    "formServiceDefault": "Choose a service...",
+    "formBudget": "Estimated budget",
+    "formBudgetDefault": "Select...",
+    "formBudgetOptions": ["Under €500", "€500 – €1,000", "€1,000 – €2,000", "Over €2,000", "Not sure yet"],
+    "formMessage": "Message *",
+    "formMessagePlaceholder": "Briefly describe your project — what kind of website you need, for what business, which features...",
+    "formSubmit": "Send message",
+    "formSending": "Sending...",
+    "formSuccess": "Thank you! Your message has been sent. I will get back to you within 24 hours.",
+    "formError": "Something went wrong. Please email me directly at sasa.bancila@gmail.com.",
+    "formSubject": "New enquiry from banstudio.dev"
+  },
+  "footer": {
+    "description": "Professional websites for businesses in Moldova and Romania. Modern design, clean code, measurable results.",
+    "pages": "Pages",
+    "contact": "Contact",
+    "copyright": "All rights reserved."
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "blog": "Blog"
+  },
+  "serviceLayout": {
+    "ctaTitle": "Ready to start?",
+    "ctaSubtitle": "Tell me about your project and get a tailored quote within 24 hours.",
+    "ctaButton": "Get in touch",
+    "viewExamples": "See examples",
+    "requestOffer": "Request a quote"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "goHome": "Back home",
+    "goServices": "See the services"
+  }
+}

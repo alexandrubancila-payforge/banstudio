@@ -1,0 +1,70 @@
+---
+import ServiceLayout from '@layouts/ServiceLayout.astro';
+import Section from '@components/ui/Section.astro';
+import Card from '@components/ui/Card.astro';
+---
+
+<ServiceLayout
+  title="WordPress website"
+  seoTitle="WordPress website development in Moldova"
+  description="WordPress website development in Moldova: custom themes that are easy to manage, no slow page builders — clean code and real performance. Ask for a quote."
+  badge="Popular"
+>
+  <Section>
+    <h2 class="text-headline font-heading font-bold text-ink">Why WordPress with me</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Custom theme</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          I don't use bought themes stuffed with code you will never need. I build the theme from scratch, exactly for your needs.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Easy to manage</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          The admin panel is simple and intuitive. You can change copy, images and pages without any technical knowledge.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Fast, not sluggish</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          WordPress can be fast when it is done properly. I optimise every layer — caching, images, queries, hosting.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Native SEO</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          I set up Yoast/RankMath, schema markup, the sitemap and your URL structure for maximum visibility on Google.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Security</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          WordPress hardening, firewall, automatic backups, regular updates. Your site stays protected.
+        </p>
+      </Card>
+      <Card hover class="reveal">
+        <h3 class="font-heading text-lg font-bold text-ink">Training included</h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          On handover I walk you through the admin panel. You also get a written guide to keep as a reference.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section background="muted">
+    <h2 class="text-headline font-heading font-bold text-ink">Ideal for</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        { title: 'Local businesses', desc: 'Restaurants, salons, medical practices — anyone who needs an online presence and frequent updates.' },
+        { title: 'Blog / magazine', desc: 'Regular content publishing, categories, multiple authors.' },
+        { title: 'Content-heavy sites', desc: 'More than 20 pages of content that your team needs to manage easily.' },
+      ].map(({ title, desc }) => (
+        <div class="reveal rounded-xl border border-border bg-surface-3 p-6">
+          <h3 class="font-heading text-lg font-bold text-ink">{title}</h3>
+          <p class="mt-2 text-sm text-ink-muted">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+</ServiceLayout>

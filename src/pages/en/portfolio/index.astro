@@ -1,0 +1,93 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/ui/Section.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import Badge from '@components/ui/Badge.astro';
+import { getCollection } from 'astro:content';
+import { getDict, route } from '@/i18n';
+
+const dict = getDict('en');
+
+const CATEGORIES = [
+  {
+    key: 'web',
+    title: 'Websites',
+    subtitle: 'Presentation sites, online shops and web applications.',
+  },
+  {
+    key: 'carti-vizita',
+    title: 'Business cards',
+    subtitle: 'Business card design, ready for print.',
+  },
+];
+
+const projects = (await getCollection('portofoliu'))
+  .filter((p) => !('draft' in p.data && p.data.draft) && p.data.lang === 'en')
+  .sort((a, b) => {
+    if (a.data.order !== b.data.order) return a.data.order - b.data.order;
+    return b.data.date.getTime() - a.data.date.getTime();
+  });
+
+const groups = CATEGORIES
+  .map((c) => ({ ...c, projects: projects.filter((p) => (p.data.category ?? 'web') === c.key) }))
+  .filter((g) => g.projects.length > 0);
+---
+
+<BaseLayout
+  title="Portfolio"
+  description="Web projects built for clients in Moldova, Romania and Italy. Fast, modern, SEO-optimised websites."
+>
+  <Section>
+    <SectionHeading
+      title={dict.nav.portfolio}
+      subtitle={dict.portfolio.pageSubtitle}
+      as="h1"
+    />
+
+    {groups.map((group, i) => (
+      <div class:list={[i === 0 ? 'mt-12' : 'mt-16']}>
+        <h2 class="font-heading text-2xl font-black text-ink sm:text-3xl">
+          {group.title}
+        </h2>
+        <p class="mt-2 max-w-2xl text-ink-muted">{group.subtitle}</p>
+
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {group.projects.map((project) => (
+            <a
+              href={`${route('portfolio', 'en')}/${project.id}`}
+              class="group reveal overflow-hidden rounded-xl border border-border bg-surface-3 transition-all duration-300 hover:border-primary-200 hover:shadow-medium"
+            >
+              <div class="aspect-video overflow-hidden bg-surface-2">
+                <img
+                  src={project.data.image}
+                  alt={project.data.imageAlt}
+                  width="720"
+                  height="378"
+                  decoding="async"
+                  class="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-5">
+                <div class="flex flex-wrap gap-2">
+                  {project.data.tags.slice(0, 3).map((tag) => (
+                    <Badge>{tag}</Badge>
+                  ))}
+                </div>
+                <h3 class="mt-3 font-heading text-lg font-bold text-ink group-hover:text-primary-700 dark:group-hover:text-primary-300">
+                  {project.data.title}
+                </h3>
+                <p class="mt-1 text-sm text-ink-muted">
+                  {project.data.client}
+                </p>
+                <p class="mt-2 line-clamp-2 text-sm text-ink-muted">
+                  {project.data.description}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </Section>
+</BaseLayout>

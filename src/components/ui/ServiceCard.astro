@@ -1,5 +1,5 @@
 ---
-import { resolveLocale } from '@/i18n';
+import { resolveLocale, getDict } from '@/i18n';
 
 interface Props {
   title: string;
@@ -10,7 +10,7 @@ interface Props {
 
 const { title, description, href } = Astro.props;
 const locale = resolveLocale(Astro.currentLocale);
-const learnMore = locale === 'ru' ? 'Подробнее' : 'Afla mai multe';
+const learnMore = getDict(locale).services.learnMore;
 ---
 
 <a

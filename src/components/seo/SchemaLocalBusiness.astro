@@ -1,15 +1,18 @@
 ---
 import { SITE } from '@lib/constants';
+import { resolveLocale, getSiteConfig } from '@/i18n';
+
+const site = getSiteConfig(resolveLocale(Astro.currentLocale));
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: SITE.name,
   url: SITE.url,
-  description: SITE.description,
+  description: site.description,
   founder: {
     '@type': 'Person',
-    name: SITE.author,
+    name: site.author,
     jobTitle: 'Web Developer',
   },
   address: {
@@ -37,7 +40,7 @@ const schema = {
     'https://www.linkedin.com/in/b%C4%83ncil%C4%83-alexandru-5247b6223/',
   ],
   image: `${SITE.url}/og-default.png`,
-  inLanguage: SITE.language,
+  inLanguage: site.language,
 };
 ---
 

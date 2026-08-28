@@ -8,7 +8,10 @@
   },
   "header": {
     "menuOpen": "Deschide meniul",
-    "menuClose": "Inchide meniul"
+    "menuClose": "Inchide meniul",
+    "themeToggle": "Schimbă tema",
+    "mainNav": "Navigare principală",
+    "language": "Limbă"
   },
   "hero": {
     "badge": "Disponibil pentru proiecte noi",
@@ -56,7 +59,8 @@
     ],
     "notSure": "Nu esti sigur ce ai nevoie?",
     "notSureDesc": "Spune-mi despre afacerea ta si te ajut sa alegi solutia potrivita. Consultanta initiala e gratuita.",
-    "notSureCta": "Contacteaza-ma gratuit"
+    "notSureCta": "Contacteaza-ma gratuit",
+    "learnMore": "Află mai multe"
   },
   "whyMe": {
     "title": "De ce sa lucrezi cu mine",

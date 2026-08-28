@@ -12,7 +12,7 @@ const blog = defineCollection({
     imageAlt: z.string().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
-    lang: z.enum(['ro', 'ru']).default('ro'),
+    lang: z.enum(['ro', 'ru', 'en']).default('ro'),
   }),
 });
 
@@ -30,7 +30,7 @@ const portofoliu = defineCollection({
     featured: z.boolean().default(false),
     order: z.number().default(0),
     category: z.enum(['web', 'carti-vizita']).default('web'),
-    lang: z.enum(['ro', 'ru']).default('ro'),
+    lang: z.enum(['ro', 'ru', 'en']).default('ro'),
   }),
 });
 

@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import { getDict, route } from '@/i18n';
+
+// Cloudflare Pages servește cel mai apropiat 404.html urcând în arbore, deci acest
+// fișier acoperă tot ce lipsește sub /en/ — cu header, footer și text în limba paginii.
+const dict = getDict('en');
+---
+
+<BaseLayout title={dict.notFound.title} noindex>
+  <section class="py-section">
+    <div class="container">
+      <div class="mx-auto max-w-lg text-center">
+        <p class="text-7xl font-heading font-black text-primary-500 dark:text-primary-300">404</p>
+        <h1 class="mt-4 text-headline font-heading font-black text-ink">
+          {dict.notFound.title}
+        </h1>
+        <p class="mt-4 text-lg text-ink-muted">
+          {dict.notFound.description}
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <Button href={route('home', 'en')} variant="primary">
+            {dict.notFound.goHome}
+          </Button>
+          <Button href={route('services', 'en')} variant="secondary">
+            {dict.notFound.goServices}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

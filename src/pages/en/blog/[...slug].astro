@@ -1,0 +1,124 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Badge from '@components/ui/Badge.astro';
+import Button from '@components/ui/Button.astro';
+import SchemaArticle from '@components/seo/SchemaArticle.astro';
+import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
+import { getCollection, render } from 'astro:content';
+import { getDict, route } from '@/i18n';
+import { routePath } from '@lib/paths';
+
+const dict = getDict('en');
+const homeHref = route('home', 'en');
+const blogHref = route('blog', 'en');
+const contactHref = route('contact', 'en');
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts
+    .filter((p) => !p.data.draft && p.data.lang === 'en')
+    .map((post) => ({
+      params: { slug: post.id },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} ogImage={post.data.image}>
+  <SchemaArticle
+    title={post.data.title}
+    description={post.data.description}
+    date={post.data.date}
+    updated={post.data.updated}
+    image={post.data.image}
+    url={routePath(Astro.url)}
+  />
+  <SchemaBreadcrumb items={[
+    { name: dict.breadcrumb.home, href: homeHref },
+    { name: dict.breadcrumb.blog, href: blogHref },
+    { name: post.data.title, href: routePath(Astro.url) },
+  ]} />
+  <article class="pb-section pt-10 sm:pt-14">
+    <div class="container">
+      <div class="mx-auto max-w-3xl">
+        <nav class="text-sm text-ink-subtle" aria-label="Breadcrumb">
+          <a href={homeHref} class="transition-colors hover:text-ink">{dict.breadcrumb.home}</a>
+          <span class="mx-1.5 text-border-strong">/</span>
+          <a href={blogHref} class="transition-colors hover:text-ink">{dict.breadcrumb.blog}</a>
+        </nav>
+
+        {post.data.tags.length > 0 && (
+          <div class="mt-6 flex flex-wrap gap-2">
+            {post.data.tags.map((tag) => (
+              <Badge variant="primary">{tag}</Badge>
+            ))}
+          </div>
+        )}
+
+        <h1 class="mt-4 text-display font-heading font-black text-ink">
+          {post.data.title}
+        </h1>
+
+        <p class="mt-4 text-lg text-ink-muted">
+          {post.data.description}
+        </p>
+
+        <!-- Author + date -->
+        <div class="mt-8 flex items-center gap-3 border-t border-border pt-6">
+          <span class="grid size-10 shrink-0 place-items-center rounded-full bg-primary-600 font-heading text-base font-black text-white" aria-hidden="true">B</span>
+          <div class="text-sm leading-tight">
+            <p class="font-semibold text-ink">Alexandru Bancila</p>
+            <p class="mt-0.5 text-ink-subtle">
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              {post.data.updated && (<span> · updated <time datetime={post.data.updated.toISOString()}>{formatDate(post.data.updated)}</time></span>)}
+            </p>
+          </div>
+        </div>
+
+        {post.data.image && (
+          <div class="mt-8 overflow-hidden rounded-xl">
+            <img
+              src={post.data.image}
+              alt={post.data.imageAlt || post.data.title}
+              class="w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        )}
+
+        <div class="prose mt-10">
+          <Content />
+        </div>
+
+        <div class="mt-16 border-t border-border pt-8">
+          <div class="rounded-xl bg-primary-50 dark:bg-primary-500/10 p-6 text-center sm:p-8">
+            <h2 class="font-heading text-xl font-bold text-ink">
+              Need a professional website?
+            </h2>
+            <p class="mt-2 text-sm text-ink-muted">
+              Get in touch for a free consultation about your project.
+            </p>
+            <div class="mt-4">
+              <Button href={contactHref} variant="primary">
+                Get in touch
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <Button href={blogHref} variant="ghost">
+            ← All articles
+          </Button>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
