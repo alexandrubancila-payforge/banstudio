@@ -46,35 +46,99 @@
   src: url('/fonts/satoshi-900.woff2') format('woff2');
 }
 
+/* Syncopate — voce de titlu „inginerie de precizie": geometric, foarte lat,
+   doar uppercase. Self-hosted ca restul (16 KB total), nu de pe CDN-ul Google:
+   un stylesheet extern ar fi render-blocking și ar rupe scorul 100.
+   Nu are chirilice — pe /ru titlul cade pe stiva de mai jos, exact ca azi. */
+@font-face {
+  font-family: 'Syncopate';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/syncopate-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Syncopate';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/syncopate-700-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Ș ș Ț ț — Syncopate NU are aceste glife (verificat: în Syncopate `T` are
+   78,1px la 100px corp, dar `Ț` doar 66,7px, adică vine din fontul de rezervă).
+   Rezultatul se vedea pe titluri ca „CĂRȚI DE VIZITĂ": două litere din altă
+   literă, vizibil mai înguste într-o față foarte lată.
+   Le acoperim cu Unbounded, subsetat la EXACT aceste patru glife — 1 KB, și se
+   descarcă doar pe paginile care le conțin. Regula stă DUPĂ cea de Syncopate
+   latin-ext: la `unicode-range` suprapus, ultima declarată câștigă. */
+@font-face {
+  font-family: 'Syncopate';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/unbounded-700-scomma.woff2') format('woff2');
+  unicode-range: U+0218-021B;
+}
+
+/* Unbounded — aceeași voce lată și geometrică, dar pentru CHIRILICE.
+   E declarat sub ACELAȘI nume de familie ca Syncopate, nu ca font separat: așa
+   browserul alege singur după literă, iar `--font-display` rămâne neschimbat în
+   toate componentele. Cu `unicode-range` chirilic, fișierul se descarcă DOAR pe
+   paginile /ru — pe RO și EN nu se cere niciodată, deci nu costă nimic acolo.
+   Înainte, titlurile ruse cădeau pe fontul de sistem și paginile RU arătau ca
+   alt sait față de cele latine. */
+@font-face {
+  font-family: 'Syncopate';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/unbounded-700-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
 /* ============================================================
    DESIGN TOKENS
    ============================================================ */
 @theme {
-  /* Culori primare — verde smarald profesional */
-  --color-primary-50: oklch(0.97 0.01 155);
-  --color-primary-100: oklch(0.93 0.03 155);
-  --color-primary-200: oklch(0.86 0.06 155);
-  --color-primary-300: oklch(0.76 0.10 155);
-  --color-primary-400: oklch(0.65 0.14 155);
-  --color-primary-500: oklch(0.55 0.17 155);
-  --color-primary-600: oklch(0.44 0.17 155);
-  --color-primary-700: oklch(0.40 0.15 155);
-  --color-primary-800: oklch(0.33 0.12 155);
-  --color-primary-900: oklch(0.27 0.08 155);
-  --color-primary-950: oklch(0.20 0.05 155);
+  /* Culori primare — ALBASTRU BLUEPRINT.
+     Accentul e ales ca să se lege de limbajul paginii: colțuri în „L", grilă de
+     60px, etichete mono — adică desen tehnic. Albastrul de planuri e culoarea
+     desenului tehnic, nu o alegere decorativă.
+     Treapta 600 e baza (text de link, fundal de buton): 7,27:1 pe alb, deci
+     trece AA și la 14px. Verdele de dinainte se bătea cu benzile alb-negru. */
+  --color-primary-50: oklch(0.97 0.015 250);
+  --color-primary-100: oklch(0.93 0.04 250);
+  --color-primary-200: oklch(0.86 0.08 250);
+  --color-primary-300: oklch(0.78 0.12 252);
+  --color-primary-400: oklch(0.63 0.18 255);
+  --color-primary-500: oklch(0.54 0.21 257);
+  --color-primary-600: oklch(0.45 0.18 250);
+  --color-primary-700: oklch(0.39 0.17 251);
+  --color-primary-800: oklch(0.33 0.14 252);
+  --color-primary-900: oklch(0.26 0.10 253);
+  --color-primary-950: oklch(0.19 0.07 254);
 
-  /* Neutrale cu nuanță subtilă de verde */
-  --color-neutral-50: oklch(0.98 0.004 155);
-  --color-neutral-100: oklch(0.95 0.004 155);
-  --color-neutral-200: oklch(0.90 0.004 155);
-  --color-neutral-300: oklch(0.82 0.004 155);
-  --color-neutral-400: oklch(0.55 0.004 155);
-  --color-neutral-500: oklch(0.44 0.004 155);
-  --color-neutral-600: oklch(0.40 0.004 155);
-  --color-neutral-700: oklch(0.30 0.004 155);
-  --color-neutral-800: oklch(0.20 0.004 155);
-  --color-neutral-900: oklch(0.14 0.004 155);
-  --color-neutral-950: oklch(0.10 0.004 155);
+  /* Neutrale — chroma 0, fără nicio tentă */
+  --color-neutral-50: oklch(0.98 0 0);
+  --color-neutral-100: oklch(0.95 0 0);
+  --color-neutral-200: oklch(0.90 0 0);
+  --color-neutral-300: oklch(0.82 0 0);
+  --color-neutral-400: oklch(0.55 0 0);
+  --color-neutral-500: oklch(0.44 0 0);
+  --color-neutral-600: oklch(0.40 0 0);
+  --color-neutral-700: oklch(0.30 0 0);
+  --color-neutral-800: oklch(0.20 0 0);
+  --color-neutral-900: oklch(0.14 0 0);
+  --color-neutral-950: oklch(0.10 0 0);
+
+  /* Textul care stă PESTE verdele de brand (butonul primar). E token, nu
+     `text-white` fix, pentru că pe banda întunecată verdele se deschide — și
+     atunci albul pe verde-deschis cade sub AA. Vezi `.on-dark`. */
+  --color-on-primary: oklch(1 0 0);
 
   /* Accent — coral/portocaliu cald pentru CTA-uri și highlight editorial */
   --color-accent-300: oklch(0.82 0.10 30);
@@ -84,22 +148,27 @@
 
   /* ---- TOKENS SEMANTICE (se inversează în dark mode) ----
      Toate componentele folosesc acești tokeni → dark mode "curge" automat. */
-  --color-surface: oklch(0.99 0.005 100);        /* fundal de bază — off-white cald */
-  --color-surface-2: oklch(0.965 0.006 120);     /* fundal secundar (secțiuni muted) */
+  /* NEUTRE, chroma 0 — alb și gri deschis, fără tentă caldă sau verzuie.
+     Tenta de dinainte (off-white cald + gri verzui) se bătea cap în cap cu
+     benzile alb-negru: verdele rămâne DOAR accent, nu temperatură de fundal. */
+  --color-surface: oklch(1 0 0);                 /* fundal de bază — alb curat */
+  --color-surface-2: oklch(0.962 0 0);           /* fundal secundar — gri deschis */
   --color-surface-3: oklch(1 0 0);               /* carduri / suprafețe ridicate */
-  --color-ink: oklch(0.16 0.01 160);             /* text principal / heading */
-  --color-ink-muted: oklch(0.42 0.008 160);      /* text secundar (AA și la 14px) */
-  --color-ink-subtle: oklch(0.47 0.008 160);     /* text terțiar / captions (AA) */
-  --color-border: oklch(0.90 0.006 150);         /* borduri */
-  --color-border-strong: oklch(0.82 0.008 150);
-  --color-hairline: oklch(0.93 0.005 150);       /* linii foarte subtile */
+  --color-ink: oklch(0.17 0 0);                  /* text principal / heading */
+  --color-ink-muted: oklch(0.44 0 0);            /* text secundar (AA și la 14px) */
+  --color-ink-subtle: oklch(0.49 0 0);           /* text terțiar / captions (AA) */
+  --color-border: oklch(0.89 0 0);               /* borduri */
+  --color-border-strong: oklch(0.78 0 0);
+  --color-hairline: oklch(0.93 0 0);             /* linii foarte subtile */
   /* Șinele verticale: trebuie să se vadă egal pe `surface` ȘI pe `surface-2`,
-     de-aia sunt mai închise decât hairline — altfel dispar pe banda colorată. */
-  --color-rail: oklch(0.895 0.007 150);
+     de-aia sunt mai închise decât hairline — altfel dispar pe banda gri. */
+  --color-rail: oklch(0.80 0 0);
 
   /* Fonturi — Satoshi (heading editorial) + Inter (body, lizibil) */
   --font-heading: 'Satoshi', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
+  /* Titlu tehnic, uppercase — folosit doar în hero */
+  --font-display: 'Syncopate', 'Satoshi', system-ui, sans-serif;
   /* Voce de date/utilitar — monospace de sistem (zero KB descărcat) */
   --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Code', Menlo, Consolas, monospace;
 
@@ -113,19 +182,24 @@
   /* Spațiere secțiuni — echilibrată (se adună sus+jos între secțiuni) */
   --spacing-section: clamp(2.75rem, 4.5vw, 4.5rem);
 
-  /* Radius consistent */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 2rem;
+  /* COLȚURI DREPTE peste tot — patternul nou.
+     Butoanele din hero n-au rotunjire, cardurile de servicii nici, deci nici
+     restul saitului nu mai are: altfel pe aceeași pagină stau alături cutii
+     drepte și cutii cu rază de 1.5rem. Scara rămâne ca NUME, ca să nu trebuiască
+     atinsă fiecare componentă — se schimbă doar aici.
+     Cercurile adevărate (inelul de CTA) folosesc 999px direct, nu scara asta. */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
 
-  /* Shadows colorate (verde-tint, nu negru pur) — mai bogate */
-  --shadow-soft: 0 2px 8px oklch(0.27 0.08 155 / 0.05), 0 1px 3px oklch(0.27 0.08 155 / 0.04);
-  --shadow-medium: 0 8px 24px oklch(0.27 0.08 155 / 0.08), 0 3px 8px oklch(0.27 0.08 155 / 0.05);
-  --shadow-strong: 0 18px 48px oklch(0.27 0.08 155 / 0.12), 0 6px 16px oklch(0.27 0.08 155 / 0.07);
-  --shadow-glow: 0 0 0 1px oklch(0.55 0.17 155 / 0.1), 0 12px 40px oklch(0.55 0.17 155 / 0.18);
+  /* Umbre neutre — tenta verde de dinainte colora marginea fiecărui card */
+  --shadow-soft: 0 2px 8px oklch(0 0 0 / 0.05), 0 1px 3px oklch(0 0 0 / 0.04);
+  --shadow-medium: 0 8px 24px oklch(0 0 0 / 0.08), 0 3px 8px oklch(0 0 0 / 0.05);
+  --shadow-strong: 0 18px 48px oklch(0 0 0 / 0.12), 0 6px 16px oklch(0 0 0 / 0.07);
+  --shadow-glow: 0 0 0 1px oklch(0 0 0 / 0.06), 0 12px 40px oklch(0 0 0 / 0.10);
 
   /* Tranziții */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -151,40 +225,40 @@
    ============================================================ */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-surface: oklch(0.16 0.012 160);
-    --color-surface-2: oklch(0.19 0.014 160);
-    --color-surface-3: oklch(0.22 0.016 160);
-    --color-ink: oklch(0.96 0.006 150);
-    --color-ink-muted: oklch(0.74 0.008 150);
-    --color-ink-subtle: oklch(0.60 0.008 150);
-    --color-border: oklch(0.30 0.012 160);
-    --color-border-strong: oklch(0.40 0.014 160);
-    --color-hairline: oklch(0.26 0.010 160);
-    --color-rail: oklch(0.315 0.012 160);
+    --color-surface: oklch(0.17 0 0);
+    --color-surface-2: oklch(0.205 0 0);
+    --color-surface-3: oklch(0.235 0 0);
+    --color-ink: oklch(0.96 0 0);
+    --color-ink-muted: oklch(0.745 0 0);
+    --color-ink-subtle: oklch(0.63 0 0);
+    --color-border: oklch(0.32 0 0);
+    --color-border-strong: oklch(0.43 0 0);
+    --color-hairline: oklch(0.27 0 0);
+    --color-rail: oklch(0.38 0 0);
 
     --shadow-soft: 0 2px 8px oklch(0 0 0 / 0.3), 0 1px 3px oklch(0 0 0 / 0.25);
     --shadow-medium: 0 8px 24px oklch(0 0 0 / 0.4), 0 3px 8px oklch(0 0 0 / 0.3);
     --shadow-strong: 0 18px 48px oklch(0 0 0 / 0.5), 0 6px 16px oklch(0 0 0 / 0.35);
-    --shadow-glow: 0 0 0 1px oklch(0.65 0.17 155 / 0.25), 0 12px 48px oklch(0.55 0.17 155 / 0.3);
+    --shadow-glow: 0 0 0 1px oklch(1 0 0 / 0.12), 0 12px 48px oklch(0 0 0 / 0.5);
   }
 }
 
 :root[data-theme="dark"] {
-  --color-surface: oklch(0.16 0.012 160);
-  --color-surface-2: oklch(0.19 0.014 160);
-  --color-surface-3: oklch(0.22 0.016 160);
-  --color-ink: oklch(0.96 0.006 150);
-  --color-ink-muted: oklch(0.74 0.008 150);
-  --color-ink-subtle: oklch(0.60 0.008 150);
-  --color-border: oklch(0.30 0.012 160);
-  --color-border-strong: oklch(0.40 0.014 160);
-  --color-hairline: oklch(0.26 0.010 160);
-  --color-rail: oklch(0.315 0.012 160);
+  --color-surface: oklch(0.17 0 0);
+  --color-surface-2: oklch(0.205 0 0);
+  --color-surface-3: oklch(0.235 0 0);
+  --color-ink: oklch(0.96 0 0);
+  --color-ink-muted: oklch(0.745 0 0);
+  --color-ink-subtle: oklch(0.63 0 0);
+  --color-border: oklch(0.32 0 0);
+  --color-border-strong: oklch(0.43 0 0);
+  --color-hairline: oklch(0.27 0 0);
+  --color-rail: oklch(0.38 0 0);
 
   --shadow-soft: 0 2px 8px oklch(0 0 0 / 0.3), 0 1px 3px oklch(0 0 0 / 0.25);
   --shadow-medium: 0 8px 24px oklch(0 0 0 / 0.4), 0 3px 8px oklch(0 0 0 / 0.3);
   --shadow-strong: 0 18px 48px oklch(0 0 0 / 0.5), 0 6px 16px oklch(0 0 0 / 0.35);
-  --shadow-glow: 0 0 0 1px oklch(0.65 0.17 155 / 0.25), 0 12px 48px oklch(0.55 0.17 155 / 0.3);
+  --shadow-glow: 0 0 0 1px oklch(1 0 0 / 0.12), 0 12px 48px oklch(0 0 0 / 0.5);
 }
 
 /* ============================================================
@@ -323,6 +397,377 @@
     }
   }
 
+  /* ============================================================
+     LIMBAJ „INGINERIE DE PRECIZIE" — comun hero-ului, secțiunilor
+     întunecate de pe home și paginilor de servicii.
+     ============================================================ */
+
+  /* ---- INSULĂ ÎNTUNECATĂ ----
+     Răstoarnă LOCAL tokenii semantici, în loc să rescrie fiecare componentă.
+     Cardurile, titlurile, bordurile și textul citesc toate din aceleași
+     variabile, deci o secțiune marcată `.on-dark` trece pe paletă închisă cu tot
+     cu ProjectCard, Badge, Button și restul — fără nicio linie în ele.
+
+     Se aplică identic în light și în dark mode: e o bandă neagră intenționată,
+     nu „varianta de noapte" a secțiunii. Restul paginii rămâne pe tema aleasă,
+     deci comutatorul de temă continuă să facă ceva.
+
+     `--color-primary-600` e ridicat aici pentru că multe componente îl folosesc
+     ca CULOARE DE TEXT (linkuri „Află mai multe", săgeți, etichete). Verdele de
+     brand, gândit pentru fundal deschis, ar cădea sub AA pe negru. */
+  .on-dark {
+    /* Negru NEUTRU, chroma 0 — nu negrul albăstrui de dinainte. Acela se bătea
+       cap în cap cu off-white-ul cald și cu verdele de brand: două temperaturi
+       în aceeași pagină. Alb-negru curat nu are temperatură, deci nu se ceartă
+       cu nimic, iar verdele rămâne al secțiunilor deschise. */
+    --color-surface: oklch(0.14 0 0);
+    --color-surface-2: oklch(0.18 0 0);
+    --color-surface-3: oklch(0.205 0 0);
+    --color-ink: oklch(1 0 0);
+    --color-ink-muted: oklch(0.80 0 0);
+    --color-ink-subtle: oklch(0.66 0 0);
+    /* Bordurile și șinele urcate din nou: pe negru, alb la 14–18% se pierde —
+       cardurile păreau fără contur, iar banda fără cadru lateral. La 22% bordura
+       de card se citește, la 32% șina laterală se vede pe toată înălțimea, fără
+       să devină o dungă care strigă. */
+    --color-border: oklch(1 0 0 / 0.22);
+    --color-border-strong: oklch(1 0 0 / 0.38);
+    --color-hairline: oklch(1 0 0 / 0.14);
+    --color-rail: oklch(1 0 0 / 0.32);
+
+    /* ---- VERDELE IESE DE PE BANDĂ ----
+       Nu-l scot din fiecare componentă, ci răstorn rampa în gri: tot ce citea
+       `primary` ca text sau ca fundal (linkuri „Află mai multe", săgeți de card,
+       badge-uri, iconuri, colțurile în „L", butonul primar) devine alb-gri
+       dintr-o singură declarație. Butonul primar iese astfel alb cu text negru
+       — exact idiomul alb-negru — iar `--color-on-primary` îl întoarce pe dos.
+
+       Rampa se rescrie ÎNTREAGĂ, nu doar treptele de text: pe negru, tentele
+       deschise (50/100/200) sunt FUNDALURI de card, iar dacă le lăsam verzi-
+       deschis ieșea text alb pe fundal aproape alb — 1,06:1, adică nimic. Citită
+       pe bandă, rampa își schimbă rolul: numerele mici sunt tente subtile de
+       alb, cele mari sunt text plin. 900/950 rămân suprafețe închise, ca să nu
+       se întoarcă pe dos dacă le folosește cineva ca fundal. */
+    --color-primary-50: oklch(1 0 0 / 0.06);
+    --color-primary-100: oklch(1 0 0 / 0.11);
+    --color-primary-200: oklch(1 0 0 / 0.20);
+    --color-primary-300: oklch(0.92 0 0);
+    --color-primary-400: oklch(0.82 0 0);
+    --color-primary-500: oklch(0.74 0 0);
+    --color-primary-600: oklch(1 0 0);
+    --color-primary-700: oklch(0.90 0 0);
+    --color-primary-800: oklch(0.80 0 0);
+    --color-primary-900: oklch(0.22 0 0);
+    --color-primary-950: oklch(0.17 0 0);
+    --color-on-primary: oklch(0.14 0 0);
+
+    --shadow-soft: 0 2px 8px oklch(0 0 0 / 0.4);
+    --shadow-medium: 0 10px 30px oklch(0 0 0 / 0.5);
+    --shadow-strong: 0 20px 56px oklch(0 0 0 / 0.6);
+
+    background-color: var(--color-surface);
+    color: var(--color-ink-muted);
+  }
+
+  /* ---- SUB BARA FIXĂ ----
+     Pe paginile cu `heroOverlay` headerul plutește peste prima secțiune și nu
+     mai lasă spacer, deci secțiunea își face singură loc: înălțimea barei
+     (4rem / 4.5rem) plus aerul de deasupra. Aceeași valoare în trei locuri
+     (hero de serviciu, index de servicii) — de-aia stă aici, nu în fiecare. */
+  .under-bar {
+    padding-top: calc(4rem + clamp(2rem, 5vw, 3.5rem));
+    padding-bottom: var(--spacing-section);
+  }
+  @media (min-width: 48rem) {
+    .under-bar { padding-top: calc(4.5rem + clamp(2.5rem, 5vw, 4rem)); }
+  }
+
+  /* ---- GRILĂ TEHNICĂ ----
+     Aceeași grilă de 60px ca în hero, stinsă spre margini.
+
+     E un ELEMENT propriu, nu un `::before` pe secțiune, și nu din comoditate:
+     `.rails` își desenează deja șinele verticale pe `::before` și hairline-ul
+     orizontal pe `::after`. Un element are un singur `::before`, așa că o grilă
+     pusă acolo suprascria `background-image` al șinelor — și pe fiecare bandă cu
+     grilă șinele laterale dispăreau complet. Ca strat separat, cele două
+     coexistă: grila pe z-index 0, șinele pe 1, conținutul pe 2. */
+  .tech-grid {
+    position: absolute;
+    inset: 0;
+    /* Aceeași regulă ca la `.dot-grid`: textura stă în interiorul cadrului,
+       tăiată pe șinele verticale. Două texturi cu reguli diferite ar fi arătat
+       ca o scăpare, nu ca o decizie. */
+    max-width: var(--rail-frame);
+    margin-inline: auto;
+    clip-path: inset(0 calc(var(--container-padding) / 2));
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, oklch(1 0 0 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(80% 70% at 50% 40%, black 10%, transparent 100%);
+  }
+
+  /* ---- GRILĂ DE PUNCTE ----
+     Textură pentru benzile DESCHISE, ca grila de 60px să nu fie singura voce
+     de „desen tehnic" și ca secțiunile albe să nu rămână complet plate.
+     Strat propriu, din același motiv ca `.tech-grid`: `.rails` are deja ocupate
+     ambele pseudo-elemente pe secțiune. */
+  /* Secțiunea cu arc are nevoie de aer dedesubt: arcul trebuie să treacă SUB
+     conținut, ca orizont, nu prin el. */
+  .has-arc {
+    /* OBLIGATORIU: cercul e mai lat decât banda și coboară mult sub ea. Fără
+       tăiere ar acoperi secțiunile următoare — titlul din CTA ajunsese negru
+       pe negru. Tăierea e și corectă vizual: marginea secțiunii retează
+       orizontul. */
+    overflow: hidden;
+
+    padding-top: var(--spacing-section);
+    /* Calota își cere singură loc, ca domul să treacă sub conținut.
+       `--rail-frame` e fie o lungime (40…96rem), fie `100%` la baza scării;
+       înmulțit cu 0.33 funcționează în ambele cazuri, pentru că `padding` în
+       procente se rezolvă oricum față de LĂȚIME. */
+    padding-bottom: calc(0.33 * var(--rail-frame) + var(--spacing-section));
+  }
+
+  /* ---- ARC LUMINOS ----
+     Un cerc uriaș din care se vede doar muchia de sus, ca un orizont.
+
+     Referința îl face din trei copii ale arcului suprapuse, cu `blur(0.5px)`,
+     `blur(2px)` și `blur(10px)` — un bloom stack. Aici haloul vine din MĂȘTI
+     late, nu din `filter: blur`: un blur pe un element de 96rem obligă
+     browserul să rasterizeze o suprafață uriașă la fiecare repaint, iar arcul
+     stă într-o secțiune prin care se dă scroll.
+     Mecanismul: fundal `conic-gradient` aprins doar în sectorul dinspre vârf,
+     iar masca radială lasă să treacă doar o bandă. Bandă îngustă = rama
+     ascuțită; bandă lată și transparentă = haloul care se topește în fundal.
+     `from -72deg` mută originea gradientului, ca banda aprinsă să cadă centrată
+     pe vârful cercului, cu albul în punctul cel mai de sus. */
+  /* Cadrul: domul se opreșe pe ȘINE, nu pe marginea ecranului. Cutia exterioară
+     reproduce cadrul șinelor, iar cea interioară se retrage cu jumătate de
+     gutter — adică exact pe linie — și taie tot ce iese. */
+  .arc-frame {
+    position: absolute;
+    inset: 0;
+    max-width: var(--rail-frame);
+    margin-inline: auto;
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* Semnătura din interiorul cupolei.
+     Cutia are exact geometria cercului (aceeași lățime și același `translate`),
+     deci vârful ei coincide cu vârful domului. `padding-top` în procente se
+     rezolvă față de LĂȚIMEA cadrului, ca și calota — așa textul rămâne la
+     aceeași adâncime în cupolă la orice lățime, fără valori pe praguri. */
+  .arc-label {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 110%;
+    aspect-ratio: 1;
+    translate: -50% 0;
+    margin-top: calc(-0.3209 * 100%);
+    padding-top: 10.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    pointer-events: none;
+  }
+  .arc-domain {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(0.72rem, 1.1vw, 1.05rem);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: oklch(1 0 0 / 0.92);
+  }
+  .arc-place {
+    font-family: var(--font-mono);
+    font-size: clamp(0.58rem, 0.7vw, 0.72rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: oklch(1 0 0 / 0.55);
+  }
+  .arc-clip {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--container-padding) / 2);
+    right: calc(var(--container-padding) / 2);
+    overflow: hidden;
+  }
+
+  /* GEOMETRIA CUPOLEI.
+     Ca domul să se închidă exact în colțurile de jos ale cadrului, înălțimea
+     calotei nu e la alegere — rezultă din diametru:
+       calotă = R − √(R² − (W/2)²),  cu R = D/2
+     Pentru D = 1,10·W iese calotă = 0,3209·W.
+     Poziționarea e `top: 100%` (marginea de jos a cadrului) plus un `margin-top`
+     NEGATIV ÎN PROCENTE. Procentele de margine se rezolvă întotdeauna față de
+     LĂȚIMEA blocului care conține — exact ce trebuie, fiindcă și calota e o
+     fracțiune din lățime. Așa geometria scalează singură, fără încă o scară de
+     praguri ținută în sincron cu `--rail-frame`.
+     (Am încercat întâi `translate` procentual, presupunând că se rezolvă față de
+     dimensiunea proprie a elementului: vârful ieșea la 359px în loc de 606px,
+     calota 648 în loc de 400, și domul urca peste coloanele de text.)
+     Dacă schimbi 1.10, recalculează și 0.3209. */
+  .arc,
+  .arc-halo,
+  .arc-halo-wide,
+  .arc-body {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    aspect-ratio: 1;
+    translate: -50% 0;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .arc,
+  .arc-halo,
+  .arc-halo-wide {
+    background: conic-gradient(
+      from -72deg,
+      transparent 0deg,
+      oklch(0.55 0.24 262) 42deg,
+      oklch(1 0 0) 72deg,
+      oklch(0.55 0.24 262) 102deg,
+      transparent 144deg
+    );
+  }
+
+  /* Interiorul cupolei, cu o treaptă mai închis decât banda. Fără el, rama se
+     citea ca o linie curbă; cu el, devine muchia unui corp care urcă. */
+  .arc-body {
+    width: 110%;
+    margin-top: calc(-0.3209 * 100%);
+    background: oklch(0.095 0 0);
+  }
+
+  /* Rama: bandă de ~2px, muchia propriu-zisă. */
+  .arc {
+    width: 110%;
+    margin-top: calc(-0.3209 * 100%);
+    mask-image: radial-gradient(closest-side, transparent calc(100% - 5px), black calc(100% - 1px));
+  }
+
+  /* Halourile sunt cercuri mai mari, dar trebuie să rămână CONCENTRICE cu rama,
+     altfel glow-ul alunecă față de muchie. Un cerc mai mare cu e px cere
+     corecția (0,5 − 0,2917)·e pe verticală — de-aia offseturile fixe. */
+  .arc-halo {
+    width: calc(110% + 26px);
+    /* concentric cu rama: un cerc mai mare cu e px coboară cu e/2 */
+    margin-top: calc(-0.3209 * 100% - 13px);
+    opacity: 0.45;
+    mask-image: radial-gradient(
+      closest-side,
+      transparent calc(100% - 39px),
+      black calc(100% - 13px),
+      transparent 100%
+    );
+  }
+  .arc-halo-wide {
+    width: calc(110% + 90px);
+    margin-top: calc(-0.3209 * 100% - 45px);
+    opacity: 0.18;
+    mask-image: radial-gradient(
+      closest-side,
+      transparent calc(100% - 135px),
+      black calc(100% - 45px),
+      transparent 100%
+    );
+  }
+
+  /* ---- DUNGI CARE CAD ----
+     Ca la referință (4 elemente înguste, animație de 3,2s): fire subțiri de
+     lumină care coboară peste bandă. Animăm doar `transform` și `opacity`,
+     deci stau pe compositor și nu declanșează layout. */
+  .fall {
+    position: absolute;
+    top: 0;
+    left: var(--x);
+    width: 1px;
+    height: var(--h, 6rem);
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, oklch(0.75 0.16 260 / 0.85));
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .fall {
+      animation: fall var(--dur, 3.2s) linear infinite;
+      animation-delay: var(--d, 0s);
+    }
+  }
+  @keyframes fall {
+    0% { transform: translateY(-100%); opacity: 0; }
+    12% { opacity: 1; }
+    76% { opacity: 1; }
+    100% { transform: translateY(var(--travel, 26rem)); opacity: 0; }
+  }
+
+  /* ---- COLȚURI ÎN „L" ----
+     Patru colțuri de desen tehnic dintr-un singur pseudo-element: opt benzi de
+     1px, poziționate în colțuri. Varianta cu patru `<span>`-uri cerea markup în
+     fiecare componentă; asta e doar o clasă. */
+  .brackets { position: relative; }
+  .brackets::after {
+    --bc: var(--color-primary-600);
+    --bs: 0.85rem;
+    content: "";
+    position: absolute;
+    /* În interiorul cutiei, nu peste bordură: cardurile care au `overflow:
+       hidden` ar tăia exact banda de 1px dacă am desena în afară, iar colțurile
+       ar dispărea cu totul. Cine vrea suprapunere pe bordură dă `inset: -1px`. */
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc)),
+      linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc)),
+      linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc)),
+      linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc));
+    background-size:
+      var(--bs) 1px, 1px var(--bs),
+      var(--bs) 1px, 1px var(--bs),
+      var(--bs) 1px, 1px var(--bs),
+      var(--bs) 1px, 1px var(--bs);
+    background-position:
+      left top, left top,
+      right top, right top,
+      left bottom, left bottom,
+      right bottom, right bottom;
+    background-repeat: no-repeat;
+  }
+
+  /* ---- TITLU TEHNIC ----
+     Syncopate uppercase, dar la scară de SECȚIUNE, nu de hero: fontul e cu ~30%
+     mai lat decât Satoshi, deci scara obișnuită de heading l-ar face să curgă pe
+     patru rânduri. Rămâne la nivel de secțiune; titlurile de card stau pe
+     Satoshi, ca să existe două trepte clare de ierarhie. */
+  .title-tech {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.45rem, 2.1vw + 0.55rem, 2.35rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    color: var(--color-ink);
+  }
+  /* Varianta de titlu de PAGINĂ (h1), nu de secțiune. Tot sub scara obișnuită
+     de `--text-display`: Syncopate e mult mai lat, deci la aceeași valoare
+     numerică ocupă cu vreo treime mai mult. */
+  .title-tech-lg {
+    font-size: clamp(1.7rem, 3vw + 0.5rem, 3rem);
+    line-height: 1.14;
+  }
+
   /* Eyebrow / label — voce mono de developer */
   .eyebrow {
     display: inline-flex;
@@ -356,7 +801,7 @@
 
   /* Text cu accent editorial subliniat */
   .ink-highlight {
-    background-image: linear-gradient(transparent 60%, oklch(0.55 0.17 155 / 0.18) 0);
+    background-image: linear-gradient(transparent 60%, oklch(0.54 0.21 257 / 0.20) 0);
   }
 
   /* Prose — articole blog/portofoliu */

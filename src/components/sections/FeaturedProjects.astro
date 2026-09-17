@@ -21,8 +21,9 @@ const featured = (await getCollection('portofoliu'))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 6);
 
-const hero = featured[0];
-const rest = featured.slice(1);
+// Patru carduri egale, nu unul mare + restul: în macheta cerută toate au
+// aceeași greutate, iar rândul de patru se citește ca o vitrină.
+const shown = featured.slice(0, 4);
 ---
 
 {featured.length > 0 && (
@@ -33,44 +34,25 @@ const rest = featured.slice(1);
     />
 
     <div class="fp">
-      {hero && (
-        <a href={`${portfolioHref}/${hero.id}`} class="fp-hero reveal">
-          <span class="fp-hero-media">
-            <img
-              src={hero.data.image}
-              alt={hero.data.imageAlt}
-              width="720"
-              height="378"
-              decoding="async"
-              loading="lazy"
-            />
-            <span class="fp-tags">
-              {hero.data.tags.slice(0, 2).map((tag) => <span class="fp-tag">{tag}</span>)}
-            </span>
-          </span>
-          <span class="fp-hero-body">
-            <span class="fp-client spec">{hero.data.client}</span>
-            <span class="fp-hero-title">{hero.data.title}</span>
-            <span class="fp-hero-desc">{hero.data.description}</span>
-            <span class="fp-more">
-              {dict.services.learnMore}
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12l-7.5 7.5M3 12h18" />
-              </svg>
-            </span>
+      {shown.map((project) => (
+        <a href={`${portfolioHref}/${project.id}`} class="fp-card reveal">
+          <img
+            src={project.data.image}
+            alt={project.data.imageAlt}
+            width="720"
+            height="378"
+            decoding="async"
+            loading="lazy"
+          />
+          <span class="fp-scrim" aria-hidden="true"></span>
+          {/* Doar eticheta mono a clientului, fără titlul mare: încărca cardul,
+              iar proiectul se recunoaște oricum din captură — care conține
+              logo-ul saitului. Numele complet rămâne în `alt`-ul imaginii, deci
+              linkul își păstrează numele accesibil. */}
+          <span class="fp-meta">
+            <span class="fp-client">{project.data.client}</span>
           </span>
         </a>
-      )}
-
-      {rest.map((project) => (
-        <ProjectCard
-          href={`${portfolioHref}/${project.id}`}
-          image={project.data.image}
-          imageAlt={project.data.imageAlt}
-          title={project.data.title}
-          client={project.data.client}
-          tags={project.data.tags}
-        />
       ))}
     </div>
 
@@ -83,115 +65,100 @@ const rest = featured.slice(1);
 )}
 
 <style>
+  /* Vitrină de patru carduri portret, cu numele peste imagine — macheta cerută.
+     Capturile sunt însă PEISAJ (720×378): tăiate la portret s-ar vedea doar o
+     felie verticală inutilizabilă. De-aia raportul e 4/5, nu 3/4, și
+     `object-position: top` — așa în cadru intră exact partea de sus a fiecărui
+     sait, adică headerul și hero-ul, partea cea mai recognoscibilă. */
   .fp {
     display: grid;
-    gap: 1rem;
+    gap: 0.9rem;
     margin-top: 2.5rem;
-  }
-  @media (min-width: 48rem) {
-    .fp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   @media (min-width: 64rem) {
-    .fp { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .fp { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   }
 
-  /* ---- cardul comun ---- */
-  .fp-hero {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: var(--radius-2xl);
-    border: 1px solid var(--color-border);
-    background: var(--color-surface-3);
-    box-shadow: var(--shadow-soft);
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .fp-hero:hover {
-    border-color: var(--color-primary-400);
-    box-shadow: var(--shadow-medium);
-  }
-
-  /* ---- vedeta: pe toată lățimea, imagine + poveste ---- */
-  .fp-hero { grid-column: 1 / -1; }
-  @media (min-width: 64rem) {
-    .fp-hero { flex-direction: row; }
-    .fp-hero-media { flex: 1.2; }
-    .fp-hero-body { flex: 1; }
-  }
-  .fp-hero-media {
+  .fp-card {
     position: relative;
     display: block;
+    aspect-ratio: 5 / 6;
     overflow: hidden;
+    border: 1px solid var(--color-border);
     background: var(--color-surface-2);
   }
-  .fp-hero-media img {
+  .fp-card img {
     display: block;
     width: 100%;
     height: 100%;
-    min-height: 15rem;
     object-fit: cover;
-    transition: scale 0.6s var(--ease-out-expo);
+    /* Ancorat STÂNGA-SUS, nu centru. Capturile sunt peisaj (1.9:1), iar într-un
+       cadru portret `cover` arată doar ~44% din lățime — la centru nimerea
+       mijlocul paginii, adică text tăiat pe jumătate. Din stânga-sus intră
+       logo-ul, meniul și începutul hero-ului: partea după care recunoști saitul. */
+    object-position: left top;
+    transition: scale 0.7s var(--ease-out-expo);
   }
-  .fp-hero:hover .fp-hero-media img { scale: 1.04; }
-  .fp-hero-body {
+  .fp-card:hover img { scale: 1.04; }
+
+  /* Scrim-ul nu e decor: numele e alb și stă peste captură, care jos poate fi
+     orice culoare. Fără el contrastul ar depinde de poza fiecărui proiect. */
+  .fp-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      oklch(0.08 0 0 / 0.94) 0%,
+      oklch(0.08 0 0 / 0.72) 22%,
+      oklch(0.08 0 0 / 0.28) 42%,
+      transparent 66%
+    );
+  }
+  .fp-meta {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 0.6rem;
-    padding: clamp(1.5rem, 3vw, 2.75rem);
+    gap: 0.25rem;
   }
-  .fp-hero-title {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: clamp(1.35rem, 1.8vw, 1.7rem);
-    letter-spacing: -0.015em;
-    line-height: 1.2;
-    color: var(--color-ink);
-  }
-  .fp-hero-desc {
-    font-size: 0.9375rem;
-    line-height: 1.7;
-    color: var(--color-ink-muted);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .fp-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-top: 0.6rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-primary-600);
-  }
-  :root[data-theme="dark"] .fp-more { color: var(--color-primary-300); }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .fp-more { color: var(--color-primary-300); }
-  }
-  .fp-more svg { width: 1rem; height: 1rem; transition: translate 0.3s var(--ease-out-expo); }
-  .fp-hero:hover .fp-more svg { translate: 0.25rem 0; }
-
-
-  /* ---- tag-urile pe imagine ---- */
-  .fp-tags {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    display: flex;
-    gap: 0.35rem;
-  }
-  .fp-tag {
-    padding: 0.25rem 0.6rem;
-    border-radius: 999px;
-    /* translucid deschis FIX: stă pe fotografii, nu pe suprafețele temei */
-    background: oklch(0.99 0.003 150 / 0.88);
-    backdrop-filter: blur(6px);
-    border: 1px solid oklch(1 0 0 / 0.5);
+  .fp-client {
     font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.03em;
-    color: oklch(0.3 0.01 160);
+    font-size: 0.72rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: oklch(1 0 0 / 0.88);
+  }
+
+  /* ---- ACORDEON LA HOVER (doar desktop cu mouse) ----
+     Cardul atins se lățește, celelalte se strâng, iar descrierea lui apare.
+     Cotele de `flex-grow` sunt 2.5 pentru cel deschis și 0.82 pentru restul:
+     suma rămâne aproape constantă, deci rândul nu „respiră" pe lățime.
+
+     Aici animăm `flex-grow`, adică LAYOUT la fiecare cadru — nu se poate altfel
+     pentru un acordeon care împinge vecinii (referința face la fel). E limitat
+     la patru elemente și doar cât ține cursorul deasupra.
+
+     Înălțimea devine fixă, nu din `aspect-ratio`: altfel lățirea ar schimba și
+     înălțimea, iar rândul ar sălta. */
+  @media (min-width: 64rem) and (hover: hover) {
+    .fp {
+      display: flex;
+      grid-template-columns: none;
+    }
+    .fp-card {
+      flex: 1 1 0;
+      min-width: 0;
+      aspect-ratio: auto;
+      height: clamp(21rem, 30vw, 28rem);
+      transition: flex-grow 0.55s var(--ease-out-expo);
+    }
+    .fp:hover .fp-card { flex-grow: 0.82; }
+    .fp .fp-card:hover { flex-grow: 2.5; }
   }
 </style>

@@ -11,7 +11,7 @@ import Card from '@components/ui/Card.astro';
   badge="Популярно"
 >
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Почему WordPress со мной</h2>
+    <h2 class="title-tech">Почему WordPress со мной</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       <Card hover class="reveal">
         <h3 class="font-heading text-lg font-bold text-ink">Кастомная тема</h3>
@@ -52,8 +52,8 @@ import Card from '@components/ui/Card.astro';
     </div>
   </Section>
 
-  <Section background="muted">
-    <h2 class="text-headline font-heading font-bold text-ink">Идеально для</h2>
+  <Section background="dark" grid>
+    <h2 class="title-tech">Идеально для</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {[
         { title: 'Местный бизнес', desc: 'Рестораны, салоны, медицинские кабинеты — которым нужно присутствие в сети и частые обновления.' },

@@ -56,14 +56,16 @@ const groups = [
 <BaseLayout
   title="Web services — website development, WordPress, redesign | Ban Studio"
   description="Professional web development and design services in Chisinau: website creation, WordPress, redesign, business cards, brand identity. Quote within 24 hours."
+  heroOverlay
 >
   <!-- Hero -->
-  <section class="rails relative overflow-hidden">
+  <section class="rails on-dark relative overflow-hidden">
     <div class="hero-bg" aria-hidden="true"></div>
-    <div class="container relative pb-section pt-16 sm:pt-20">
+    <div class="tech-grid" aria-hidden="true"></div>
+    <div class="container relative under-bar">
       <div class="max-w-3xl">
         <span class="eyebrow">What I do</span>
-        <h1 class="mt-5 font-heading text-display font-black leading-[0.95] text-ink">
+        <h1 class="title-tech title-tech-lg mt-5">
           Services that build<br />
           <span class="text-primary-600 dark:text-primary-400">your online presence.</span>
         </h1>
@@ -72,9 +74,9 @@ const groups = [
         </p>
         <p class="spec mt-8 border-t border-border pt-6">
           <span class="text-primary-600 dark:text-primary-400">5</span> services
-          <span class="mx-2 text-border-strong">/</span>
+          <span class="mx-2 text-ink-subtle" aria-hidden="true">/</span>
           quote within <span class="text-primary-600 dark:text-primary-400">24h</span>
-          <span class="mx-2 text-border-strong">/</span>
+          <span class="mx-2 text-ink-subtle" aria-hidden="true">/</span>
           <span class="text-primary-600 dark:text-primary-400">free</span> consultation
         </p>
       </div>
@@ -94,7 +96,7 @@ const groups = [
             {group.services.map((s) => (
               <a
                 href={s.href}
-                class="group reveal flex flex-col rounded-2xl border border-border bg-surface-3 p-6 transition-[border-color,box-shadow] duration-300 hover:border-primary-400 hover:shadow-medium"
+                class="group reveal brackets svc-card flex flex-col border border-border bg-surface-3 p-6 transition-[border-color,box-shadow] duration-300 hover:border-primary-400 hover:shadow-medium"
               >
                 <span class="flex size-12 items-center justify-center rounded-xl bg-primary-500/12 text-primary-600 transition-transform duration-300 group-hover:scale-110 dark:text-primary-300" aria-hidden="true">
                   <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor">
@@ -139,21 +141,20 @@ const groups = [
 </BaseLayout>
 
 <style>
+  /* Lumină albă, nu aure colorate — aceeași decizie ca în hero-ul de pe home:
+     banda e alb-negru, verdele trăiește pe secțiunile deschise. */
   .hero-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
     background:
-      radial-gradient(46rem 26rem at 82% -20%, oklch(0.55 0.17 155 / 0.14), transparent 60%),
-      radial-gradient(34rem 22rem at 4% 4%, oklch(0.65 0.20 30 / 0.09), transparent 55%);
+      radial-gradient(46rem 26rem at 82% -20%, oklch(1 0 0 / 0.09), transparent 62%),
+      radial-gradient(34rem 22rem at 4% 4%, oklch(1 0 0 / 0.05), transparent 58%);
   }
-  .hero-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(var(--color-rail) 1px, transparent 1px);
-    background-size: 1.375rem 1.375rem;
-    mask-image: radial-gradient(50rem 32rem at 30% 0%, black, transparent 75%);
-    opacity: 0.5;
-  }
+
+  /* Colțuri drepte, ca pe cardurile de pe home — colțurile în „L" cer muchie. */
+  .svc-card { border-radius: var(--radius-sm); }
+  .svc-card::after { opacity: 0.5; transition: opacity 0.3s var(--ease-out-expo); }
+  .svc-card:hover::after { opacity: 1; }
+
 </style>

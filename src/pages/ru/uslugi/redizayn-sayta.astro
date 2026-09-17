@@ -11,7 +11,7 @@ import Card from '@components/ui/Card.astro';
   badge="Модернизация"
 >
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Признаки того, что нужен редизайн</h2>
+    <h2 class="title-tech">Признаки того, что нужен редизайн</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2">
       {[
         'Сайт загружается долго (более 3 секунд)',
@@ -29,8 +29,8 @@ import Card from '@components/ui/Card.astro';
     </div>
   </Section>
 
-  <Section background="muted">
-    <h2 class="text-headline font-heading font-bold text-ink">Что я делаю по-другому</h2>
+  <Section background="dark" grid>
+    <h2 class="title-tech">Что я делаю по-другому</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <Card hover class="reveal">
         <h3 class="font-heading text-lg font-bold text-ink">Полный аудит</h3>
@@ -54,7 +54,7 @@ import Card from '@components/ui/Card.astro';
   </Section>
 
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Процесс редизайна</h2>
+    <h2 class="title-tech">Процесс редизайна</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {[
         { step: '01', title: 'Аудит', desc: 'Анализирую текущий сайт, определяю проблемы и возможности.' },

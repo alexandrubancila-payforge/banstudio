@@ -1,11 +1,30 @@
 ---
 /**
- * Hero: panou cu bordură rotunjită — text pe stânga (pill, titlu, subtitlu,
- * butoane), orbite concentrice pe dreapta. Structura vine din designul cerut;
- * conținutul îl dă fiecare limbă.
+ * Hero „inginerie de precizie": panou întunecat pe toată lățimea, peste care
+ * plutește headerul. Straturi, de jos în sus: fundalul (aure CSS, video, grilă,
+ * scrim), textul în stânga, banda cu stack-ul jos. Dreapta rămâne liberă — acolo
+ * se vede mișcarea din clip.
+ *
+ * VIDEO: self-hostat în `/public/video`, NU de pe CDN-ul străin din machetă —
+ * altfel hero-ul se golește în ziua în care dispare fișierul de acolo. Fișierul
+ * a fost remuxat cu `moov` în față, ca redarea să pornească din primii octeți,
+ * nu după ce se descarcă tot. Se încarcă abia după `load`, în timp idle, și
+ * deloc pe `prefers-reduced-motion` sau pe conexiuni cu economie de date: până
+ * atunci (și pentru cine nu-l primește) se vede fundalul CSS de dedesubt, care
+ * arată ca un hero terminat, nu ca unul cu o gaură în el.
+ *
+ * Highlight-urile din video urcă până la luminanță ~0,8 INCLUSIV în stânga, unde
+ * stă textul, deci scrim-ul de deasupra nu e decorativ: la 0,85 opacitate pe
+ * stânga, chiar și un pixel alb din video lasă titlul stins la 4,2:1. Dacă
+ * schimbi clipul, remăsoară înainte să slăbești scrim-ul.
+ *
+ * Textele sunt cele de pe site, neatinse: `badge`, `title`, `titleHighlight`,
+ * `subtitle` și etichetele butoanelor vin din props / dicționarele de limbă.
+ * Singurul text adăugat sunt numele din stack, luate din `simple-icons`.
  */
-import Button from '@components/ui/Button.astro';
-import TechOrbits from '@components/ui/TechOrbits.astro';
+import {
+  siAstro, siTypescript, siTailwindcss, siNextdotjs, siWordpress, siCloudflare,
+} from 'simple-icons';
 
 interface Props {
   badge: string;
@@ -16,96 +35,527 @@ interface Props {
   ctaPrimaryHref: string;
   ctaSecondary: string;
   ctaSecondaryHref: string;
+  /**
+   * Video de fundal, self-hosted. `null` îl scoate de tot și lasă doar fundalul
+   * CSS. Nu pune aici un URL de pe alt domeniu.
+   */
+  videoSrc?: string | null;
 }
 
 const {
   badge, title, titleHighlight, subtitle,
   ctaPrimary, ctaPrimaryHref, ctaSecondary, ctaSecondaryHref,
+  videoSrc = '/video/hero-abstract.mp4',
 } = Astro.props;
+
+const STACK = [siAstro, siTypescript, siTailwindcss, siNextdotjs, siWordpress, siCloudflare];
 ---
 
-<section class="hero-shell rails hero-tall relative overflow-hidden">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <TechOrbits />
-  <div class="container relative py-section">
-    <div class="hero-copy">
-      <span class="hero-badge enter" style="--i: 0;">
-        <span class="relative flex size-1.5">
-            <span class="absolute inline-flex size-full animate-ping rounded-full bg-primary-500 opacity-60"></span>
-            <span class="relative inline-flex size-1.5 rounded-full bg-primary-500"></span>
-          </span>
-          {badge}
-        </span>
+<section class="hero rails">
+  <div class="hero-beam" aria-hidden="true"></div>
+  {videoSrc && (
+    /* `src` lipsește intenționat: îl pune scriptul de mai jos, după `load`.
+       Cu `src` în HTML, `preload="none"` e ignorat când există `autoplay`, deci
+       cele 2,7 MB ar concura cu randarea primului ecran. */
+    <video
+      class="hero-video"
+      data-hero-video
+      data-src={videoSrc}
+      muted
+      loop
+      playsinline
+      preload="none"
+      disablepictureinpicture
+      disableremoteplayback
+      tabindex="-1"
+      aria-hidden="true"
+    ></video>
+  )}
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-vignette" aria-hidden="true"></div>
 
-        <h1 class="enter mt-7 font-heading text-display font-black leading-[0.98] text-ink" style="--i: 1;">
-          {title}{' '}
-          <span class="text-primary-600 dark:text-primary-400">{titleHighlight}</span>
-        </h1>
-
-        <p class="enter mt-6 max-w-lg text-lg text-ink-muted" style="--i: 2;">
-          {subtitle}
+  <div class="container hero-body">
+    <div class="hero-cols">
+      <div class="hero-copy">
+        <p class="hero-eyebrow enter" style="--i: 0;">
+          <span class="hero-eyebrow-rule" aria-hidden="true"></span>
+          <span>{badge}</span>
         </p>
 
-        <div class="enter mt-9 flex flex-wrap gap-3 sm:gap-4" style="--i: 3;">
-          <Button href={ctaPrimaryHref} variant="primary" size="lg" class="w-full sm:w-auto">{ctaPrimary}</Button>
-          <Button href={ctaSecondaryHref} variant="secondary" size="lg" class="w-full sm:w-auto">{ctaSecondary}</Button>
+        <h1 class="hero-title enter" style="--i: 1;">
+          {/* Spațiul dintre cele două blocuri e pentru numele accesibil al
+              titlului: vizual nu se randează (sunt `display: block`), dar fără el
+              cititoarele de ecran pot lipi ultimul cuvânt de primul din linia
+              următoare — „…web careaduc rezultate". */}
+          <span class="hero-line">{title}</span>{' '}
+          <span class="hero-line hero-line-mute">{titleHighlight}</span>
+        </h1>
+
+        <p class="hero-sub enter" style="--i: 2;">{subtitle}</p>
+
+        <div class="hero-actions enter" style="--i: 3;">
+          <a href={ctaPrimaryHref} class="btn-precision">
+            <span>{ctaPrimary}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M5 12h13M12.5 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+
+          <a href={ctaSecondaryHref} class="btn-orbit">
+            <span class="btn-orbit-ring" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <span>{ctaSecondary}</span>
+          </a>
+        </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Banda de jos: stack-ul real, logo-uri inlineate la build din simple-icons. -->
+  <div class="hero-stack">
+    <div class="container hero-stack-row">
+      {STACK.map((icon) => (
+        <span class="stack-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d={icon.path} /></svg>
+          {icon.title}
+        </span>
+      ))}
     </div>
   </div>
 </section>
 
-<style>
-  /* Hero-ul are înălțime proprie, nu doar cât îl fac textul și padding-ul:
-     dă prezență și lasă orbitele să respire. */
-  .hero-tall {
-    display: flex;
-    align-items: center;
-    /* Pe mobil nu are rost 40rem cât pe desktop, dar 32rem lăsa secțiunea să se
-       termine lipită de buton. */
-    min-height: 36rem;
-  }
-  @media (min-width: 80rem) {
-    .hero-tall { min-height: clamp(40rem, 80vh, 50rem); }
-  }
-  .hero-tall > .container { width: 100%; }
+<script>
+  // Video-ul de fundal intră DUPĂ ce pagina e gata: nu are voie să concureze cu
+  // FCP/LCP. Îl sărim complet când utilizatorul a cerut mai puțină mișcare sau
+  // e pe economie de date / 2G — în ambele cazuri rămâne fundalul CSS.
+  const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  const src = video?.dataset.src;
 
-  /* Fundal: mesh gradient cald + grilă de puncte, stinsă spre margini */
-  .hero-bg {
+  if (video && src) {
+    const conn = (navigator as any).connection;
+    const thrifty = !!conn && (conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType ?? ''));
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!thrifty && !calm) {
+      const play = () => {
+        video.play().catch(() => {
+          // Autoplay refuzat (ex. economie de baterie): rămâne fundalul CSS.
+        });
+      };
+
+      const start = () => {
+        // Prima pictură a video-ului e semnalul de fade-in; până atunci stratul
+        // e transparent, deci nu clipește peste fundalul CSS.
+        video.addEventListener('playing', () => video.classList.add('is-playing'), { once: true });
+        video.muted = true;
+        video.preload = 'auto';
+        video.src = src;
+        play();
+
+        // Într-un tab ascuns, `play()` se rezolvă dar redarea NU pornește, deci
+        // `playing` nu se declanșează niciodată și stratul rămâne transparent
+        // pentru totdeauna. Se întâmplă real: dai scroll, schimbi tabul înainte
+        // să se descarce cele 2,7 MB, te întorci — și hero-ul e fără clip.
+        // Reîncercăm la fiecare revenire, până prinde.
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible' && video.paused) play();
+        });
+      };
+
+      // Pornim la PRIMA interacțiune, nu pe temporizator — aceeași strategie ca
+      // loaderul de GA din BaseLayout, și din același motiv întors pe dos:
+      // video-ul acoperă tot hero-ul, deci browserul îl socotește element LCP.
+      // Măsurat: cu încărcare pe temporizator, LCP sare de pe titlu pe video, și
+      // atunci scorul nu mai depinde de pagină, ci de cât durează 2,7 MB. Cum
+      // LCP se închide definitiv la prima interacțiune (scroll, atingere, tastă,
+      // mișcare de mouse), pornind clipul exact acolo metrica e deja scrisă —
+      // iar vizitatorul îl vede în zecimea de secundă în care face orice.
+      // Efect secundar bun: cine intră, se uită și pleacă nu descarcă 2,7 MB.
+      const EVENTS = ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'];
+      const onFirst = () => {
+        EVENTS.forEach((e) => window.removeEventListener(e, onFirst));
+        start();
+      };
+      EVENTS.forEach((e) => window.addEventListener(e, onFirst, { once: true, passive: true }));
+    }
+  }
+</script>
+
+<style>
+  /* ============================================================
+     PALETA LOCALĂ — hero-ul e o insulă întunecată, identică în light
+     și în dark mode. Tokenii se declară aici, deci nimic nu se scurge
+     în restul paginii, iar `--color-rail` (șinele verticale din .rails)
+     e rescris ca să se vadă pe fundal aproape negru.
+     ============================================================ */
+  .hero {
+    /* Exact fundalul benzilor din `.on-dark` — negru NEUTRU, chroma 0. Verdele
+       nu apare deloc aici: trăiește pe secțiunile deschise. */
+    --hero-bg: oklch(0.14 0 0);
+    --hero-ink: oklch(1 0 0);
+    --hero-mute: oklch(1 0 0 / 0.45);
+    --hero-slate: oklch(0.88 0 0);
+    --hero-dim: oklch(1 0 0 / 0.62);
+    --hero-line: oklch(1 0 0 / 0.16);
+    --hero-line-strong: oklch(1 0 0 / 0.34);
+    /* Aceeași valoare ca în `.on-dark` — la 18% șina se pierdea pe negru. */
+    --color-rail: oklch(1 0 0 / 0.32);
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--hero-bg);
+    color: var(--hero-slate);
+    /* Headerul e `fixed` și fără spacer pe paginile cu overlay: hero-ul își
+       face singur loc sub bară (4rem / 4.5rem) și adaugă aerul de deasupra. */
+    padding-top: calc(4rem + clamp(2.25rem, 7vw, 4rem));
+    min-height: 38rem;
+  }
+  @media (min-width: 48rem) {
+    .hero {
+      padding-top: calc(4.5rem + clamp(2.5rem, 6vw, 5rem));
+      min-height: min(100svh, 54rem);
+    }
+  }
+
+  /* Nu vrem hairline-ul orizontal al `.rails` peste marginea de sus: deasupra
+     hero-ului nu mai e nicio secțiune, doar bara transparentă. */
+  .hero::after { content: none; }
+
+  /* Șinele urcă peste TOT ce e în hero, inclusiv peste banda de stack.
+     Banda își are fundalul propriu pe z-index 2, deci acoperea liniile și ele se
+     rupeau exact pe ultimii 60px ai secțiunii. Ridicarea e fără risc: șinele cad
+     la jumătatea gutter-ului, iar conținutul începe la un gutter întreg — deci
+     n-au peste ce text să treacă. */
+  .hero::before { z-index: 3; }
+
+  /* ---- STRATURI DE FUNDAL (z-index 0, sub șine și sub conținut) ---- */
+  .hero-video,
+  .hero-beam,
+  .hero-grid,
+  .hero-vignette {
     position: absolute;
     inset: 0;
     z-index: 0;
-    background:
-      radial-gradient(50rem 30rem at 78% -10%, oklch(0.55 0.17 155 / 0.16), transparent 60%),
-      radial-gradient(38rem 26rem at 8% 8%, oklch(0.65 0.20 30 / 0.10), transparent 55%);
+    pointer-events: none;
   }
-  .hero-bg::before {
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Transparent până la prima pictură (clasa o pune scriptul), ca trecerea de
+       la fundalul CSS la video să fie o topire, nu un clipit. */
+    opacity: 0;
+    transition: opacity 1.2s var(--ease-out-expo);
+  }
+  .hero-video.is-playing { opacity: 0.85; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video { transition: none; }
+  }
+
+  /* „Mișcarea" din machetă, fără video: două aure care plutesc lent. Animăm
+     doar `transform`, deci stratul se rasterizează o dată și restul e compoziție. */
+  .hero-beam {
+    inset: -25%;
+    /* Lumină albă, nu aure colorate: două bălți de alb foarte slab care se
+       plimbă. Culoarea de dinainte (verde + albastru) era exact ce se bătea cu
+       paleta saitului. */
+    background:
+      radial-gradient(32rem 24rem at 32% 28%, oklch(1 0 0 / 0.10), transparent 65%),
+      radial-gradient(28rem 22rem at 72% 68%, oklch(1 0 0 / 0.06), transparent 65%);
+  }
+
+  /* Grila tehnică de 60px, stinsă spre margini. */
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, oklch(1 0 0 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(1 0 0 / 0.045) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(78% 70% at 50% 38%, black 20%, transparent 100%);
+  }
+
+  /* Vinieta + scrim-ul peste video.
+
+     Scrim-ul NU e de gust, e măsurat: cadrele au highlight-uri metalice de
+     luminanță ~0,8 (practic alb) care trec și peste zona de text. La 0,85
+     opacitate, cel mai alb pixel posibil lasă titlul stins la 4,2:1 și eticheta
+     mono la 5,5:1 — deci AA se ține în orice cadru, nu doar în cele întunecate.
+
+     Sub 64rem textul ocupă toată lățimea, deci scrim-ul e uniform. De la 64rem
+     textul stă în stânga, așa că se deschide spre dreapta și lasă mișcarea să se
+     vadă exact acolo unde nu e nimic de citit. */
+  .hero-vignette {
+    background:
+      linear-gradient(
+        to bottom,
+        color-mix(in oklch, var(--hero-bg) 82%, transparent),
+        color-mix(in oklch, var(--hero-bg) 82%, transparent)
+      ),
+      radial-gradient(
+        125% 105% at 50% 35%,
+        transparent 0%,
+        color-mix(in oklch, var(--hero-bg) 55%, transparent) 62%,
+        color-mix(in oklch, var(--hero-bg) 92%, transparent) 100%
+      );
+  }
+  @media (min-width: 64rem) {
+    .hero-vignette {
+      background:
+        linear-gradient(
+          to right,
+          color-mix(in oklch, var(--hero-bg) 92%, transparent) 0%,
+          color-mix(in oklch, var(--hero-bg) 85%, transparent) 46%,
+          color-mix(in oklch, var(--hero-bg) 55%, transparent) 72%,
+          color-mix(in oklch, var(--hero-bg) 38%, transparent) 100%
+        ),
+        radial-gradient(
+          125% 105% at 50% 35%,
+          transparent 0%,
+          color-mix(in oklch, var(--hero-bg) 55%, transparent) 62%,
+          color-mix(in oklch, var(--hero-bg) 92%, transparent) 100%
+        );
+    }
+  }
+
+  /* ---- CONȚINUT ---- */
+  .hero-body {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    padding-block: clamp(1rem, 3vw, 2.5rem);
+  }
+  .hero-cols { width: 100%; }
+  /* Textul nu trece de jumătatea ecranului: dreapta rămâne a video-ului, exact
+     acolo unde scrim-ul e cel mai subțire. */
+  .hero-copy { max-width: 34rem; }
+  @media (min-width: 64rem) {
+    .hero-copy { max-width: 52%; }
+  }
+
+  /* Pastila de disponibilitate — linie fină, text, punct care pulsează. */
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--hero-dim);
+  }
+  .hero-eyebrow-rule {
+    flex: none;
+    width: 2.25rem;
+    height: 1px;
+    background: var(--hero-line-strong);
+  }
+  /* Pe ecrane înguste, textul badge-ului e cât toată lățimea: linia din față
+     ar trimite ultimul cuvânt pe al doilea rând, așa că dispare, iar spațierea
+     literelor se strânge. (RO: „Disponibil pentru proiecte noi" — 29 caractere.) */
+  @media (max-width: 26.5rem) {
+    .hero-eyebrow { gap: 0.6rem; letter-spacing: 0.14em; }
+    .hero-eyebrow-rule { display: none; }
+  }
+  /* Titlu: Syncopate, uppercase, foarte lat — se rupe singur în linii stivuite,
+     exact ca în machetă. Prima linie plină, a doua stinsă. */
+  .hero-title {
+    margin-top: 1.75rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3.5vw + 0.4rem, 3.5rem);
+    line-height: 1.16;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    color: var(--hero-ink);
+  }
+  .hero-line { display: block; }
+  /* 4.5:1 pe fundalul hero-ului — trece AA inclusiv ca text normal. */
+  .hero-line-mute { color: var(--hero-mute); }
+
+  .hero-sub {
+    margin-top: 1.6rem;
+    max-width: 34rem;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--hero-slate);
+  }
+
+  .hero-actions {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.75rem;
+  }
+
+  /* CTA principal: dreptunghi cu contur, umplut cu alb la hover printr-un strat
+     care urcă de jos. Stratul stă pe z-index negativ în contextul butonului,
+     deci textul rămâne deasupra fără wrapper suplimentar. */
+  .btn-precision {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1.05rem 1.75rem;
+    border: 1px solid var(--hero-line-strong);
+    font-family: var(--font-mono);
+    /* O treaptă peste 0.72rem de dinainte: sunt acțiunea principală de
+       conversie din pagină, iar la 11,5px mono citeau ca o notă de subsol.
+       Spațierea literelor scade puțin, altfel la corpul mai mare eticheta
+       depășea butonul pe ecranele înguste. */
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--hero-ink);
+    transition: color 0.35s var(--ease-out-expo), border-color 0.35s var(--ease-out-expo);
+  }
+  .btn-precision::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(var(--color-rail) 1px, transparent 1px);
-    background-size: 1.375rem 1.375rem;
-    mask-image: radial-gradient(60rem 40rem at 50% 0%, black, transparent 75%);
-    opacity: 0.5;
+    z-index: -1;
+    background: var(--hero-ink);
+    transform: translateY(101%);
+    transition: transform 0.45s var(--ease-out-expo);
+  }
+  .btn-precision svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    transition: transform 0.35s var(--ease-out-expo);
+  }
+  .btn-precision:hover {
+    color: var(--hero-bg);
+    border-color: var(--hero-ink);
+  }
+  .btn-precision:hover::before { transform: translateY(0); }
+  .btn-precision:hover svg { transform: translateX(0.3rem); }
+
+  /* CTA secundar: inel circular cu săgeată + etichetă. */
+  .btn-orbit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-family: var(--font-mono);
+    /* O treaptă peste 0.72rem de dinainte: sunt acțiunea principală de
+       conversie din pagină, iar la 11,5px mono citeau ca o notă de subsol.
+       Spațierea literelor scade puțin, altfel la corpul mai mare eticheta
+       depășea butonul pe ecranele înguste. */
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--hero-dim);
+    transition: color 0.3s var(--ease-out-expo);
+  }
+  .btn-orbit-ring {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--hero-line-strong);
+    color: var(--hero-ink);
+    transition: border-color 0.3s var(--ease-out-expo), background-color 0.3s var(--ease-out-expo);
+  }
+  .btn-orbit-ring svg { width: 1rem; height: 1rem; }
+  .btn-orbit:hover { color: var(--hero-ink); }
+  .btn-orbit:hover .btn-orbit-ring {
+    border-color: var(--hero-ink);
+    background: oklch(1 0 0 / 0.12);
   }
 
-  .hero-copy { position: relative; z-index: 1; max-width: 36rem; }
+  /* Pe telefoanele foarte înguste eticheta cea mai lungă („ЗАПРОСИТЬ
+     ПРЕДЛОЖЕНИЕ", 21 caractere) se rupea pe două rânduri și butonul ieșea
+     înalt și dezechilibrat, cu săgeata plutind în mijloc. Aici coborâm o
+     treaptă, ca să intre pe un rând; de la 26rem în sus rămâne corpul mare. */
+  @media (max-width: 26rem) {
+    .btn-precision,
+    .btn-orbit {
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+    }
+    .btn-precision { padding: 1rem 1.35rem; gap: 0.7rem; }
+    .btn-orbit { gap: 0.7rem; }
+  }
 
-  /* Pastila de disponibilitate — ușoară: tentă abia vizibilă + bordură subțire,
-     text normal. Varianta plină, neagră, cu mono uppercase apăsa prea tare. */
-  .hero-badge {
+  /* ---- BANDA DE STACK ---- */
+  .hero-stack {
+    position: relative;
+    z-index: 2;
+    margin-top: clamp(2rem, 4vw, 3.5rem);
+    border-top: 1px solid var(--hero-line);
+    /* Ca și HUD-ul: banda traversează și zona în care video-ul rămâne luminos,
+       deci își ține singură contrastul. */
+    background: color-mix(in oklch, var(--hero-bg) 80%, transparent);
+    backdrop-filter: blur(10px);
+  }
+  .hero-stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem 1.75rem;
+    padding-block: 1.15rem;
+  }
+  @media (min-width: 64rem) {
+    .hero-stack-row { justify-content: space-between; gap: 1rem 2rem; }
+  }
+  .stack-item {
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
-    padding: 0.45rem 1rem;
-    border-radius: 999px;
-    border: 1px solid color-mix(in oklch, var(--color-primary-500) 25%, var(--color-border));
-    background: color-mix(in oklch, var(--color-primary-500) 7%, transparent);
-    color: var(--color-ink-muted);
-    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
     font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: oklch(1 0 0 / 0.55);
+    transition: color 0.3s var(--ease-out-expo);
+  }
+  .stack-item svg {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+    transition: fill 0.3s var(--ease-out-expo);
+  }
+  /* Monocrom și la hover: pe o bandă alb-negru, zece culori oficiale de brand
+     aprinse una câte una erau exact petele de culoare pe care le-am scos. */
+  .stack-item:hover { color: var(--hero-ink); }
+
+  /* Pe telefon banda intra pe trei rânduri (două elemente pe rând) și mânca
+     jumătate de ecran. Strânsă puțin, încap trei pe rând → două rânduri. */
+  @media (max-width: 30rem) {
+    .stack-item {
+      gap: 0.4rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+    }
+    .stack-item svg { width: 0.85rem; height: 0.85rem; }
+    .hero-stack-row { gap: 0.75rem 1.1rem; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .animate-ping { animation: none; }
+  /* ---- MIȘCARE ---- */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-beam {
+      animation: beam-drift 28s ease-in-out infinite alternate;
+    }
+  }
+
+  @keyframes beam-drift {
+    to { transform: translate3d(-5%, 4%, 0) scale(1.12); }
   }
 </style>

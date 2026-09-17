@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@components/ui/Section.astro';
+import PageHero from '@components/sections/PageHero.astro';
 import SectionHeading from '@components/ui/SectionHeading.astro';
 import BlogList from '@components/sections/BlogList.astro';
 import { getCollection } from 'astro:content';
@@ -17,13 +18,14 @@ const posts = (await getCollection('blog'))
 <BaseLayout
   title="Blog"
   description="Articles about web development, SEO, design and digital marketing. Practical advice for businesses in Moldova and Romania."
+  heroOverlay
 >
+  <PageHero
+    title={dict.breadcrumb.blog}
+    subtitle="Practical articles about growing your business online. SEO, web development, design and digital marketing."
+  />
+
   <Section>
-    <SectionHeading
-      title={dict.breadcrumb.blog}
-      subtitle="Practical articles about growing your business online. SEO, web development, design and digital marketing."
-      as="h1"
-    />
 
     {posts.length === 0 ? (
       <p class="mt-10 text-center text-ink-muted">

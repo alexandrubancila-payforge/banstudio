@@ -46,7 +46,7 @@ const CELLS: { c: number; r: number; icon?: { title: string; path: string; hex: 
 
 <div class="cta-split">
   <div class="cta-copy">
-    <h2 class="text-headline font-heading font-black text-ink">{title}</h2>
+    <h2 class="title-tech">{title}</h2>
     <p class="mt-4 max-w-lg text-lg text-ink-muted">{subtitle}</p>
     <div class="mt-8 flex flex-wrap gap-3 sm:gap-4">
       <Button href={primaryHref} variant="primary" size="lg">{primary}</Button>
@@ -97,8 +97,8 @@ const CELLS: { c: number; r: number; icon?: { title: string; path: string; hex: 
     height: var(--tile);
     border-radius: var(--radius-lg);
     /* plăcuță deschisă FIX în ambele teme — culorile de brand cer fundal deschis */
-    border: 1px solid oklch(0.9 0.005 150);
-    background: oklch(0.99 0.003 150);
+    border: 1px solid oklch(0.89 0 0);
+    background: oklch(1 0 0);
     box-shadow: var(--shadow-soft);
   }
   .tile svg { width: 38%; height: 38%; }
@@ -106,10 +106,10 @@ const CELLS: { c: number; r: number; icon?: { title: string; path: string; hex: 
     opacity: 0.45;
     box-shadow: none;
   }
-  :root[data-theme="dark"] .tile { border-color: oklch(0.45 0.01 160); }
+  :root[data-theme="dark"] .tile { border-color: oklch(0.46 0 0); }
   :root[data-theme="dark"] .tile.empty { opacity: 0.14; }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .tile { border-color: oklch(0.45 0.01 160); }
+    :root:not([data-theme="light"]) .tile { border-color: oklch(0.46 0 0); }
     :root:not([data-theme="light"]) .tile.empty { opacity: 0.14; }
   }
 

@@ -26,6 +26,7 @@ const faqs = [
 <BaseLayout
   title="Создание сайтов в Кишинёве — Веб-разработчик"
   description="Веб-разработчик фрилансер в Кишинёве. Быстрые сайты с SEO-оптимизацией и оценкой PageSpeed 100 — без шаблонов. Запросите предложение за 24 часа."
+  heroOverlay
 >
   <SchemaLocalBusiness />
   <!-- Hero editorial -->
@@ -41,7 +42,7 @@ const faqs = [
   />
 
   <!-- Услуги -->
-  <Section background="muted">
+  <Section background="muted" dots>
     <SectionHeading
       eyebrow="Что я делаю"
       title={dict.services.sectionTitle}
@@ -56,7 +57,7 @@ const faqs = [
   </Section>
 
   <!-- Почему я -->
-  <Section>
+  <Section background="dark" grid arc>
     <SectionHeading
       eyebrow="Почему я"
       title={dict.whyMe.title}
@@ -67,14 +68,14 @@ const faqs = [
   </Section>
 
   <!-- FAQ -->
-  <Section background="muted">
+  <Section background="muted" dots>
     <SchemaFAQ items={faqs} />
     <SectionHeading
       eyebrow="Частые вопросы"
       title="Частые вопросы"
       align="center"
     />
-    <div class="mx-auto mt-10 max-w-3xl divide-y divide-border">
+    <div class="faq-panel brackets mx-auto mt-10 max-w-3xl divide-y divide-border">
       {faqs.map((f) => (
         <details class="faq reveal py-5">
           <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-lg font-bold text-ink">
@@ -103,6 +104,15 @@ const faqs = [
 </BaseLayout>
 
 <style>
+  /* Panoul FAQ — aceeași cutie tehnică cu colțuri în „L" ca în hero.
+     Colțurile vin din clasa `.brackets` (global.css), nu din markup. */
+  .faq-panel {
+    border: 1px solid var(--color-border);
+    background: color-mix(in oklch, var(--color-surface-3) 60%, transparent);
+    padding-inline: clamp(1.25rem, 3vw, 2.25rem);
+    text-align: left;
+  }
+
   .faq summary::-webkit-details-marker { display: none; }
   .faq[open] .faq-chevron { transform: rotate(180deg); }
 

@@ -25,29 +25,30 @@ const contactHref = route('contact', locale);
 const portfolioHref = route('portfolio', locale);
 ---
 
-<BaseLayout title={seoTitle ?? title} description={description}>
+<BaseLayout title={seoTitle ?? title} description={description} heroOverlay>
   <SchemaService name={title} description={description} url={routePath(Astro.url)} />
   <SchemaBreadcrumb items={[
     { name: dict.breadcrumb.home, href: homeHref },
     { name: dict.breadcrumb.services, href: servicesHref },
     { name: title, href: routePath(Astro.url) },
   ]} />
-  <!-- Hero serviciu -->
-  <section class="rails py-section">
+  <!-- Hero serviciu — aceeași bandă întunecată ca pe home, sub bara transparentă -->
+  <section class="rails on-dark under-bar">
+    <div class="tech-grid" aria-hidden="true"></div>
     <div class="container">
-      <nav class="mb-8 text-sm text-ink-subtle" aria-label="Breadcrumb">
-        <a href={homeHref} class="hover:text-ink">{dict.breadcrumb.home}</a>
-        <span class="mx-2">/</span>
-        <a href={servicesHref} class="hover:text-ink">{dict.breadcrumb.services}</a>
-        <span class="mx-2">/</span>
-        <span class="text-ink-muted">{title}</span>
+      <nav class="service-crumbs" aria-label="Breadcrumb">
+        <a href={homeHref}>{dict.breadcrumb.home}</a>
+        <span aria-hidden="true">/</span>
+        <a href={servicesHref}>{dict.breadcrumb.services}</a>
+        <span aria-hidden="true">/</span>
+        <span class="is-current">{title}</span>
       </nav>
 
       <Badge variant="primary">{badge}</Badge>
-      <h1 class="mt-4 text-display font-heading font-black text-ink">
+      <h1 class="title-tech title-tech-lg mt-5">
         {title}
       </h1>
-      <p class="mt-4 max-w-2xl text-lg text-ink-muted sm:text-xl">
+      <p class="mt-5 max-w-2xl text-lg text-ink-muted sm:text-xl">
         {description}
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
@@ -65,9 +66,9 @@ const portfolioHref = route('portfolio', locale);
   <slot />
 
   <!-- CTA final -->
-  <Section background="muted">
-    <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-headline font-heading font-black text-ink">
+  <Section background="dark" grid>
+    <div class="brackets mx-auto max-w-2xl px-6 py-10 text-center sm:px-10">
+      <h2 class="title-tech">
         {dict.serviceLayout.ctaTitle}
       </h2>
       <p class="mt-4 text-lg text-ink-muted">
@@ -81,3 +82,22 @@ const portfolioHref = route('portfolio', locale);
     </div>
   </Section>
 </BaseLayout>
+
+<style>
+  /* Firimiturile — voce mono, ca etichetele tehnice din hero */
+  .service-crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-subtle);
+  }
+  .service-crumbs a { color: var(--color-ink-muted); transition: color 0.2s; }
+  .service-crumbs a:hover { color: var(--color-ink); }
+  .service-crumbs .is-current { color: var(--color-ink); }
+</style>

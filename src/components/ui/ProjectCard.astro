@@ -54,11 +54,24 @@ const { href, image, imageAlt, title, client, tags = [] } = Astro.props;
     box-shadow: var(--shadow-medium);
   }
 
+  /* ---- MONTURĂ PENTRU CAPTURI ----
+     Capturile de proiect sunt aproape albe (luminanță ~0,9). Lipite direct de
+     banda neagră, dădeau un salt de luminanță brutal pe muchie — arătau ca un
+     bloc de lumină, nu ca o lucrare. Două măsuri, fiecare pe cauza ei:
+       1. montura + rama de 1px pun un ton intermediar între captură și card,
+          deci muchia nu mai e alb-pe-negru;
+       2. la repaus tăiem vârful de luminozitate; la hover imaginea revine la
+          culoarea ei adevărată, deci hover-ul chiar răsplătește.
+     Dimming-ul stă doar sub `hover: hover`: pe telefon nu există hover, iar o
+     imagine permanent stinsă acolo ar fi doar o lucrare prezentată prost.
+     Am scos și zoom-ul de la hover — cu montură, imaginea scalată ar fi mâncat
+     exact rama, fiind tăiată de `overflow: hidden` al monturii. */
   .pc-media {
     position: relative;
     display: block;
     aspect-ratio: 16 / 9;
     overflow: hidden;
+    padding: 0.5rem;
     background: var(--color-surface-2);
   }
   .pc-media img {
@@ -66,9 +79,13 @@ const { href, image, imageAlt, title, client, tags = [] } = Astro.props;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: scale 0.6s var(--ease-out-expo);
+    border: 1px solid var(--color-border);
+    transition: filter 0.45s var(--ease-out-expo);
   }
-  .pc:hover .pc-media img { scale: 1.05; }
+  @media (hover: hover) {
+    .pc-media img { filter: brightness(0.78) saturate(0.92); }
+    .pc:hover .pc-media img { filter: none; }
+  }
 
   .pc-body {
     display: grid;
@@ -106,21 +123,21 @@ const { href, image, imageAlt, title, client, tags = [] } = Astro.props;
 
   .pc-tags {
     position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
+    top: 1.15rem;
+    left: 1.15rem;
     display: flex;
     gap: 0.35rem;
   }
   .pc-tag {
     padding: 0.25rem 0.6rem;
-    border-radius: 999px;
+    border-radius: 0;
     /* translucid deschis FIX: stă pe fotografii, nu pe suprafețele temei */
-    background: oklch(0.99 0.003 150 / 0.88);
+    background: oklch(1 0 0 / 0.90);
     backdrop-filter: blur(6px);
     border: 1px solid oklch(1 0 0 / 0.5);
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.03em;
-    color: oklch(0.3 0.01 160);
+    color: oklch(0.22 0 0);
   }
 </style>

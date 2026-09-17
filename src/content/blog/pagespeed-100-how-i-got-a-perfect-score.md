@@ -2,7 +2,7 @@
 title: "PageSpeed 100/100 — how I got a perfect score on banstudio.dev"
 description: "I scored 100 on Performance, Accessibility, Best Practices and SEO in Google PageSpeed Insights. Here is exactly what I did and why it matters for your business."
 date: 2026-05-28
-image: "/images/blog/pagespeed-100-how-i-got-a-perfect-score.png"
+image: "/images/blog/pagespeed-100-how-i-got-a-perfect-score.webp"
 imageAlt: "PageSpeed 100 / 100"
 tags: ["Performance", "SEO", "Web Development"]
 draft: false

@@ -15,7 +15,7 @@ const learnMore = getDict(locale).services.learnMore;
 
 <a
   href={href}
-  class="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface-3 p-6 transition-[border-color,box-shadow] duration-300 hover:border-primary-400 hover:shadow-medium"
+  class="group brackets svc-card relative flex flex-col overflow-hidden border border-border bg-surface-3 p-6 transition-[border-color,box-shadow] duration-300 hover:border-primary-400 hover:shadow-medium"
 >
   <span class="flex size-11 items-center justify-center rounded-xl bg-primary-500/12 text-primary-600 transition-transform duration-300 group-hover:scale-110 dark:text-primary-300" aria-hidden="true">
     <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -33,3 +33,11 @@ const learnMore = getDict(locale).services.learnMore;
     <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
   </span>
 </a>
+
+<style>
+  /* Colțuri drepte, ca pe cardurile de pe home: colțurile în „L" din
+     `.brackets` cer muchie, pe o rază de 1rem ar pluti pe lângă ea. */
+  .svc-card { border-radius: var(--radius-sm); }
+  .svc-card::after { opacity: 0.5; transition: opacity 0.3s var(--ease-out-expo); }
+  .svc-card:hover::after { opacity: 1; }
+</style>

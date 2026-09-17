@@ -10,7 +10,7 @@ import Card from '@components/ui/Card.astro';
   badge="Брендинг"
 >
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Что входит в полный пакет</h2>
+    <h2 class="title-tech">Что входит в полный пакет</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       <Card hover class="reveal">
         <h3 class="font-heading text-lg font-bold text-ink">Дизайн логотипа</h3>
@@ -51,8 +51,8 @@ import Card from '@components/ui/Card.astro';
     </div>
   </Section>
 
-  <Section background="muted">
-    <h2 class="text-headline font-heading font-bold text-ink">Процесс брендинга</h2>
+  <Section background="dark" grid>
+    <h2 class="title-tech">Процесс брендинга</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {[
         { step: '01', title: 'Бриф', desc: 'Заполняете анкету о бизнесе, ценностях, целевой аудитории и визуальных предпочтениях.' },
@@ -70,7 +70,7 @@ import Card from '@components/ui/Card.astro';
   </Section>
 
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Почему важен фирменный стиль</h2>
+    <h2 class="title-tech">Почему важен фирменный стиль</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-3">
       {[
         { stat: '75%', desc: 'потребителей оценивают надежность бизнеса по дизайну' },

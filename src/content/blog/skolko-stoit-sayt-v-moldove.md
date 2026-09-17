@@ -2,7 +2,7 @@
 title: "Сколько стоит сайт в Молдове? Гид по ценам 2026"
 description: "Сколько стоит сайт в Молдове в 2026 — реальные цены по типам сайтов, что влияет на стоимость и почему «дёшево» обычно выходит дорого. Понятный гид без сюрпризов."
 date: 2026-06-30
-image: "/images/blog/skolko-stoit-sayt-v-moldove.png"
+image: "/images/blog/skolko-stoit-sayt-v-moldove.webp"
 imageAlt: "Сколько стоит сайт в Молдове — гид по ценам"
 tags: ["Цены", "Web Development"]
 draft: false

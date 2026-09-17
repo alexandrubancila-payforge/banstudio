@@ -11,7 +11,7 @@ import Card from '@components/ui/Card.astro';
   badge="Modernizare"
 >
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Semne că ai nevoie de redesign</h2>
+    <h2 class="title-tech">Semne că ai nevoie de redesign</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2">
       {[
         'Site-ul se încarcă greu (peste 3 secunde)',
@@ -29,8 +29,8 @@ import Card from '@components/ui/Card.astro';
     </div>
   </Section>
 
-  <Section background="muted">
-    <h2 class="text-headline font-heading font-bold text-ink">Ce fac diferit</h2>
+  <Section background="dark" grid>
+    <h2 class="title-tech">Ce fac diferit</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <Card hover class="reveal">
         <h3 class="font-heading text-lg font-bold text-ink">Audit complet</h3>
@@ -54,7 +54,7 @@ import Card from '@components/ui/Card.astro';
   </Section>
 
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Procesul de redesign</h2>
+    <h2 class="title-tech">Procesul de redesign</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {[
         { step: '01', title: 'Audit', desc: 'Analizez site-ul actual, identific problemele și oportunitățile.' },

@@ -11,7 +11,7 @@ import Card from '@components/ui/Card.astro';
   badge="Serviciu principal"
 >
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Ce primești</h2>
+    <h2 class="title-tech">Ce primești</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       <Card hover class="reveal">
         <h3 class="font-heading text-lg font-bold text-ink">Design unic</h3>
@@ -52,8 +52,8 @@ import Card from '@components/ui/Card.astro';
     </div>
   </Section>
 
-  <Section background="muted">
-    <h2 class="text-headline font-heading font-bold text-ink">Procesul de lucru</h2>
+  <Section background="dark" grid>
+    <h2 class="title-tech">Procesul de lucru</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {[
         { step: '01', title: 'Descoperire', desc: 'Înțeleg afacerea ta, publicul țintă și obiectivele site-ului.' },
@@ -71,13 +71,13 @@ import Card from '@components/ui/Card.astro';
   </Section>
 
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Tehnologii pe care le folosesc</h2>
+    <h2 class="title-tech">Tehnologii pe care le folosesc</h2>
     <p class="mt-4 max-w-2xl text-ink-muted">
       Aleg tehnologia potrivită pentru fiecare proiect. Site de prezentare? Astro. Aplicație interactivă? Next.js. Landing page simplă? HTML/CSS pur.
     </p>
     <div class="mt-8 flex flex-wrap gap-3">
       {['Astro', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML/CSS', 'JavaScript', 'Cloudflare Pages', 'Vercel'].map((tech) => (
-        <span class="reveal rounded-full border border-border bg-surface-3 px-4 py-2 text-sm font-medium text-ink-muted">
+        <span class="reveal border border-border bg-surface-3 px-4 py-2 text-sm font-medium text-ink-muted">
           {tech}
         </span>
       ))}

@@ -2,6 +2,17 @@
 import { resolveLocale, getNavLinks, getLocaleLinks, getDict, route } from '@/i18n';
 import { routePath } from '@lib/paths';
 
+interface Props {
+  /**
+   * Headerul plutește PESTE prima secțiune, fără spacer și fără fundal, cu
+   * textul alb — pentru paginile care încep cu hero-ul întunecat. La scroll
+   * revine la varianta normală (fundal `surface`, text `ink`).
+   */
+  overlay?: boolean;
+}
+
+const { overlay = false } = Astro.props;
+
 const locale = resolveLocale(Astro.currentLocale);
 const navLinks = getNavLinks(locale);
 const dict = getDict(locale);
@@ -13,23 +24,37 @@ const localeLinks = getLocaleLinks(currentPath, locale);
 const contactHref = route('contact', locale);
 const homeHref = route('home', locale);
 const themeLabel = dict.header.themeToggle;
+const site_name = 'Ban Studio';
 ---
 
 <header
   id="site-header"
-  class="fixed top-0 z-50 w-full border-b border-transparent transition-[background-color,border-color,box-shadow] duration-300"
+  class:list={[
+    'fixed top-0 z-50 w-full border-b border-transparent transition-[background-color,border-color,box-shadow] duration-300',
+    overlay && 'is-overlay',
+  ]}
 >
+  {/* Navigarea desktop apare de la 1024px, nu de la 768: măsurat la 768, bara
+      RU cerea 728px și avea 692 — 36px lipsă, deci butonul „Запросить
+      предложение" se rupea pe două rânduri. Pe RO/EN încăpea la limită, cu 0,5px
+      liberi, adică s-ar fi rupt la prima schimbare de text. La 1024 rămân 139px
+      marjă chiar și pe cea mai lungă limbă. Între 768 și 1023 se folosește
+      hamburgerul, care oricum exista.
+      ÎNĂLȚIMEA barei rămâne pe `md`: hero-ul își calculează spațiul de sus din
+      ea (`calc(4.5rem + …)` de la 48rem în sus), deci mutarea ar desincroniza. */}
   <div class="container flex h-16 items-center justify-between md:h-[4.5rem]">
     <!-- Logo -->
-    <a href={homeHref} class="group flex items-center gap-2.5" style="view-transition-name: site-logo;">
-      <span class="grid size-8 place-items-center rounded-lg bg-primary-600 font-heading text-sm font-black text-white shadow-soft transition-transform duration-300 group-hover:rotate-[-6deg]">
-        B
-      </span>
-      <span class="font-heading text-lg font-black tracking-tight text-ink">Ban Studio</span>
+    <a
+      href={homeHref}
+      class="group flex items-center"
+      style="view-transition-name: site-logo;"
+      aria-label={site_name}
+    >
+      <span class="logotype transition-opacity duration-300 group-hover:opacity-70">BanStudio</span>
     </a>
 
     <!-- Navigare desktop -->
-    <nav class="hidden items-center gap-0.5 md:flex" aria-label={dict.header.mainNav}>
+    <nav class="hidden items-center gap-0.5 lg:flex" aria-label={dict.header.mainNav}>
       {navLinks.map((link) => (
         <a
           href={link.href}
@@ -102,7 +127,7 @@ const themeLabel = dict.header.themeToggle;
     </nav>
 
     <!-- Mobile: theme + lang + hamburger -->
-    <div class="flex items-center gap-1 md:hidden">
+    <div class="flex items-center gap-1 lg:hidden">
       <button
         type="button"
         id="theme-toggle-mobile"
@@ -159,7 +184,7 @@ const themeLabel = dict.header.themeToggle;
   </div>
 
   <!-- Meniu mobil -->
-  <nav id="mobile-menu" class="hidden border-t border-border bg-surface md:hidden">
+  <nav id="mobile-menu" class="hidden border-t border-border bg-surface lg:hidden">
     <div class="container flex flex-col gap-1 py-4">
       {navLinks.map((link) => (
         <a
@@ -184,7 +209,9 @@ const themeLabel = dict.header.themeToggle;
   </nav>
 </header>
 
-<div class="h-16 md:h-[4.5rem]" aria-hidden="true"></div>
+{/* Împinge conținutul sub headerul `fixed`. În modul overlay nu-l punem:
+    hero-ul trece intenționat pe sub bară și își ține singur spațiul de sus. */}
+{!overlay && <div class="h-16 md:h-[4.5rem]" aria-hidden="true"></div>}
 
 <script>
   // Meniu mobil
@@ -240,6 +267,53 @@ const themeLabel = dict.header.themeToggle;
 </script>
 
 <style>
+  /* ---- LOGOTIP ----
+     Fără pătratul cu „B": doar numele, scris legat, în Syncopate uppercase —
+     aceeași voce ca titlul din hero, deci marca și titlul vorbesc la fel.
+     `aria-label` pe link păstrează numele corect („Ban Studio") pentru
+     cititoarele de ecran, care altfel ar silabisi logotipul ca un singur cuvânt. */
+  .logotype {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.02rem;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--color-ink);
+  }
+  @media (min-width: 48rem) {
+    .logotype { font-size: 1.12rem; }
+  }
+
+  /* ---- MOD OVERLAY ----
+     Cât timp bara stă peste hero-ul întunecat, redefinim LOCAL tokenii semantici
+     în loc să rescriem fiecare utilitar Tailwind: `text-ink`, `text-ink-muted`,
+     `bg-ink`, `text-surface` etc. citesc toate din aceleași variabile, deci tot
+     subarborele trece pe paletă deschisă dintr-o singură declarație — inclusiv
+     dropdownul de limbă și meniul mobil, care rămân astfel lizibile.
+     La `.is-scrolled` regula nu se mai aplică și totul revine la tema paginii. */
+  #site-header.is-overlay:not(.is-scrolled) {
+    --color-ink: oklch(1 0 0);
+    --color-ink-muted: oklch(1 0 0 / 0.72);
+    --color-ink-subtle: oklch(1 0 0 / 0.58);
+    --color-surface: oklch(0.14 0 0);
+    --color-surface-2: oklch(1 0 0 / 0.08);
+    --color-surface-3: oklch(1 0 0 / 0.08);
+    --color-border: oklch(1 0 0 / 0.16);
+    --color-border-strong: oklch(1 0 0 / 0.26);
+    /* Pe hero-ul întunecat accentul iese, la fel ca pe benzile `.on-dark`:
+       linkul paginii curente se marchează prin alb plin față de albul stins al
+       celorlalte, nu prin culoare. */
+    --color-primary-600: oklch(1 0 0);
+
+    /* Bara are nevoie de muchie și peste hero-ul întunecat: fără ea plutea în
+       negru și nu se citea unde se termină navigația și unde începe hero-ul.
+       Utilitarul `border-transparent` e într-un layer Tailwind, iar regula asta
+       e nelayerată — deci câștigă fără `!important`. */
+    border-bottom-color: oklch(1 0 0 / 0.16);
+  }
+
   #site-header.is-scrolled {
     background-color: color-mix(in oklch, var(--color-surface) 80%, transparent);
     backdrop-filter: blur(12px) saturate(1.4);

@@ -10,6 +10,8 @@ interface Props {
   description?: string;
   ogImage?: string;
   noindex?: boolean;
+  /** Prima secțiune e hero-ul întunecat → headerul plutește peste ea. */
+  heroOverlay?: boolean;
 }
 
 const locale = resolveLocale(Astro.currentLocale);
@@ -20,6 +22,7 @@ const {
   description = site.description,
   ogImage = '/og-default.png',
   noindex = false,
+  heroOverlay = false,
 } = Astro.props;
 
 const canonicalURL = new URL(routePath(Astro.url), site.url);
@@ -59,6 +62,20 @@ const defaultURL = alternates.find((a) => a.hreflang === 'ro')?.url ?? null;
     <!-- Preload fonturi critice (heading + body latin) -->
     <link rel="preload" href="/fonts/satoshi-900.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    {/* Titlul hero-ului e elementul LCP — fără preload s-ar picta întâi cu
+        fontul de rezervă și abia apoi ar schimba, mutând LCP mai târziu.
+        Pe /ru titlul e chirilic, deci se preîncarcă fișierul chirilic: altfel
+        preîncărcam 10 KB de latine care nu se folosesc acolo, iar litera de care
+        pagina are nevoie ajungea abia după primul paint. */}
+    {heroOverlay && (
+      <link
+        rel="preload"
+        href={locale === 'ru' ? '/fonts/unbounded-700-cyrillic.woff2' : '/fonts/syncopate-700-latin.woff2'}
+        as="font"
+        type="font/woff2"
+        crossorigin
+      />
+    )}
 
     <!-- SEO -->
     <meta name="msvalidate.01" content="2D2B9DE7912774378FBD3360724A8AF5" />
@@ -184,7 +201,7 @@ const defaultURL = alternates.find((a) => a.hreflang === 'ro')?.url ?? null;
     </script>
   </head>
   <body class="min-h-dvh flex flex-col antialiased">
-    <Header />
+    <Header overlay={heroOverlay} />
     <main class="flex-1">
       <slot />
     </main>

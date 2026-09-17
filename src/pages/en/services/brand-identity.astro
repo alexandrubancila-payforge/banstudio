@@ -10,7 +10,7 @@ import Card from '@components/ui/Card.astro';
   badge="Branding"
 >
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">What the full package includes</h2>
+    <h2 class="title-tech">What the full package includes</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       <Card hover class="reveal">
         <h3 class="font-heading text-lg font-bold text-ink">Logo design</h3>
@@ -51,8 +51,8 @@ import Card from '@components/ui/Card.astro';
     </div>
   </Section>
 
-  <Section background="muted">
-    <h2 class="text-headline font-heading font-bold text-ink">The branding process</h2>
+  <Section background="dark" grid>
+    <h2 class="title-tech">The branding process</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {[
         { step: '01', title: 'Brief', desc: 'You fill in a questionnaire about your business, values, audience and visual preferences.' },
@@ -70,7 +70,7 @@ import Card from '@components/ui/Card.astro';
   </Section>
 
   <Section>
-    <h2 class="text-headline font-heading font-bold text-ink">Why brand identity matters</h2>
+    <h2 class="title-tech">Why brand identity matters</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-3">
       {[
         { stat: '75%', desc: 'of consumers judge a business\'s credibility by its design' },

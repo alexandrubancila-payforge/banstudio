@@ -5,16 +5,29 @@ interface Props {
   eyebrow?: string;
   align?: 'left' | 'center';
   as?: 'h1' | 'h2' | 'h3';
+  /**
+   * Titlu în Syncopate uppercase — vocea de secțiune, aceeași cu hero-ul.
+   * Implicit pornit; `false` întoarce la Satoshi pentru titlurile foarte lungi,
+   * unde varianta lată ar curge pe prea multe rânduri.
+   */
+  tech?: boolean;
 }
 
-const { title, subtitle, eyebrow, align = 'left', as: Tag = 'h2' } = Astro.props;
+const { title, subtitle, eyebrow, align = 'left', as: Tag = 'h2', tech = true } = Astro.props;
 ---
 
 <div class:list={['max-w-2xl', align === 'center' && 'mx-auto text-center']}>
   {eyebrow && (
     <span class:list={['eyebrow', align === 'center' && 'justify-center']}>{eyebrow}</span>
   )}
-  <Tag class:list={['font-heading text-headline font-black text-ink', eyebrow && 'mt-4']}>
+  <Tag
+    class:list={[
+      tech ? 'title-tech' : 'font-heading text-headline font-black text-ink',
+      /* un h1 e titlu de PAGINĂ, nu de secțiune → scara mai mare */
+      tech && Tag === 'h1' && 'title-tech-lg',
+      eyebrow && 'mt-4',
+    ]}
+  >
     {title}
   </Tag>
   {subtitle && (

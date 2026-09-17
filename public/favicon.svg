@@ -1,4 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#0a7a3f"/>
-  <text x="16" y="23.5" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="22" fill="white">B</text>
+  <!-- Colțuri drepte și alb-negru, ca marca din header.
+       Inversarea pe schema închisă nu e cochetărie: un pătrat negru pe bara de
+       tab-uri a unui browser în temă întunecată dispare complet. Firefox și
+       Chrome respectă media queries în favicon-urile SVG. -->
+  <style>
+    .bg { fill: #121212 }
+    .ch { fill: #ffffff }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #ffffff }
+      .ch { fill: #121212 }
+    }
+  </style>
+  <rect class="bg" width="32" height="32"/>
+  <text class="ch" x="16" y="23.5" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="22">B</text>
 </svg>

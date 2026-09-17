@@ -2,7 +2,7 @@
 title: "Сайт в коде или WordPress? Как выбрать для бизнеса"
 description: "Сайт в коде или WordPress? Понятное сравнение по скорости, SEO, цене и управлению — и как выбрать подходящий вариант для вашего бизнеса в Молдове."
 date: 2026-06-30
-image: "/images/blog/sayt-v-kode-ili-wordpress.png"
+image: "/images/blog/sayt-v-kode-ili-wordpress.webp"
 imageAlt: "Сайт в коде против WordPress — сравнение"
 tags: ["WordPress", "Web Development"]
 draft: false

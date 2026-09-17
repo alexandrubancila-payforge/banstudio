@@ -2,7 +2,7 @@
 title: "Custom-coded website or WordPress? How to choose for your business"
 description: "A custom-coded website or WordPress? A clear comparison on speed, SEO, cost and administration — and how to pick the right option for your business in Moldova."
 date: 2026-06-30
-image: "/images/blog/custom-coded-website-or-wordpress.png"
+image: "/images/blog/custom-coded-website-or-wordpress.webp"
 imageAlt: "Custom-coded website vs WordPress — a comparison"
 tags: ["WordPress", "Web Development"]
 draft: false

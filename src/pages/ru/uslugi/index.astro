@@ -13,14 +13,18 @@ const services = dict.services.items;
 <BaseLayout
   title={dict.services.sectionTitle}
   description={dict.services.pageSubtitle}
+  heroOverlay
 >
-  <Section>
+  <Section background="dark" grid class="under-bar !py-0">
     <SectionHeading
       title={dict.services.sectionTitle}
       subtitle={dict.services.pageSubtitle}
       as="h1"
     />
-    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  </Section>
+
+  <Section>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((service) => (
         <div class="reveal"><ServiceCard {...service} /></div>
       ))}

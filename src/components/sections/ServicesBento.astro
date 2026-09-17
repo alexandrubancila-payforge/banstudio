@@ -42,7 +42,9 @@ const T = {
         logo: 'Logo', type: 'Typography', colors: 'Colours', guide: 'Brand guide' },
 }[locale];
 
-const SWATCHES = ['oklch(0.44 0.17 155)', 'oklch(0.55 0.17 155)', 'oklch(0.76 0.10 155)', 'oklch(0.65 0.20 30)', 'oklch(0.16 0.01 160)'];
+// Plăcuțele din brand board arată paleta reală a saitului, nu culori inventate:
+// albastru blueprint (3 trepte) + cele două neutre.
+const SWATCHES = ['oklch(0.45 0.18 250)', 'oklch(0.54 0.21 257)', 'oklch(0.78 0.12 252)', 'oklch(0.17 0 0)', 'oklch(0.80 0 0)'];
 
 const items = dict.services.items.map((item: any, i: number) => ({
   ...item,
@@ -56,7 +58,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
   {items.map((item) => (
     <a
       href={item.href}
-      class:list={['bento-card', `span-${item.span}`, item.span === 5 && 'is-wide', 'reveal']}
+      class:list={['bento-card brackets', `span-${item.span}`, item.span === 5 && 'is-wide', 'reveal']}
     >
       <span class="bento-head">
         <span class="bento-icon" aria-hidden="true">
@@ -181,17 +183,28 @@ const items = dict.services.items.map((item: any, i: number) => ({
     .span-5 { grid-column: span 5; }
   }
 
+  /* Colțuri drepte, nu rotunjite: colțurile în „L" din `.brackets` sunt un
+     idiom de desen tehnic și pe o rază de 1.5rem ar pluti pe lângă muchie.
+     Raza mică rămâne doar cât să nu arate ca o cutie de tabel. */
   .bento-card {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border-radius: var(--radius-2xl);
+    border-radius: var(--radius-sm);
     border: 1px solid var(--color-border);
     background: var(--color-surface-3);
     box-shadow: var(--shadow-soft);
     transition: border-color 0.3s, box-shadow 0.3s;
   }
   .bento-card:hover { border-color: var(--color-primary-400); box-shadow: var(--shadow-medium); }
+
+  /* Colțurile stau stinse și se aprind la hover — pe cinci carduri deodată,
+     la intensitate plină, deveneau un desen de brad. */
+  .bento-card::after {
+    opacity: 0.5;
+    transition: opacity 0.3s var(--ease-out-expo);
+  }
+  .bento-card:hover::after { opacity: 1; }
 
   .bento-head { display: flex; flex-direction: column; padding: clamp(1.5rem, 2.2vw, 2rem); }
   .bento-visual {
@@ -250,7 +263,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
     justify-content: center;
     min-height: 11.5rem;
     padding: 1.25rem;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-sm);
     border: 1px solid var(--color-border);
     background: var(--color-surface-2);
     overflow: hidden;
@@ -262,21 +275,21 @@ const items = dict.services.items.map((item: any, i: number) => ({
      easing-ul se aplică per segment de keyframes, deci pașii cad exact pe litere.
      Caretul e border-right-ul liniei, aprins doar în fereastra ei de tastare.
      Editorul e închis la culoare în ambele teme, ca orice bloc de cod. */
-  .code { padding: 0; background: oklch(0.17 0.014 160); border-color: oklch(0.28 0.012 160); }
+  .code { padding: 0; background: oklch(0.17 0 0); border-color: oklch(0.30 0 0); }
   .cd-chrome {
     display: flex;
     align-items: center;
     gap: 0.3rem;
     padding: 0.55rem 0.7rem;
-    border-bottom: 1px solid oklch(0.28 0.012 160);
+    border-bottom: 1px solid oklch(0.30 0 0);
   }
-  .cd-chrome i { width: 0.42rem; height: 0.42rem; border-radius: 50%; background: oklch(0.38 0.012 160); }
+  .cd-chrome i { width: 0.42rem; height: 0.42rem; border-radius: 50%; background: oklch(0.40 0 0); }
   .cd-tab {
     margin-left: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.03em;
-    color: oklch(0.62 0.01 150);
+    color: oklch(0.63 0 0);
   }
   .cd-body {
     display: flex;
@@ -286,7 +299,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
     font-family: var(--font-mono);
     font-size: 0.8rem;
     line-height: 1.5;
-    color: oklch(0.88 0.01 150);
+    color: oklch(0.88 0 0);
   }
   .cd-line {
     display: block;
@@ -297,12 +310,12 @@ const items = dict.services.items.map((item: any, i: number) => ({
     border-right: 2px solid transparent;
   }
   .cd-line b { font-weight: 500; font-style: normal; }
-  .kw { color: oklch(0.76 0.10 155); }
+  .kw { color: oklch(0.78 0.13 252); }
   .fn { color: oklch(0.80 0.12 205); }
   .st { color: oklch(0.75 0.15 30); }
   .nr { color: oklch(0.80 0.16 75); }
-  .pn { color: oklch(0.62 0.01 150); }
-  .cm { color: oklch(0.55 0.03 155); }
+  .pn { color: oklch(0.63 0 0); }
+  .cm { color: oklch(0.56 0.02 250); }
 
   @media (prefers-reduced-motion: no-preference) {
     .cd-line.l1 { animation: cd-l1 10s steps(20, end) infinite; }
@@ -312,30 +325,30 @@ const items = dict.services.items.map((item: any, i: number) => ({
   }
   /* ferestrele: l1 2–20%, l2 24–40%, l3 44–58%, l4 62–74%; ținere; reset la 98% */
   @keyframes cd-l1 {
-    0%, 2% { width: 0; border-right-color: oklch(0.76 0.10 155); }
-    20% { width: 20ch; border-right-color: oklch(0.76 0.10 155); }
+    0%, 2% { width: 0; border-right-color: oklch(0.78 0.13 252); }
+    20% { width: 20ch; border-right-color: oklch(0.78 0.13 252); }
     24%, 97% { width: 20ch; border-right-color: transparent; }
     98%, 100% { width: 0; border-right-color: transparent; }
   }
   @keyframes cd-l2 {
     0%, 24% { width: 0; border-right-color: transparent; }
-    24.01% { border-right-color: oklch(0.76 0.10 155); }
-    40% { width: 19ch; border-right-color: oklch(0.76 0.10 155); }
+    24.01% { border-right-color: oklch(0.78 0.13 252); }
+    40% { width: 19ch; border-right-color: oklch(0.78 0.13 252); }
     44%, 97% { width: 19ch; border-right-color: transparent; }
     98%, 100% { width: 0; border-right-color: transparent; }
   }
   @keyframes cd-l3 {
     0%, 44% { width: 0; border-right-color: transparent; }
-    44.01% { border-right-color: oklch(0.76 0.10 155); }
-    58% { width: 17ch; border-right-color: oklch(0.76 0.10 155); }
+    44.01% { border-right-color: oklch(0.78 0.13 252); }
+    58% { width: 17ch; border-right-color: oklch(0.78 0.13 252); }
     62%, 97% { width: 17ch; border-right-color: transparent; }
     98%, 100% { width: 0; border-right-color: transparent; }
   }
   @keyframes cd-l4 {
     0%, 62% { width: 0; border-right-color: transparent; }
-    62.01% { border-right-color: oklch(0.76 0.10 155); }
-    74% { width: 14ch; border-right-color: oklch(0.76 0.10 155); }
-    74.01%, 97% { width: 14ch; border-right-color: oklch(0.76 0.10 155); }
+    62.01% { border-right-color: oklch(0.78 0.13 252); }
+    74% { width: 14ch; border-right-color: oklch(0.78 0.13 252); }
+    74.01%, 97% { width: 14ch; border-right-color: oklch(0.78 0.13 252); }
     98%, 100% { width: 0; border-right-color: transparent; }
   }
 
@@ -389,7 +402,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
   .pb-block i {
     display: block;
     height: 0.35rem;
-    border-radius: 999px;
+    border-radius: 0;
     background: color-mix(in oklch, var(--color-primary-500) 30%, transparent);
   }
   .pb-block i:nth-of-type(1) { width: 34%; }
@@ -466,7 +479,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
   .cmp-hero.old { background: var(--color-border); }
   .cmp-hero.new { background: color-mix(in oklch, var(--color-primary-500) 26%, transparent); }
   .cmp-rows { display: flex; flex-direction: column; gap: 0.45rem; }
-  .cmp-rows i { height: 0.45rem; border-radius: 999px; background: var(--color-border-strong); }
+  .cmp-rows i { height: 0.45rem; border-radius: 0; background: var(--color-border-strong); }
   .cmp-rows.new i { background: color-mix(in oklch, var(--color-primary-500) 38%, transparent); height: 0.55rem; }
   /* mânerul și decupajul rulează pe aceleași keyframes → rămân sincron */
   .cmp-new { clip-path: inset(0 55% 0 0); }
@@ -539,7 +552,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
   .fcard.back {
     display: grid;
     place-items: center;
-    background: linear-gradient(135deg, oklch(0.33 0.10 155), oklch(0.24 0.07 158));
+    background: linear-gradient(135deg, oklch(0.33 0.14 252), oklch(0.22 0.09 254));
     rotate: 5deg;
     translate: 9% -10%;
   }
@@ -547,7 +560,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
     font-family: var(--font-heading);
     font-weight: 900;
     font-size: 1.9rem;
-    color: oklch(0.97 0.01 155 / 0.92);
+    color: oklch(0.98 0 0 / 0.92);
   }
   .fcard.front {
     display: flex;
@@ -567,8 +580,8 @@ const items = dict.services.items.map((item: any, i: number) => ({
     height: 1.7rem;
     margin-bottom: 0.25rem;
     border-radius: 0.45rem;
-    background: var(--color-primary-600);
-    color: white;
+    background: var(--color-ink);
+    color: var(--color-surface);
     font-family: var(--font-heading);
     font-weight: 900;
     font-size: 0.85rem;
@@ -577,7 +590,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
     display: block;
     width: 52%;
     height: 0.55rem;
-    border-radius: 999px;
+    border-radius: 0;
     background: var(--color-ink);
     opacity: 0.85;
   }
@@ -585,7 +598,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
     display: block;
     width: 68%;
     height: 0.38rem;
-    border-radius: 999px;
+    border-radius: 0;
     background: var(--color-border-strong);
   }
   .fc-line.short { width: 44%; }
@@ -606,7 +619,7 @@ const items = dict.services.items.map((item: any, i: number) => ({
   .pills { display: flex; justify-content: center; gap: 0.4rem; }
   .pill {
     padding: 0.22rem 0.55rem;
-    border-radius: 999px;
+    border-radius: 0;
     border: 1px solid var(--color-border);
     background: var(--color-surface-3);
     font-family: var(--font-mono);
@@ -640,9 +653,9 @@ const items = dict.services.items.map((item: any, i: number) => ({
     box-shadow: var(--shadow-soft);
   }
   .bd-tile.logo {
-    background: var(--color-primary-600);
-    border-color: var(--color-primary-600);
-    color: white;
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-surface);
     font-family: var(--font-heading);
     font-weight: 900;
     font-size: 1.3rem;

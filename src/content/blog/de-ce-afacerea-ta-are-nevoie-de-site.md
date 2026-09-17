@@ -2,7 +2,7 @@
 title: "De ce afacerea ta are nevoie de un site web în 2024"
 description: "Un site profesional nu e un lux, e o necesitate. Află de ce afacerile din Moldova și România care nu au site pierd clienți în fiecare zi."
 date: 2024-05-15
-image: "/images/blog/de-ce-afacerea-ta-are-nevoie-de-site.png"
+image: "/images/blog/de-ce-afacerea-ta-are-nevoie-de-site.webp"
 imageAlt: "De ce afacerea ta are nevoie de site"
 tags: ["Business", "Web Development"]
 draft: false

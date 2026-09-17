@@ -1,0 +1,44 @@
+---
+/**
+ * Banda întunecată de deschidere a unei pagini interioare — aceeași cu cea de
+ * pe paginile de serviciu, extrasă aici ca să nu existe cinci copii.
+ *
+ * Cere `heroOverlay` pe `BaseLayout`: headerul plutește peste bandă, fără
+ * spacer, iar `.under-bar` îi face loc secțiunii sub bară.
+ */
+interface Props {
+  title: string;
+  subtitle?: string;
+  eyebrow?: string;
+}
+
+const { title, subtitle, eyebrow } = Astro.props;
+---
+
+<section class="rails on-dark under-bar relative overflow-hidden">
+  <div class="page-hero-glow" aria-hidden="true"></div>
+  <div class="tech-grid" aria-hidden="true"></div>
+  <div class="container relative">
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h1 class:list={['title-tech', 'title-tech-lg', eyebrow && 'mt-5']}>
+      {title}
+    </h1>
+    {subtitle && (
+      <p class="mt-5 max-w-2xl text-lg text-ink-muted sm:text-xl">{subtitle}</p>
+    )}
+  </div>
+</section>
+
+<style>
+  /* Lumină albă difuză, ca în hero-ul de pe home — nu aure colorate: banda e
+     alb-negru, iar albastrul de accent trăiește pe secțiunile deschise. */
+  .page-hero-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(44rem 24rem at 80% -15%, oklch(1 0 0 / 0.09), transparent 62%),
+      radial-gradient(32rem 20rem at 5% 10%, oklch(1 0 0 / 0.05), transparent 58%);
+  }
+</style>

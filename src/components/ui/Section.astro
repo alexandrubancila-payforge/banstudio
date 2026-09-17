@@ -1,24 +1,112 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import DotField from '@components/ui/DotField.astro';
+import { resolveLocale, getDict, getSiteConfig } from '@/i18n';
 
 interface Props extends HTMLAttributes<'section'> {
-  background?: 'white' | 'muted';
+  /**
+   * `dark` e o bandă neagră intenționată, identică în light și dark mode: dă
+   * ritmul paginii împreună cu hero-ul. Răstoarnă tokenii semantici prin
+   * `.on-dark`, deci tot ce e înăuntru (carduri, titluri, butoane) urmează
+   * singur — vezi global.css.
+   */
+  background?: 'white' | 'muted' | 'dark';
   /** Șinele verticale care încadrează coloana de conținut. */
   rails?: boolean;
+  /** Grila tehnică de 60px — are sens doar pe fundal întunecat. */
+  grid?: boolean;
+  /** Grila de puncte — pentru benzile deschise. */
+  dots?: boolean;
+  /** Arcul luminos care urcă din josul secțiunii — doar pe fundal întunecat. */
+  arc?: boolean;
 }
 
-const { background = 'white', rails = true, class: className, ...rest } = Astro.props;
+const {
+  background = 'white',
+  rails = true,
+  grid = false,
+  dots = false,
+  arc = false,
+  class: className,
+  ...rest
+} = Astro.props;
 
 const backgrounds = {
-  white: '',
+  /* `bg-surface` explicit, nu gol: o secțiune fără fundal e transparentă, deci
+     arată orice se revarsă dintr-un frate (arcul a acoperit exact așa CTA-ul).
+     Culoarea e aceeași cu a `body`, deci nu se schimbă nimic vizual — doar
+     secțiunea devine opacă. */
+  white: 'bg-surface',
   muted: 'bg-surface-2',
+  dark: 'on-dark',
 } as const;
+
+const showGrid = grid && background === 'dark';
+const showArc = arc && background === 'dark';
+// Punctele n-au ce căuta pe negru: acolo textura o dă grila de 60px.
+const showDots = dots && background !== 'dark';
+
+// Semnătura din interiorul cupolei. Textele EXISTĂ deja pe sait — domeniul din
+// configurație și localitatea din dicționar (tradusă în toate trei limbile) —
+// ca să nu apară copy inventat într-un loc decorativ.
+const locale = resolveLocale(Astro.currentLocale);
+const site = getSiteConfig(locale);
+const place = getDict(locale).contact.locationValue;
+const domain = site.url.replace(/^https?:\/\//, '');
+
+// Dungile care cad peste bandă. Valorile sunt împrăștiate intenționat: la
+// aceeași durată și întârziere ar coborî toate odată, ca un metronom.
+// Pozițiile sunt procente din cadrul DINTRE șine, iar 0% și 100% sunt exact
+// liniile — de-aia niciuna nu se apropie de margini: o dungă căzută pe șină
+// arăta ca o linie de cadru colorată greșit, nu ca o dungă.
+const FALL = [
+  { x: '9%', h: '7rem', d: '0s', dur: '3.2s', travel: '30rem' },
+  { x: '24%', h: '4.5rem', d: '1.4s', dur: '4.1s', travel: '24rem' },
+  { x: '41%', h: '9rem', d: '2.6s', dur: '3.6s', travel: '34rem' },
+  { x: '58%', h: '5.5rem', d: '0.7s', dur: '4.6s', travel: '27rem' },
+  { x: '73%', h: '7.5rem', d: '3.1s', dur: '3.9s', travel: '31rem' },
+  { x: '88%', h: '4rem', d: '1.9s', dur: '4.4s', travel: '22rem' },
+];
 ---
 
 <section
-  class:list={['py-section', rails && 'rails', backgrounds[background], className]}
+  class:list={[
+    /* Pe secțiunea cu arc NU punem `py-section`: e utilitar Tailwind, deci
+       dintr-un layer care bate clasa `.has-arc` din @layer components, și
+       padding-ul de jos nu se aplica. `.has-arc` îl pune singură. */
+    !showArc && 'py-section',
+    rails && 'rails',
+    backgrounds[background],
+    showArc && 'has-arc',
+    className,
+  ]}
   {...rest}
 >
+  {showGrid && <div class="tech-grid" aria-hidden="true"></div>}
+  {showDots && <DotField />}
+  {showArc && (
+    <div class="arc-frame">
+      <div class="arc-clip">
+        {FALL.map((f) => (
+          <span
+            class="fall"
+            aria-hidden="true"
+            style={`--x: ${f.x}; --h: ${f.h}; --d: ${f.d}; --dur: ${f.dur}; --travel: ${f.travel};`}
+          ></span>
+        ))}
+        {/* Ordinea contează: haloul larg dedesubt, apoi corpul opac care taie
+            interiorul cercului, apoi haloul apropiat și rama deasupra. */}
+        <div class="arc-halo-wide" aria-hidden="true"></div>
+        <div class="arc-body" aria-hidden="true"></div>
+        <div class="arc-halo" aria-hidden="true"></div>
+        <div class="arc" aria-hidden="true"></div>
+        <p class="arc-label">
+          <span class="arc-domain">{domain}</span>
+          <span class="arc-place">{place}</span>
+        </p>
+      </div>
+    </div>
+  )}
   <div class="container">
     <slot />
   </div>

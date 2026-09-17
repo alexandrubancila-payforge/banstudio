@@ -40,7 +40,7 @@ const { Content } = await render(project);
       <!-- Breadcrumb -->
       <nav class="mb-8 text-sm text-ink-subtle" aria-label="Breadcrumb">
         <a href={homeHref} class="transition-colors hover:text-ink">{dict.breadcrumb.home}</a>
-        <span class="mx-1.5 text-border-strong">/</span>
+        <span class="mx-1.5 text-ink-subtle" aria-hidden="true">/</span>
         <a href={portfolioHref} class="transition-colors hover:text-ink">{dict.breadcrumb.portfolio}</a>
       </nav>
 
