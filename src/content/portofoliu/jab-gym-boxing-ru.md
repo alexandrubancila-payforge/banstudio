@@ -3,7 +3,7 @@ title: "JAB Gym Boxing — Боксёрский клуб"
 description: "Современный сайт для боксёрского клуба с программами тренировок, галереей, абонементами и представлением тренеров."
 client: "JAB Gym Boxing"
 date: 2024-02-01
-image: "/images/portofoliu/jab-gym-boxing.webp"
+image: "/images/portofoliu/jab-gym-boxing.webp?v=ab7c3d4d"
 imageAlt: "Screenshot site JAB Gym Boxing cu pagina principală a clubului de box"
 tags: ["Спорт", "Многостраничный", "Дизайн"]
 url: "https://jabgymboxing.com/"

@@ -3,7 +3,7 @@ title: "WishDrop — Списки подарков, которыми делиш�
 description: "Веб-приложение для списков желаний: создаёшь список, отправляешь ссылку, а близкие резервируют подарки, не портя сюрприз. Собственный проект, full-stack на Cloudflare."
 client: "Собственный проект"
 date: 2026-06-25
-image: "/images/portofoliu/wishdrop.webp"
+image: "/images/portofoliu/wishdrop.webp?v=f7956de0"
 imageAlt: "WishDrop — приложение для списков подарков"
 tags: ["SaaS", "Full-stack", "Cloudflare"]
 url: "https://wishdrop.site/"

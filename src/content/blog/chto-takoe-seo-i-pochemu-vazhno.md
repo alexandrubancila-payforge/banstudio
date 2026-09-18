@@ -2,7 +2,7 @@
 title: "Что такое SEO и почему это важно для вашего бизнеса"
 description: "Базовое руководство по SEO для предпринимателей. Как работает Google, что такое локальное SEO и как бесплатно повысить свою видимость в интернете."
 date: 2024-03-10
-image: "/images/blog/chto-takoe-seo-i-pochemu-vazhno.webp"
+image: "/images/blog/chto-takoe-seo-i-pochemu-vazhno.webp?v=5011dcba"
 imageAlt: "Что такое SEO и почему это важно"
 tags: ["SEO", "Маркетинг"]
 draft: false

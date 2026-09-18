@@ -3,7 +3,7 @@ title: "Жизнь и Мечта — Некоммерческая организ
 description: "Веб-платформа для НКО «Жизнь и Мечта» из Румынии, которая оказывает финансовую поддержку амбициозным детям без ресурсов."
 client: "Asociația Viața și Vis"
 date: 2024-01-01
-image: "/images/portofoliu/viata-si-vis.webp"
+image: "/images/portofoliu/viata-si-vis.webp?v=a4cbc2ba"
 imageAlt: "Screenshot site Viața și Vis cu pagina de proiecte și campanii de donații"
 tags: ["Некоммерческий", "Румыния", "Многостраничный"]
 url: "https://viatasivis.ro/"

@@ -3,7 +3,7 @@ title: "JAB Gym Boxing — Boxing Club"
 description: "A modern website for a boxing club with training programmes, a gallery, memberships and coach profiles."
 client: "JAB Gym Boxing"
 date: 2024-02-01
-image: "/images/portofoliu/jab-gym-boxing.webp"
+image: "/images/portofoliu/jab-gym-boxing.webp?v=ab7c3d4d"
 imageAlt: "Screenshot of the JAB Gym Boxing website showing the boxing club homepage"
 tags: ["Sport", "Multi-page", "Design"]
 url: "https://jabgymboxing.com/"

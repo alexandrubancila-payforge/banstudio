@@ -3,7 +3,7 @@ title: "Templo Motor — Car Service"
 description: "A one-page landing site for a professional car service. Designed in Spanish, with anchored sections."
 client: "Templo Motor"
 date: 2023-09-01
-image: "/images/portofoliu/templo-motor.webp"
+image: "/images/portofoliu/templo-motor.webp?v=440114e9"
 imageAlt: "Screenshot of the Templo Motor website showing the car service page"
 tags: ["Automotive", "Landing page", "Spanish"]
 url: "https://templo-motor.com/"

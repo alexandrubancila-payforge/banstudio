@@ -2,7 +2,7 @@
 title: "How to choose a web developer: a practical guide"
 description: "Freelancer or agency? WordPress or custom code? A complete guide for business owners in Moldova and Romania who want a professional website."
 date: 2024-04-20
-image: "/images/blog/how-to-choose-a-web-developer.webp"
+image: "/images/blog/how-to-choose-a-web-developer.webp?v=2564aca1"
 imageAlt: "How to choose a web developer"
 tags: ["Guide", "Web Development"]
 draft: false

@@ -3,7 +3,7 @@ title: "Templo Motor — Автосервис"
 description: "Одностраничный лендинг для профессионального автосервиса. Дизайн на испанском языке с якорными секциями."
 client: "Templo Motor"
 date: 2023-09-01
-image: "/images/portofoliu/templo-motor.webp"
+image: "/images/portofoliu/templo-motor.webp?v=440114e9"
 imageAlt: "Screenshot site Templo Motor cu pagina de servicii auto"
 tags: ["Авто", "Лендинг", "Испанский"]
 url: "https://templo-motor.com/"

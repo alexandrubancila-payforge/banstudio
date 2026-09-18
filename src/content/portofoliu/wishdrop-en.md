@@ -3,7 +3,7 @@ title: "WishDrop — Shareable gift lists"
 description: "A web app for wish lists: you create a list, share it as a link, and the people close to you reserve gifts without spoiling the surprise. My own project, full-stack on Cloudflare."
 client: "Personal project"
 date: 2026-06-25
-image: "/images/portofoliu/wishdrop.webp"
+image: "/images/portofoliu/wishdrop.webp?v=f7956de0"
 imageAlt: "WishDrop — a shareable gift list app"
 tags: ["SaaS", "Full-stack", "Cloudflare"]
 url: "https://wishdrop.site/"

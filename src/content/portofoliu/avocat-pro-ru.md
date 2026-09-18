@@ -3,7 +3,7 @@ title: "Avocat Pro — Юридические услуги"
 description: "Сайт-визитка для юридической фирмы в Кишинёве, предоставляющей профессиональные юридические консультации и представительство."
 client: "Avocat Pro"
 date: 2023-08-01
-image: "/images/portofoliu/avocat-pro.webp"
+image: "/images/portofoliu/avocat-pro.webp?v=9d888389"
 imageAlt: "Screenshot site Avocat Pro cu pagina de servicii juridice"
 tags: ["Юриспруденция", "Многостраничный", "SEO"]
 url: "https://avocatpro.md/"

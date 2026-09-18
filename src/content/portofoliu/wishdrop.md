@@ -3,7 +3,7 @@ title: "WishDrop — Liste de cadouri partajabile"
 description: "Aplicație web pentru liste de dorințe: creezi o listă, o trimiți printr-un link, iar cei dragi rezervă cadourile fără să strice surpriza. Proiect propriu, full-stack pe Cloudflare."
 client: "Proiect propriu"
 date: 2026-06-25
-image: "/images/portofoliu/wishdrop.webp"
+image: "/images/portofoliu/wishdrop.webp?v=f7956de0"
 imageAlt: "WishDrop — aplicație de liste de cadouri partajabile"
 tags: ["SaaS", "Full-stack", "Cloudflare"]
 url: "https://wishdrop.site/"

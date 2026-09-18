@@ -2,7 +2,7 @@
 title: "What SEO is and why it matters for your business"
 description: "A basic SEO guide for business owners. How Google works, what local SEO is, and how to grow your online visibility for free."
 date: 2024-03-10
-image: "/images/blog/what-is-seo-and-why-it-matters.webp"
+image: "/images/blog/what-is-seo-and-why-it-matters.webp?v=14e6c0d8"
 imageAlt: "What SEO is and why it matters"
 tags: ["SEO", "Marketing"]
 draft: false

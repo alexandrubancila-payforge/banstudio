@@ -3,7 +3,7 @@ title: "KinetoTerra — Physiotherapy Centre"
 description: "A complete website for the KinetoTerra medical rehabilitation centre in Chisinau, with 13+ years of experience."
 client: "KinetoTerra"
 date: 2024-04-01
-image: "/images/portofoliu/kinetoterra.webp"
+image: "/images/portofoliu/kinetoterra.webp?v=dc2aac2a"
 imageAlt: "Screenshot of the KinetoTerra website showing the physiotherapy services page"
 tags: ["Medical", "Multi-page", "SEO"]
 url: "https://kinetoterra.md/"

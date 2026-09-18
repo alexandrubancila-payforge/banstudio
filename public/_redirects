@@ -1,0 +1,5 @@
+# Proiect scos din portofoliu (domeniul clientului nu mai există) — păstrăm
+# URL-urile deja indexate, redirecționate 301 către indexul portofoliului.
+/portofoliu/mobidomark        /portofoliu        301
+/ru/portfolio/mobidomark-ru   /ru/portfolio      301
+/en/portfolio/mobidomark-en   /en/portfolio      301

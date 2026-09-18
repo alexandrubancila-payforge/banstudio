@@ -3,7 +3,7 @@ title: "Viața și Vis — Organizație Nonprofit"
 description: "Platformă web pentru ONG-ul Viața și Vis din România, care sprijină financiar copiii cu ambiție dar fără resurse."
 client: "Asociația Viața și Vis"
 date: 2024-01-01
-image: "/images/portofoliu/viata-si-vis.webp"
+image: "/images/portofoliu/viata-si-vis.webp?v=a4cbc2ba"
 imageAlt: "Screenshot site Viața și Vis cu pagina de proiecte și campanii de donații"
 tags: ["Nonprofit", "România", "Multi-page"]
 url: "https://viatasivis.ro/"

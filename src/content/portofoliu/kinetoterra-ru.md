@@ -3,7 +3,7 @@ title: "KinetoTerra — Центр кинезитерапии"
 description: "Полноценный сайт для центра медицинской реабилитации KinetoTerra в Кишинёве с более чем 13-летним опытом."
 client: "KinetoTerra"
 date: 2024-04-01
-image: "/images/portofoliu/kinetoterra.webp"
+image: "/images/portofoliu/kinetoterra.webp?v=dc2aac2a"
 imageAlt: "Screenshot site KinetoTerra cu pagina de servicii de kinetoterapie"
 tags: ["Медицина", "Многостраничный", "SEO"]
 url: "https://kinetoterra.md/"

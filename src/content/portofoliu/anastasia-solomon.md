@@ -3,7 +3,7 @@ title: "Anastasia Solomon — Psiholog & Psihoterapeut"
 description: "Site de tip carte de vizită pentru un cabinet de psihologie din Chișinău — prezentare, diplome, ședințe și programare online. Design cald, bilingv (RO/RU)."
 client: "Anastasia Solomon"
 date: 2026-07-01
-image: "/images/portofoliu/anastasia-solomon.webp"
+image: "/images/portofoliu/anastasia-solomon.webp?v=921ded70"
 imageAlt: "Screenshot site Anastasia Solomon cu pagina principală a cabinetului de psihologie"
 tags: ["Carte de vizită", "Psihologie", "Multilingv"]
 url: "https://anastasiasolomon.md/"

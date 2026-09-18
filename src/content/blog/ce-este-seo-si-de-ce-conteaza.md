@@ -2,7 +2,7 @@
 title: "Ce este SEO și de ce contează pentru afacerea ta"
 description: "Ghid de bază SEO pentru antreprenori. Cum funcționează Google, ce e SEO local și cum îți poți crește vizibilitatea online gratuit."
 date: 2024-03-10
-image: "/images/blog/ce-este-seo-si-de-ce-conteaza.webp"
+image: "/images/blog/ce-este-seo-si-de-ce-conteaza.webp?v=2f6e75bb"
 imageAlt: "Ce este SEO și de ce contează"
 tags: ["SEO", "Marketing"]
 draft: false

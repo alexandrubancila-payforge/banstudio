@@ -2,7 +2,7 @@
 title: "How much does a website cost in Moldova? 2026 pricing guide"
 description: "How much a website costs in Moldova in 2026 — real price ranges per type of site, what drives the cost up or down, and why “cheap” usually ends up expensive. A clear guide, no surprises."
 date: 2026-06-30
-image: "/images/blog/how-much-does-a-website-cost-in-moldova.webp"
+image: "/images/blog/how-much-does-a-website-cost-in-moldova.webp?v=0b352d45"
 imageAlt: "How much a website costs in Moldova — pricing guide"
 tags: ["Pricing", "Web Development"]
 draft: false

@@ -3,7 +3,7 @@ title: "Jurist Chisinau — Law Office"
 description: "A website for a law office in Chisinau presenting its legal services and online consultancy."
 client: "JuristPro Chisinau"
 date: 2023-10-01
-image: "/images/portofoliu/jurist-chisinau.webp"
+image: "/images/portofoliu/jurist-chisinau.webp?v=18be782a"
 imageAlt: "Screenshot of the Jurist Chisinau website showing the legal services page"
 tags: ["Legal", "Multi-page", "Local SEO"]
 url: "https://juristchisinau.md/"

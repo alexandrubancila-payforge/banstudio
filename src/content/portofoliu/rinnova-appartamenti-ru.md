@@ -3,7 +3,7 @@ title: "Rinnova Appartamenti — Ремонт квартир в Вероне"
 description: "Сайт-визитка для компании по ремонту интерьеров из Вероны, Италия. Элегантный дизайн на итальянском языке."
 client: "Rinnova Appartamenti"
 date: 2024-03-01
-image: "/images/portofoliu/rinnova-appartamenti.webp"
+image: "/images/portofoliu/rinnova-appartamenti.webp?v=acd47b10"
 imageAlt: "Screenshot site Rinnova Appartamenti cu pagina de proiecte de renovare"
 tags: ["Международный", "Строительство", "Итальянский"]
 url: "https://rinnovaappartamenti.com"

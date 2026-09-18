@@ -3,7 +3,7 @@ title: "Pasageri & Colete — International Transport"
 description: "A landing page for a passenger and parcel transport service on the Moldova — Germany — Netherlands — Belgium route."
 client: "Pasageri-Colete"
 date: 2023-12-01
-image: "/images/portofoliu/pasageri-colete.webp"
+image: "/images/portofoliu/pasageri-colete.webp?v=c527104b"
 imageAlt: "Screenshot of the Pasageri Colete website showing the international transport routes"
 tags: ["Transport", "Landing page", "International"]
 url: "https://pasageri-colete.com/"

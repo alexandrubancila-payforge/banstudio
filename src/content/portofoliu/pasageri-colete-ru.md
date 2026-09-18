@@ -3,7 +3,7 @@ title: "Пассажиры и посылки — Международные пе
 description: "Лендинг для сервиса пассажирских и грузовых перевозок по маршруту Молдова — Германия — Голландия — Бельгия."
 client: "Pasageri-Colete"
 date: 2023-12-01
-image: "/images/portofoliu/pasageri-colete.webp"
+image: "/images/portofoliu/pasageri-colete.webp?v=c527104b"
 imageAlt: "Screenshot site Pasageri Colete cu rutele de transport internațional"
 tags: ["Транспорт", "Лендинг", "Международный"]
 url: "https://pasageri-colete.com/"

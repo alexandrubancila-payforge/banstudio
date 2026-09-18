@@ -3,7 +3,7 @@ title: "Юрист Кишинёв — Адвокатский кабинет"
 description: "Сайт для адвокатского кабинета в Кишинёве с презентацией юридических услуг и онлайн-консультацией."
 client: "JuristPro Chișinău"
 date: 2023-10-01
-image: "/images/portofoliu/jurist-chisinau.webp"
+image: "/images/portofoliu/jurist-chisinau.webp?v=18be782a"
 imageAlt: "Screenshot site Jurist Chișinău cu pagina de servicii juridice"
 tags: ["Юриспруденция", "Многостраничный", "Локальное SEO"]
 url: "https://juristchisinau.md/"

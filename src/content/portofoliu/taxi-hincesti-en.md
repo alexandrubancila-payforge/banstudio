@@ -3,7 +3,7 @@ title: "Taxi Hincesti — Taxi Service"
 description: "A landing page for the taxi service in Hincesti, with fast booking and local plus intercity coverage."
 client: "Taxi Hincesti"
 date: 2024-05-01
-image: "/images/portofoliu/taxi-hincesti.webp"
+image: "/images/portofoliu/taxi-hincesti.webp?v=4f0ffb16"
 imageAlt: "Screenshot of the Taxi Hincesti website showing the taxi booking form"
 tags: ["Transport", "Landing page", "Local SEO"]
 url: "https://taxihincesti.md/"

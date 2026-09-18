@@ -2,7 +2,7 @@
 title: "Site în cod sau WordPress? Cum alegi pentru afacerea ta"
 description: "Site scris în cod sau WordPress? Comparație clară pe viteză, SEO, cost și administrare — și cum alegi varianta potrivită pentru afacerea ta din Moldova."
 date: 2026-06-30
-image: "/images/blog/site-in-cod-sau-wordpress.webp"
+image: "/images/blog/site-in-cod-sau-wordpress.webp?v=c8fec987"
 imageAlt: "Site în cod vs WordPress — comparație"
 tags: ["WordPress", "Web Development"]
 draft: false

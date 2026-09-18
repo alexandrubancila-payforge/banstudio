@@ -2,7 +2,7 @@
 title: "Cât costă un site web în Moldova? Ghid de prețuri 2026"
 description: "Cât costă un site web în Moldova în 2026 — prețuri reale pe tipuri de site, ce influențează costul și de ce „ieftin” iese de obicei scump. Ghid clar, fără surprize."
 date: 2026-06-30
-image: "/images/blog/cat-costa-un-site-web-in-moldova.webp"
+image: "/images/blog/cat-costa-un-site-web-in-moldova.webp?v=ce7faa52"
 imageAlt: "Cât costă un site web în Moldova — ghid de prețuri"
 tags: ["Prețuri", "Web Development"]
 draft: false

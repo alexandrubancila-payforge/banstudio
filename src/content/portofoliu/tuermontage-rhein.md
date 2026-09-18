@@ -3,7 +3,7 @@ title: "L.F. TürMontage Rhein — Carte de vizită"
 description: "Carte de vizită pentru o firmă de montaj uși din Germania. Design elegant auriu-maro, cu logo, date de contact și cod QR pentru acces rapid."
 client: "L.F. TürMontage Rhein"
 date: 2026-06-01
-image: "/images/portofoliu/tuermontage-rhein.webp"
+image: "/images/portofoliu/tuermontage-rhein.webp?v=e919d38e"
 imageAlt: "Carte de vizită L.F. TürMontage Rhein cu logo, date de contact și cod QR"
 tags: ["Carte de vizită", "Design print", "Germania"]
 featured: false

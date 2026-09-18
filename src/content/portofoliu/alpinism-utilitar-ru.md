@@ -3,7 +3,7 @@ title: "Промышленный альпинизм — Высотные раб�
 description: "Лендинг для профессиональных услуг промышленного альпинизма и высотных работ в Румынии и Молдове."
 client: "Alpinism Utilitar"
 date: 2023-06-01
-image: "/images/portofoliu/alpinism-utilitar.webp"
+image: "/images/portofoliu/alpinism-utilitar.webp?v=84e083b1"
 imageAlt: "Screenshot site Alpinism Utilitar cu prezentarea serviciilor de lucrări la înălțime"
 tags: ["Услуги", "Лендинг", "Ниша"]
 url: "https://alpinism-utilitar.pro/"

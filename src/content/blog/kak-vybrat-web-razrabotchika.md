@@ -2,7 +2,7 @@
 title: "Как выбрать веб-разработчика: практическое руководство"
 description: "Фрилансер или агентство? WordPress или кастомный код? Полное руководство для предпринимателей из Молдовы и Румынии, которым нужен профессиональный сайт."
 date: 2024-04-20
-image: "/images/blog/kak-vybrat-web-razrabotchika.webp"
+image: "/images/blog/kak-vybrat-web-razrabotchika.webp?v=30c0bc7c"
 imageAlt: "Как выбрать веб-разработчика"
 tags: ["Руководство", "Веб-разработка"]
 draft: false

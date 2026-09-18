@@ -3,7 +3,7 @@ title: "Такси Хынчешты — Служба такси"
 description: "Лендинг для службы такси в Хынчештах с быстрым заказом и покрытием по городу и межгороду."
 client: "Taxi Hîncești"
 date: 2024-05-01
-image: "/images/portofoliu/taxi-hincesti.webp"
+image: "/images/portofoliu/taxi-hincesti.webp?v=4f0ffb16"
 imageAlt: "Screenshot site Taxi Hîncești cu formularul de comandă taxi"
 tags: ["Транспорт", "Лендинг", "Локальное SEO"]
 url: "https://taxihincesti.md/"

@@ -2,7 +2,7 @@
 title: "Why your business needs a website in 2024"
 description: "A professional website is not a luxury, it is a necessity. Here is why businesses in Moldova and Romania without a website lose clients every single day."
 date: 2024-05-15
-image: "/images/blog/why-your-business-needs-a-website.webp"
+image: "/images/blog/why-your-business-needs-a-website.webp?v=68916587"
 imageAlt: "Why your business needs a website"
 tags: ["Business", "Web Development"]
 draft: false

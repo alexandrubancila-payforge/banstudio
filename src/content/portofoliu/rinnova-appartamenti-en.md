@@ -3,7 +3,7 @@ title: "Rinnova Appartamenti — Renovations in Verona"
 description: "A presentation website for an interior renovation company in Verona, Italy. An elegant design, entirely in Italian."
 client: "Rinnova Appartamenti"
 date: 2024-03-01
-image: "/images/portofoliu/rinnova-appartamenti.webp"
+image: "/images/portofoliu/rinnova-appartamenti.webp?v=acd47b10"
 imageAlt: "Screenshot of the Rinnova Appartamenti website showing the renovation projects page"
 tags: ["International", "Construction", "Italian"]
 url: "https://rinnovaappartamenti.com"

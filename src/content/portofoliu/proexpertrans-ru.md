@@ -3,7 +3,7 @@ title: "ProExperTrans — Транспорт и логистика"
 description: "Мультиязычный сайт для транспортно-логистической компании с услугами самосвала, крана и экскаватора."
 client: "ProExperTrans"
 date: 2023-07-01
-image: "/images/portofoliu/proexpertrans.webp"
+image: "/images/portofoliu/proexpertrans.webp?v=d5f0ea80"
 imageAlt: "Screenshot site ProExperTrans cu pagina de servicii de transport"
 tags: ["Транспорт", "Мультиязычный", "Многостраничный"]
 url: "https://proexpertrans.md"

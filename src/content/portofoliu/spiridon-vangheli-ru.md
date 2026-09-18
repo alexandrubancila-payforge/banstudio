@@ -3,7 +3,7 @@ title: "Спиридон Вангели — Литературная платф�
 description: "Цифровая платформа, посвящённая литературному наследию писателя Спиридона Вангели, с интернет-магазином книг."
 client: "Fundația Spiridon Vangheli"
 date: 2024-06-01
-image: "/images/portofoliu/spiridon-vangheli.webp"
+image: "/images/portofoliu/spiridon-vangheli.webp?v=2a85658d"
 imageAlt: "Screenshot platformă Spiridon Vangheli cu pagina principală și magazinul de cărți"
 tags: ["Электронная коммерция", "Культура", "Многостраничный"]
 url: "https://spiridon-vangheli.md/"

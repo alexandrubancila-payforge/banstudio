@@ -3,7 +3,7 @@ title: "ProExperTrans — Transport and Logistics"
 description: "A multilingual website for a freight transport and logistics company, offering tipper, crane and excavation services."
 client: "ProExperTrans"
 date: 2023-07-01
-image: "/images/portofoliu/proexpertrans.webp"
+image: "/images/portofoliu/proexpertrans.webp?v=d5f0ea80"
 imageAlt: "Screenshot of the ProExperTrans website showing the transport services page"
 tags: ["Transport", "Multilingual", "Multi-page"]
 url: "https://proexpertrans.md"

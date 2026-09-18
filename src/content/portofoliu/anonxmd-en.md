@@ -3,7 +3,7 @@ title: "AnonXmd — ECU Tuning & Remapping"
 description: "A professional website for automotive ECU tuning services — remapping, DPF/EGR off, Stage remap. Modern dark design, multilingual (EN/RO/RU)."
 client: "AnonXmd"
 date: 2026-05-15
-image: "/images/portofoliu/anonxmd.webp"
+image: "/images/portofoliu/anonxmd.webp?v=d0f17eb8"
 imageAlt: "Screenshot of the AnonXmd website showing the ECU tuning services homepage"
 tags: ["Automotive", "Multi-page", "Multilingual"]
 url: "https://anonxmd.com/"

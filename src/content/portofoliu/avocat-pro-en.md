@@ -3,7 +3,7 @@ title: "Avocat Pro — Legal Services"
 description: "A presentation website for a professional legal services firm in Chisinau, offering consultancy and representation."
 client: "Avocat Pro"
 date: 2023-08-01
-image: "/images/portofoliu/avocat-pro.webp"
+image: "/images/portofoliu/avocat-pro.webp?v=9d888389"
 imageAlt: "Screenshot of the Avocat Pro website showing the legal services page"
 tags: ["Legal", "Multi-page", "SEO"]
 url: "https://avocatpro.md/"

@@ -3,7 +3,7 @@ title: "Anastasia Solomon — Психолог и психотерапевт"
 description: "Сайт-визитка для психологического кабинета в Кишинёве — презентация, дипломы, сессии и онлайн-запись. Тёплый дизайн, двуязычный (RO/RU)."
 client: "Anastasia Solomon"
 date: 2026-07-01
-image: "/images/portofoliu/anastasia-solomon.webp"
+image: "/images/portofoliu/anastasia-solomon.webp?v=921ded70"
 imageAlt: "Screenshot site Anastasia Solomon cu pagina principală a cabinetului de psihologie"
 tags: ["Сайт-визитка", "Психология", "Мультиязычный"]
 url: "https://anastasiasolomon.md/"

@@ -3,7 +3,7 @@ title: "Spiridon Vangheli — Literary Platform"
 description: "A digital platform dedicated to the literary legacy of the writer Spiridon Vangheli, with an online bookshop."
 client: "Spiridon Vangheli Foundation"
 date: 2024-06-01
-image: "/images/portofoliu/spiridon-vangheli.webp"
+image: "/images/portofoliu/spiridon-vangheli.webp?v=2a85658d"
 imageAlt: "Screenshot of the Spiridon Vangheli platform showing the homepage and the bookshop"
 tags: ["E-commerce", "Culture", "Multi-page"]
 url: "https://spiridon-vangheli.md/"

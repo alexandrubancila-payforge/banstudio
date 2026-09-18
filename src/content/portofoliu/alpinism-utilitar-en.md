@@ -3,7 +3,7 @@ title: "Alpinism Utilitar — Work at Height"
 description: "A landing page for professional rope access and work-at-height services in Romania and Moldova."
 client: "Alpinism Utilitar"
 date: 2023-06-01
-image: "/images/portofoliu/alpinism-utilitar.webp"
+image: "/images/portofoliu/alpinism-utilitar.webp?v=84e083b1"
 imageAlt: "Screenshot of the Alpinism Utilitar website presenting work-at-height services"
 tags: ["Services", "Landing page", "Niche"]
 url: "https://alpinism-utilitar.pro/"

@@ -3,7 +3,7 @@ title: "L.F. TürMontage Rhein — Визитка"
 description: "Визитная карточка для компании по монтажу дверей из Германии. Элегантный золотисто-коричневый дизайн с логотипом, контактами и QR-кодом."
 client: "L.F. TürMontage Rhein"
 date: 2026-06-01
-image: "/images/portofoliu/tuermontage-rhein.webp"
+image: "/images/portofoliu/tuermontage-rhein.webp?v=e919d38e"
 imageAlt: "Визитка L.F. TürMontage Rhein с логотипом, контактами и QR-кодом"
 tags: ["Визитка", "Печатный дизайн", "Германия"]
 featured: false

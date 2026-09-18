@@ -2,14 +2,14 @@
 title: "PageSpeed 100/100 — how I got a perfect score on banstudio.dev"
 description: "I scored 100 on Performance, Accessibility, Best Practices and SEO in Google PageSpeed Insights. Here is exactly what I did and why it matters for your business."
 date: 2026-05-28
-image: "/images/blog/pagespeed-100-how-i-got-a-perfect-score.webp"
+image: "/images/blog/pagespeed-100-how-i-got-a-perfect-score.webp?v=e787d46e"
 imageAlt: "PageSpeed 100 / 100"
 tags: ["Performance", "SEO", "Web Development"]
 draft: false
 lang: en
 ---
 
-![PageSpeed Insights — a score of 100 across all four categories for banstudio.dev](/images/blog/pagespeed-100-banstudio.png)
+![PageSpeed Insights — a score of 100 across all four categories for banstudio.dev](/images/blog/pagespeed-100-banstudio.png?v=39ddd353)
 
 ## A perfect score: 100 / 100 / 100 / 100
 

@@ -3,7 +3,7 @@ title: "L.F. TürMontage Rhein — Business card"
 description: "A business card for a door installation company in Germany. An elegant gold-and-brown design with the logo, contact details and a QR code for instant access."
 client: "L.F. TürMontage Rhein"
 date: 2026-06-01
-image: "/images/portofoliu/tuermontage-rhein.webp"
+image: "/images/portofoliu/tuermontage-rhein.webp?v=e919d38e"
 imageAlt: "L.F. TürMontage Rhein business card with logo, contact details and QR code"
 tags: ["Business card", "Print design", "Germany"]
 featured: false

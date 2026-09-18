@@ -3,7 +3,7 @@ title: "Viața și Vis — Nonprofit Organisation"
 description: "A web platform for the Romanian NGO Viața și Vis, which provides financial support to ambitious children without the means to pursue it."
 client: "Viața și Vis Association"
 date: 2024-01-01
-image: "/images/portofoliu/viata-si-vis.webp"
+image: "/images/portofoliu/viata-si-vis.webp?v=a4cbc2ba"
 imageAlt: "Screenshot of the Viața și Vis website showing the projects and donation campaigns page"
 tags: ["Nonprofit", "Romania", "Multi-page"]
 url: "https://viatasivis.ro/"

@@ -2,7 +2,7 @@
 title: "Cum să alegi un web developer: ghid practic"
 description: "Freelancer sau agenție? WordPress sau cod custom? Ghid complet pentru antreprenori din Moldova și România care vor un site profesional."
 date: 2024-04-20
-image: "/images/blog/cum-sa-alegi-web-developer.webp"
+image: "/images/blog/cum-sa-alegi-web-developer.webp?v=101c89ca"
 imageAlt: "Cum să alegi un web developer"
 tags: ["Ghid", "Web Development"]
 draft: false

@@ -3,7 +3,7 @@ title: "Anastasia Solomon — Psychologist & Psychotherapist"
 description: "A business-card website for a psychology practice in Chisinau — profile, qualifications, sessions and online booking. Warm design, bilingual (RO/RU)."
 client: "Anastasia Solomon"
 date: 2026-07-01
-image: "/images/portofoliu/anastasia-solomon.webp"
+image: "/images/portofoliu/anastasia-solomon.webp?v=921ded70"
 imageAlt: "Screenshot of the Anastasia Solomon website showing the psychology practice homepage"
 tags: ["Business card site", "Psychology", "Multilingual"]
 url: "https://anastasiasolomon.md/"

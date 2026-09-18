@@ -2,7 +2,7 @@
 title: "Зачем вашему бизнесу нужен сайт в 2024 году"
 description: "Профессиональный сайт — это не роскошь, а необходимость. Узнайте, почему бизнес в Молдове и Румынии без сайта ежедневно теряет клиентов."
 date: 2024-05-15
-image: "/images/blog/zachem-biznesu-sayt.webp"
+image: "/images/blog/zachem-biznesu-sayt.webp?v=0567f6a9"
 imageAlt: "Зачем бизнесу нужен сайт"
 tags: ["Бизнес", "Веб-разработка"]
 draft: false

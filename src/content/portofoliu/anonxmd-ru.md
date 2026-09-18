@@ -3,7 +3,7 @@ title: "AnonXmd — Чип-тюнинг и ремапинг ECU"
 description: "Профессиональный сайт для услуг чип-тюнинга и ремапинга ECU автомобилей. Современный тёмный дизайн, мультиязычность (EN/RO/RU)."
 client: "AnonXmd"
 date: 2026-05-15
-image: "/images/portofoliu/anonxmd.webp"
+image: "/images/portofoliu/anonxmd.webp?v=d0f17eb8"
 imageAlt: "Screenshot site AnonXmd cu pagina principala de servicii ECU tuning"
 tags: ["Авто", "Multi-page", "Мультиязычный"]
 url: "https://anonxmd.com/"
