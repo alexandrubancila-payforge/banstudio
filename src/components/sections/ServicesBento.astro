@@ -193,10 +193,9 @@ const items = dict.services.items.map((item: any, i: number) => ({
     border-radius: var(--radius-sm);
     border: 1px solid var(--color-border);
     background: var(--color-surface-3);
-    box-shadow: var(--shadow-soft);
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s;
   }
-  .bento-card:hover { border-color: var(--color-primary-400); box-shadow: var(--shadow-medium); }
+  .bento-card:hover { border-color: var(--color-primary-400); }
 
   /* Colțurile stau stinse și se aprind la hover — pe cinci carduri deodată,
      la intensitate plină, deveneau un desen de brad. */
