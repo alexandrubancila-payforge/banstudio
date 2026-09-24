@@ -98,7 +98,7 @@ const shown = featured.slice(0, 4);
        mijlocul paginii, adică text tăiat pe jumătate. Din stânga-sus intră
        logo-ul, meniul și începutul hero-ului: partea după care recunoști saitul. */
     object-position: left top;
-    transition: scale 0.7s var(--ease-out-expo);
+    transition: scale 1.1s var(--ease-out-expo);
   }
   .fp-card:hover img { scale: 1.04; }
 
@@ -156,7 +156,7 @@ const shown = featured.slice(0, 4);
       min-width: 0;
       aspect-ratio: auto;
       height: clamp(21rem, 30vw, 28rem);
-      transition: flex-grow 0.55s var(--ease-out-expo);
+      transition: flex-grow 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .fp:hover .fp-card { flex-grow: 0.82; }
     .fp .fp-card:hover { flex-grow: 2.5; }
