@@ -2,6 +2,8 @@
 import ServiceLayout from '@layouts/ServiceLayout.astro';
 import Section from '@components/ui/Section.astro';
 import Card from '@components/ui/Card.astro';
+import WebDevIntro from '@components/sections/WebDevIntro.astro';
+import WebDevMore from '@components/sections/WebDevMore.astro';
 ---
 
 <ServiceLayout
@@ -10,6 +12,8 @@ import Card from '@components/ui/Card.astro';
   description="Создание сайтов в Кишинёве: профессиональные веб-сайты в коде, уникальный дизайн, отличная производительность и SEO-оптимизация. Запросите предложение."
   badge="Основная услуга"
 >
+  <WebDevIntro />
+
   <Section>
     <h2 class="title-tech">Что вы получаете</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -83,4 +87,6 @@ import Card from '@components/ui/Card.astro';
       ))}
     </div>
   </Section>
+
+  <WebDevMore />
 </ServiceLayout>
