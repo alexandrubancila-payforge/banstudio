@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import { getHreflangLinks } from './src/i18n/routes.ts';
 
 export default defineConfig({
   site: 'https://banstudio.dev',
@@ -16,10 +17,16 @@ export default defineConfig({
   },
 
   integrations: [
+    // Fără opțiunea `i18n` a pluginului: ea potrivește variantele doar după căi
+    // identice (/blog ↔ /en/blog), iar slug-urile noastre sunt traduse
+    // (/portofoliu ↔ /en/portfolio, articole, studii de caz). Legăturile alternate
+    // vin din aceeași hartă ca hreflang-ul din <head>, deci cele două coincid mereu.
     sitemap({
-      i18n: {
-        defaultLocale: 'ro',
-        locales: { ro: 'ro-MD', ru: 'ru-RU', en: 'en' },
+      filter: (page) => !/\/404$/.test(new URL(page).pathname),
+      serialize(item) {
+        const path = new URL(item.url).pathname;
+        item.links = getHreflangLinks(path).map(({ hreflang, href }) => ({ lang: hreflang, url: href }));
+        return item;
       },
     }),
   ],
