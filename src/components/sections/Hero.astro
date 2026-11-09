@@ -87,7 +87,13 @@ const STACK = [siAstro, siTypescript, siTailwindcss, siNextdotjs, siWordpress, s
               titlului: vizual nu se randează (sunt `display: block`), dar fără el
               cititoarele de ecran pot lipi ultimul cuvânt de primul din linia
               următoare — „…web careaduc rezultate". */}
-          <span class="hero-line">{title}</span>{' '}
+          {/* Cuvintele cu cratimă („site-uri") nu se rup la cratimă: în coloana
+              îngustă a hero-ului ar rămâne „SITE-" singur la capăt de rând. */}
+          <span class="hero-line">
+            {title.split(/(\S+-\S+)/).map((part, i) =>
+              i % 2 ? <span class="whitespace-nowrap">{part}</span> : part
+            )}
+          </span>{' '}
           <span class="hero-line hero-line-mute">{titleHighlight}</span>
         </h1>
 
