@@ -17,7 +17,7 @@ The figures below are for a site that is **built professionally** (unique design
 
 - **Landing page (single page)** — €150–€400. Ideal for a campaign, a single service or an event: hero, benefits, contact form.
 - **Presentation website (4–8 pages)** — €400–€1,200. The most requested one: home, services, about, portfolio, contact, blog. Right for most small businesses.
-- **Manageable WordPress website** — €500–€1,500. For when you want to edit the content yourself. With a custom theme, not a slow page builder.
+- **[Manageable WordPress website](/en/services/wordpress-website)** — €500–€1,500. For when you want to edit the content yourself. With a custom theme, not a slow page builder.
 - **Online shop (e-commerce)** — €1,000–€4,000+. Catalogue, cart, payments, shipping, accounts. The cost grows with the number of features.
 
 > These are professional production prices. You will also find €50 offers — and the section below is precisely about those.
@@ -52,6 +52,6 @@ The result: a few months later you pay a second time to have it rebuilt. A good 
 
 ## In short
 
-For a small business in Moldova, a professional presentation website usually falls between **€400 and €1,200**, depending on design, pages and features. What matters is not being the cheapest, but **bringing you clients** and not costing you twice.
+For a small business in Moldova, a [professional presentation website](/en/services/web-development) usually falls between **€400 and €1,200**, depending on design, pages and features. What matters is not being the cheapest, but **bringing you clients** and not costing you twice.
 
 Want an exact price for your project? [Tell me what you need](/en/contact) and I will send you a tailored quote within 24 hours — no strings attached.

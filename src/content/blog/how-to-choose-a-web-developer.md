@@ -21,13 +21,13 @@ For most small and medium businesses in Moldova and Romania, an experienced free
 
 ## WordPress or custom code?
 
-**WordPress** is a good call when:
+**[WordPress](/en/services/wordpress-website)** is a good call when:
 - You need to update content frequently
 - The budget is limited
 - You want an active blog
 - You need standard functionality (a form, a gallery, a portfolio)
 
-**Custom code** (Astro, Next.js, HTML/CSS) is better when:
+**[Custom code](/en/services/web-development)** (Astro, Next.js, HTML/CSS) is better when:
 - Performance is critical (PageSpeed 95+)
 - You want a 100% unique design
 - Security is a priority
@@ -53,3 +53,5 @@ Watch out for:
 ## Conclusion
 
 Pick someone who understands not just the code, but your business too. A good web developer doesn't just build a website — they help you reach your business goals.
+
+If you want to see how I work, read about [website development](/en/services/web-development) or [get in touch](/en/contact) about your project.

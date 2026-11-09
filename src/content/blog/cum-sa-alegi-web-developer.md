@@ -21,13 +21,13 @@ Pentru majoritatea afacerilor mici și medii din Moldova și România, un freela
 
 ## WordPress sau cod custom?
 
-**WordPress** e bun când:
+**[WordPress](/servicii/site-wordpress)** e bun când:
 - Ai nevoie să actualizezi conținut frecvent
 - Bugetul e limitat
 - Vrei un blog activ
 - Ai nevoie de funcționalități standard (formular, galerie, portofoliu)
 
-**Cod custom** (Astro, Next.js, HTML/CSS) e mai bun când:
+**[Cod custom](/servicii/creare-site-web)** (Astro, Next.js, HTML/CSS) e mai bun când:
 - Performanța e critică (PageSpeed 95+)
 - Vrei design 100% unic
 - Securitatea e prioritară
@@ -53,3 +53,5 @@ Fii atent la:
 ## Concluzie
 
 Alege pe cineva care înțelege nu doar codul, ci și afacerea ta. Un web developer bun nu doar construiește un site — te ajută să-ți atingi obiectivele de business.
+
+Dacă vrei să vezi cum lucrez, citește despre [crearea de site-uri web](/servicii/creare-site-web) sau [scrie-mi](/contact) despre proiectul tău.

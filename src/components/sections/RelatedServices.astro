@@ -1,0 +1,29 @@
+---
+/**
+ * „Servicii relevante" la finalul articolelor de blog: legături interne spre
+ * paginile de servicii, cu aceleași carduri ca pe pagina de servicii.
+ */
+import ServiceCard from '@components/ui/ServiceCard.astro';
+import { resolveLocale, getDict, route } from '@/i18n';
+import { SERVICE_KEYS, type ServiceKey } from '@lib/portfolio-seo';
+
+interface Props {
+  services?: ServiceKey[];
+}
+
+const { services = ['services.web', 'services.wordpress', 'services.redesign'] } = Astro.props;
+const locale = resolveLocale(Astro.currentLocale);
+const dict = getDict(locale);
+// dict.services.items e în aceeași ordine ca SERVICE_KEYS (vezi src/lib/service-icons.ts).
+const cards = services.map((key) => {
+  const item = dict.services.items[SERVICE_KEYS.indexOf(key)];
+  return { title: item.title, description: item.description, href: route(key, locale) };
+});
+---
+
+<section class="mt-16" aria-labelledby="related-services">
+  <h2 id="related-services" class="font-heading text-xl font-bold text-ink">{dict.services.related}</h2>
+  <div class="mt-6 grid gap-4 sm:grid-cols-3">
+    {cards.map((c) => <ServiceCard title={c.title} description={c.description} href={c.href} />)}
+  </div>
+</section>

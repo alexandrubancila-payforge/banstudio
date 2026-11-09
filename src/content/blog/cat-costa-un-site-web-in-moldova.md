@@ -17,7 +17,7 @@ Cifrele de mai jos sunt pentru un site **construit profesional** (design unic, c
 
 - **Landing page (o pagină)** — €150–€400. Ideal pentru o campanie, un serviciu sau un eveniment: hero, beneficii, formular de contact.
 - **Site de prezentare (4–8 pagini)** — €400–€1.200. Cel mai cerut: acasă, servicii, despre, portofoliu, contact, blog. Pentru majoritatea afacerilor mici.
-- **Site WordPress administrabil** — €500–€1.500. Când vrei să-ți editezi singur conținutul. Cu temă custom, nu page builder lent.
+- **[Site WordPress administrabil](/servicii/site-wordpress)** — €500–€1.500. Când vrei să-ți editezi singur conținutul. Cu temă custom, nu page builder lent.
 - **Magazin online (e-commerce)** — €1.000–€4.000+. Catalog, coș, plăți, livrare, conturi. Costul crește cu numărul de funcții.
 
 > Acestea sunt prețuri de producție profesională. Vei găsi și oferte de €50 — și exact despre ele e secțiunea de mai jos.
@@ -52,6 +52,6 @@ Rezultatul: peste câteva luni plătești a doua oară ca să-l refaci. Un site 
 
 ## Pe scurt
 
-Pentru o afacere mică din Moldova, un site de prezentare profesional se încadrează de obicei între **€400 și €1.200**, în funcție de design, pagini și funcții. Important nu e să fie cel mai ieftin, ci să-ți **aducă clienți** și să nu te coste de două ori.
+Pentru o afacere mică din Moldova, un [site de prezentare profesional](/servicii/creare-site-web) se încadrează de obicei între **€400 și €1.200**, în funcție de design, pagini și funcții. Important nu e să fie cel mai ieftin, ci să-ți **aducă clienți** și să nu te coste de două ori.
 
 Vrei un preț exact pentru proiectul tău? [Spune-mi ce ai nevoie](/contact) și îți trimit o ofertă personalizată în 24 de ore — fără obligații.
