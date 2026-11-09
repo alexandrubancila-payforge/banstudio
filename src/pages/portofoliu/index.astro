@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import SchemaSectionBreadcrumb from '@components/seo/SchemaSectionBreadcrumb.astro';
 import Section from '@components/ui/Section.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import SectionHeading from '@components/ui/SectionHeading.astro';
@@ -36,6 +37,7 @@ const groups = CATEGORIES
   description="Proiecte web realizate pentru clienți din Moldova și România. Site-uri rapide, moderne și optimizate SEO."
   heroOverlay
 >
+  <SchemaSectionBreadcrumb section="portfolio" />
   <PageHero
     title="Portofoliu"
     subtitle="Fiecare proiect e o poveste. Iată câteva dintre cele mai recente lucrări."

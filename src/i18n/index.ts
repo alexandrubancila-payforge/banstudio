@@ -51,7 +51,7 @@ export function getNavLinks(locale: Locale) {
 export function getSiteConfig(locale: Locale) {
   const configs = {
     ro: {
-      name: 'Ban Studio',
+      name: 'BanStudio',
       url: 'https://banstudio.dev',
       description: 'Creare site-uri web profesionale in Chisinau si Bucuresti. Design modern, performanta excelenta, SEO optimizat.',
       author: 'Alexandru Bancila',
@@ -59,7 +59,7 @@ export function getSiteConfig(locale: Locale) {
       language: 'ro',
     },
     ru: {
-      name: 'Ban Studio',
+      name: 'BanStudio',
       url: 'https://banstudio.dev',
       description: 'Создание профессиональных веб-сайтов в Кишиневе и Бухаресте. Современный дизайн, отличная производительность, SEO оптимизация.',
       author: 'Александр Банчилэ',
@@ -67,7 +67,7 @@ export function getSiteConfig(locale: Locale) {
       language: 'ru',
     },
     en: {
-      name: 'Ban Studio',
+      name: 'BanStudio',
       url: 'https://banstudio.dev',
       description: 'Professional website development in Chisinau and Bucharest. Modern design, excellent performance, SEO optimised.',
       author: 'Alexandru Bancila',

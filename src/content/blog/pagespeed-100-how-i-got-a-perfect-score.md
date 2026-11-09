@@ -13,7 +13,7 @@ lang: en
 
 ## A perfect score: 100 / 100 / 100 / 100
 
-On 28 May 2026, the Ban Studio website earned a **perfect score in Google PageSpeed Insights** — 100 in all four categories, on mobile as well as desktop:
+On 28 May 2026, the BanStudio website earned a **perfect score in Google PageSpeed Insights** — 100 in all four categories, on mobile as well as desktop:
 
 - **Performance: 100** — the site loads almost instantly
 - **Accessibility: 100** — accessible to every user

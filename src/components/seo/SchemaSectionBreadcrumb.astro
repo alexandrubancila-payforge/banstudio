@@ -1,0 +1,18 @@
+---
+/** BreadcrumbList pentru indexul unei secțiuni: Acasă → Servicii / Portofoliu / Blog. */
+import SchemaBreadcrumb from './SchemaBreadcrumb.astro';
+import { resolveLocale, getDict, route } from '@/i18n';
+
+interface Props {
+  section: 'services' | 'portfolio' | 'blog';
+}
+
+const locale = resolveLocale(Astro.currentLocale);
+const dict = getDict(locale);
+const { section } = Astro.props;
+---
+
+<SchemaBreadcrumb items={[
+  { name: dict.breadcrumb.home, href: route('home', locale) },
+  { name: dict.breadcrumb[section], href: route(section, locale) },
+]} />

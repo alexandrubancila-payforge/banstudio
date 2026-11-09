@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import SchemaSectionBreadcrumb from '@components/seo/SchemaSectionBreadcrumb.astro';
 import Section from '@components/ui/Section.astro';
 import CtaSplit from '@components/sections/CtaSplit.astro';
 import { route } from '@/i18n';
@@ -54,10 +55,11 @@ const groups = [
 ---
 
 <BaseLayout
-  title="Web services — website development, WordPress, redesign | Ban Studio"
+  title="Web services — website development, WordPress, redesign | BanStudio"
   description="Professional web development and design services in Chisinau: website creation, WordPress, redesign, business cards, brand identity. Quote within 24 hours."
   heroOverlay
 >
+  <SchemaSectionBreadcrumb section="services" />
   <!-- Hero -->
   <section class="rails on-dark relative overflow-hidden">
     <div class="hero-bg" aria-hidden="true"></div>

@@ -1,14 +1,24 @@
 ---
-import { SITE } from '@lib/constants';
-import { resolveLocale, getSiteConfig } from '@/i18n';
+/**
+ * ProfessionalService + WebSite pentru homepage (/, /ru, /en).
+ * Aceeași entitate (același @id și url) pe toate trei; doar descrierea e în
+ * limba paginii.
+ * Email, telefon și profiluri = cele din footer (SOCIAL_LINKS / CONTACT din
+ * src/lib/constants.ts), ca schema să nu se desincronizeze de pagină.
+ */
+import { SITE, SOCIAL_LINKS, CONTACT } from '@lib/constants';
+import { resolveLocale, getSiteConfig, LOCALES, HREFLANG } from '@/i18n';
 
-const site = getSiteConfig(resolveLocale(Astro.currentLocale));
+const locale = resolveLocale(Astro.currentLocale);
+const site = getSiteConfig(locale);
+const businessId = `${SITE.url}/#business`;
 
-const schema = {
+const business = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
+  '@id': businessId,
   name: SITE.name,
-  url: SITE.url,
+  url: `${SITE.url}/`,
   description: site.description,
   founder: {
     '@type': 'Person',
@@ -21,6 +31,7 @@ const schema = {
     addressCountry: 'MD',
   },
   areaServed: [
+    { '@type': 'City', name: 'Chișinău' },
     { '@type': 'Country', name: 'Moldova' },
     { '@type': 'Country', name: 'Romania' },
   ],
@@ -33,15 +44,22 @@ const schema = {
     'Brand Identity',
   ],
   priceRange: '€€',
-  email: 'sasa.bancila@gmail.com',
-  telephone: '+37369456448',
-  sameAs: [
-    'https://github.com/Bancila07',
-    'https://www.linkedin.com/in/b%C4%83ncil%C4%83-alexandru-5247b6223/',
-  ],
+  email: CONTACT.email,
+  telephone: CONTACT.phone,
+  sameAs: [SOCIAL_LINKS.linkedin, SOCIAL_LINKS.github, SOCIAL_LINKS.telegram],
   image: `${SITE.url}/og-default.png`,
-  inLanguage: site.language,
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE.url}/#website`,
+  name: SITE.name,
+  url: `${SITE.url}/`,
+  inLanguage: LOCALES.map((l) => HREFLANG[l]),
+  publisher: { '@id': businessId },
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<script type="application/ld+json" set:html={JSON.stringify(business)} />
+<script type="application/ld+json" set:html={JSON.stringify(website)} />

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import SchemaSectionBreadcrumb from '@components/seo/SchemaSectionBreadcrumb.astro';
 import Section from '@components/ui/Section.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import SectionHeading from '@components/ui/SectionHeading.astro';
@@ -39,6 +40,7 @@ const groups = CATEGORIES
   description={dict.portfolio.pageSubtitle}
   heroOverlay
 >
+  <SchemaSectionBreadcrumb section="portfolio" />
   <PageHero
     title={dict.portfolio.title}
     subtitle={dict.portfolio.pageSubtitle}

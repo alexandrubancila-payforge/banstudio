@@ -1,5 +1,5 @@
 export const SITE = {
-  name: 'Ban Studio',
+  name: 'BanStudio',
   url: 'https://banstudio.dev',
   description:
     'Creare site-uri web profesionale în Chișinău și București. Design modern, performanță excelentă, SEO optimizat.',
@@ -18,5 +18,12 @@ export const NAV_LINKS = [
 export const SOCIAL_LINKS = {
   github: 'https://github.com/Bancila07',
   linkedin: 'https://www.linkedin.com/in/b%C4%83ncil%C4%83-alexandru-5247b6223/',
+  telegram: 'https://t.me/bancilaalexandru',
   instagram: '',
+} as const;
+
+/** Datele de contact din footer — folosite și în JSON-LD. */
+export const CONTACT = {
+  email: 'sasa.bancila@gmail.com',
+  phone: '+37369456448',
 } as const;

@@ -24,7 +24,7 @@ const localeLinks = getLocaleLinks(currentPath, locale);
 const contactHref = route('contact', locale);
 const homeHref = route('home', locale);
 const themeLabel = dict.header.themeToggle;
-const site_name = 'Ban Studio';
+const site_name = 'BanStudio';
 ---
 
 <header
@@ -270,8 +270,9 @@ const site_name = 'Ban Studio';
   /* ---- LOGOTIP ----
      Fără pătratul cu „B": doar numele, scris legat, în Syncopate uppercase —
      aceeași voce ca titlul din hero, deci marca și titlul vorbesc la fel.
-     `aria-label` pe link păstrează numele corect („Ban Studio") pentru
-     cititoarele de ecran, care altfel ar silabisi logotipul ca un singur cuvânt. */
+     `aria-label` pe link dă numele în forma lui scrisă, „BanStudio" (CamelCase),
+     pe care cititoarele de ecran o citesc ca nume, nu literă cu literă ca pe
+     majusculele vizuale ale logotipului. */
   .logotype {
     font-family: var(--font-display);
     font-weight: 700;

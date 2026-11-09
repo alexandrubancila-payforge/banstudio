@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import SchemaSectionBreadcrumb from '@components/seo/SchemaSectionBreadcrumb.astro';
 import Section from '@components/ui/Section.astro';
 import SectionHeading from '@components/ui/SectionHeading.astro';
 import ServiceCard from '@components/ui/ServiceCard.astro';
@@ -15,6 +16,7 @@ const services = dict.services.items;
   description={dict.services.pageSubtitle}
   heroOverlay
 >
+  <SchemaSectionBreadcrumb section="services" />
   <Section background="dark" grid class="under-bar !py-0">
     <SectionHeading
       title={dict.services.sectionTitle}

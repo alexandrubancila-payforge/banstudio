@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import SchemaSectionBreadcrumb from '@components/seo/SchemaSectionBreadcrumb.astro';
 import Section from '@components/ui/Section.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import SectionHeading from '@components/ui/SectionHeading.astro';
@@ -20,6 +21,7 @@ const posts = (await getCollection('blog'))
   description="Статьи о веб-разработке, SEO, дизайне и цифровом маркетинге. Практические советы для бизнеса в Молдове и Румынии."
   heroOverlay
 >
+  <SchemaSectionBreadcrumb section="blog" />
   <PageHero
     title={dict.breadcrumb.blog}
     subtitle="Практические статьи о том, как развивать бизнес онлайн. SEO, веб-разработка, дизайн и цифровой маркетинг."

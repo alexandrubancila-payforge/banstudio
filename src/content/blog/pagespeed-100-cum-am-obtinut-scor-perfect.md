@@ -13,7 +13,7 @@ lang: ro
 
 ## Scor perfect: 100 / 100 / 100 / 100
 
-Pe 28 mai 2026, site-ul Ban Studio a obținut **scor perfect pe Google PageSpeed Insights** — 100 la toate cele 4 categorii, atât pe mobil cât și pe desktop:
+Pe 28 mai 2026, site-ul BanStudio a obținut **scor perfect pe Google PageSpeed Insights** — 100 la toate cele 4 categorii, atât pe mobil cât și pe desktop:
 
 - **Performance: 100** — site-ul se încarcă aproape instant
 - **Accessibility: 100** — accesibil pentru toți utilizatorii
