@@ -10,6 +10,9 @@ url: "https://kinetoterra.md/"
 featured: true
 order: 2
 lang: ru
+service: services.web
+business: "центра кинезитерапии"
+location: "в Кишинёве"
 ---
 
 ## О проекте

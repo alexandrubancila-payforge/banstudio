@@ -10,6 +10,8 @@ url: "https://wishdrop.site/"
 featured: true
 order: 0
 lang: ro
+service: services.web
+business: "liste de cadouri"
 ---
 
 ## Despre proiect

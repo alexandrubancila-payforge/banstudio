@@ -10,6 +10,9 @@ url: "https://viatasivis.ro/"
 featured: false
 order: 5
 lang: ro
+service: services.web
+business: "ONG"
+location: "în România"
 ---
 
 ## Despre proiect

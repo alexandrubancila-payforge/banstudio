@@ -10,6 +10,9 @@ url: "https://kinetoterra.md/"
 featured: true
 order: 2
 lang: ro
+service: services.web
+business: "centru de kinetoterapie"
+location: "în Chișinău"
 ---
 
 ## Despre proiect

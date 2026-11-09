@@ -10,6 +10,9 @@ url: "https://rinnovaappartamenti.com"
 featured: true
 order: 4
 lang: ro
+service: services.web
+business: "renovări apartamente"
+location: "în Verona"
 ---
 
 ## Despre proiect

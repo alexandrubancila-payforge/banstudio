@@ -10,6 +10,9 @@ url: "https://avocatpro.md/"
 featured: false
 order: 13
 lang: ru
+service: services.web
+business: "юридической фирмы"
+location: "в Кишинёве"
 ---
 
 ## О проекте

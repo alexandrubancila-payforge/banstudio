@@ -10,6 +10,9 @@ url: "https://anastasiasolomon.md/"
 featured: true
 order: 5
 lang: ro
+service: services.web
+business: "psiholog"
+location: "în Chișinău"
 ---
 
 ## Despre proiect

@@ -10,6 +10,9 @@ url: "https://darhi.ro/"
 featured: true
 order: 0
 lang: ro
+service: services.web
+business: "firmă de servicii"
+location: "în România"
 ---
 
 ## Despre proiect

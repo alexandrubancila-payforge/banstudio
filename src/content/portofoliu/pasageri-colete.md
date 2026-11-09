@@ -10,6 +10,8 @@ url: "https://pasageri-colete.com/"
 featured: false
 order: 15
 lang: ro
+service: services.web
+business: "transport pasageri și colete"
 ---
 
 ## Despre proiect

@@ -10,6 +10,8 @@ url: "https://wishdrop.site/"
 featured: true
 order: 0
 lang: ru
+service: services.web
+business: "списков подарков"
 ---
 
 ## О проекте

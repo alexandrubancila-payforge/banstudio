@@ -10,6 +10,8 @@ url: "https://proexpertrans.md"
 featured: false
 order: 14
 lang: en
+service: services.web
+business: "a logistics company"
 ---
 
 ## About the project

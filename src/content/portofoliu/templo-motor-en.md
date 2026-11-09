@@ -10,6 +10,8 @@ url: "https://templo-motor.com/"
 featured: false
 order: 11
 lang: en
+service: services.web
+business: "a car repair shop"
 ---
 
 ## About the project

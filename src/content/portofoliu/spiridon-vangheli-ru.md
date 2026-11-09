@@ -10,6 +10,10 @@ url: "https://spiridon-vangheli.md/"
 featured: true
 order: 1
 lang: ru
+service: services.web
+business: "культурных проектов"
+location: "в Молдове"
+relatedServices: ["services.brand"]
 ---
 
 ## О проекте

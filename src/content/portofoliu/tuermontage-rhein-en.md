@@ -10,6 +10,9 @@ featured: false
 order: 9
 category: carti-vizita
 lang: en
+service: services.cards
+business: "a door installation firm"
+location: "in Germany"
 ---
 
 ## About the project

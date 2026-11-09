@@ -10,6 +10,8 @@ url: "https://wishdrop.site/"
 featured: true
 order: 0
 lang: en
+service: services.web
+business: "shareable gift lists"
 ---
 
 ## About the project

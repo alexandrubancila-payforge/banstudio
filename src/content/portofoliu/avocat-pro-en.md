@@ -10,6 +10,9 @@ url: "https://avocatpro.md/"
 featured: false
 order: 13
 lang: en
+service: services.web
+business: "a law firm"
+location: "in Chisinau"
 ---
 
 ## About the project

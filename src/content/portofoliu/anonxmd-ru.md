@@ -10,6 +10,8 @@ url: "https://anonxmd.com/"
 featured: true
 order: 7
 lang: ru
+service: services.web
+business: "чип-тюнинга ECU"
 ---
 
 ## О проекте

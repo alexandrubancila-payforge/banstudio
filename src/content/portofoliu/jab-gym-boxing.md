@@ -10,6 +10,8 @@ url: "https://jabgymboxing.com/"
 featured: true
 order: 3
 lang: ro
+service: services.web
+business: "club de box"
 ---
 
 ## Despre proiect

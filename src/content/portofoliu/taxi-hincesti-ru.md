@@ -10,6 +10,9 @@ url: "https://taxihincesti.md/"
 featured: false
 order: 10
 lang: ru
+service: services.web
+business: "службы такси"
+location: "в Хынчештах"
 ---
 
 ## О проекте

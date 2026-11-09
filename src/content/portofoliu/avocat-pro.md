@@ -10,6 +10,9 @@ url: "https://avocatpro.md/"
 featured: false
 order: 13
 lang: ro
+service: services.web
+business: "servicii juridice"
+location: "în Chișinău"
 ---
 
 ## Despre proiect

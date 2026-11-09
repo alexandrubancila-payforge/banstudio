@@ -10,6 +10,8 @@ url: "https://jabgymboxing.com/"
 featured: true
 order: 3
 lang: ru
+service: services.web
+business: "боксёрского клуба"
 ---
 
 ## О проекте

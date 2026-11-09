@@ -10,6 +10,8 @@ url: "https://proexpertrans.md"
 featured: false
 order: 14
 lang: ru
+service: services.web
+business: "транспортной компании"
 ---
 
 ## О проекте

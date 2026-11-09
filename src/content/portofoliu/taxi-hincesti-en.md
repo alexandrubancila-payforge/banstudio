@@ -10,6 +10,9 @@ url: "https://taxihincesti.md/"
 featured: false
 order: 10
 lang: en
+service: services.web
+business: "a taxi service"
+location: "in Hincesti"
 ---
 
 ## About the project

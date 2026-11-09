@@ -10,6 +10,8 @@ url: "https://pasageri-colete.com/"
 featured: false
 order: 15
 lang: ru
+service: services.web
+business: "перевозчика пассажиров и посылок"
 ---
 
 ## О проекте

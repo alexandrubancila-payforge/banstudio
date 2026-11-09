@@ -10,6 +10,9 @@ url: "https://alpinism-utilitar.pro/"
 featured: false
 order: 16
 lang: en
+service: services.web
+business: "a rope access company"
+location: "in Romania and Moldova"
 ---
 
 ## About the project

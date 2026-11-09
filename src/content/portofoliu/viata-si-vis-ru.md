@@ -10,6 +10,9 @@ url: "https://viatasivis.ro/"
 featured: false
 order: 5
 lang: ru
+service: services.web
+business: "НКО"
+location: "в Румынии"
 ---
 
 ## О проекте

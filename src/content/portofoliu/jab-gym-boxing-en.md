@@ -10,6 +10,8 @@ url: "https://jabgymboxing.com/"
 featured: true
 order: 3
 lang: en
+service: services.web
+business: "a boxing club"
 ---
 
 ## About the project

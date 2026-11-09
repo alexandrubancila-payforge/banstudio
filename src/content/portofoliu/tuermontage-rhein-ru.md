@@ -10,6 +10,9 @@ featured: false
 order: 9
 category: carti-vizita
 lang: ru
+service: services.cards
+business: "фирмы по монтажу дверей"
+location: "в Германии"
 ---
 
 ## О проекте

@@ -10,6 +10,9 @@ url: "https://kinetoterra.md/"
 featured: true
 order: 2
 lang: en
+service: services.web
+business: "a physiotherapy centre"
+location: "in Chisinau"
 ---
 
 ## About the project

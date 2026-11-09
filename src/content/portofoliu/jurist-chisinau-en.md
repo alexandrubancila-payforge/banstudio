@@ -10,6 +10,9 @@ url: "https://juristchisinau.md/"
 featured: false
 order: 12
 lang: en
+service: services.web
+business: "a law office"
+location: "in Chisinau"
 ---
 
 ## About the project

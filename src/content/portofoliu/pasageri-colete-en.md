@@ -10,6 +10,8 @@ url: "https://pasageri-colete.com/"
 featured: false
 order: 15
 lang: en
+service: services.web
+business: "a passenger & parcel carrier"
 ---
 
 ## About the project

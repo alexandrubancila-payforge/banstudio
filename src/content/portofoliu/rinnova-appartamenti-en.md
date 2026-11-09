@@ -10,6 +10,9 @@ url: "https://rinnovaappartamenti.com"
 featured: true
 order: 4
 lang: en
+service: services.web
+business: "a renovation company"
+location: "in Verona"
 ---
 
 ## About the project

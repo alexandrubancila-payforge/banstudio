@@ -10,6 +10,8 @@ url: "https://templo-motor.com/"
 featured: false
 order: 11
 lang: ru
+service: services.web
+business: "автосервиса"
 ---
 
 ## О проекте

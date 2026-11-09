@@ -10,6 +10,9 @@ url: "https://anastasiasolomon.md/"
 featured: true
 order: 5
 lang: ru
+service: services.web
+business: "психолога"
+location: "в Кишинёве"
 ---
 
 ## О проекте

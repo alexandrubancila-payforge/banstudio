@@ -10,6 +10,9 @@ url: "https://rinnovaappartamenti.com"
 featured: true
 order: 4
 lang: ru
+service: services.web
+business: "ремонтной компании"
+location: "в Вероне"
 ---
 
 ## О проекте

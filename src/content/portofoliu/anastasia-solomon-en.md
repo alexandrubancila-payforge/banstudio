@@ -10,6 +10,9 @@ url: "https://anastasiasolomon.md/"
 featured: true
 order: 5
 lang: en
+service: services.web
+business: "a psychologist"
+location: "in Chisinau"
 ---
 
 ## About the project

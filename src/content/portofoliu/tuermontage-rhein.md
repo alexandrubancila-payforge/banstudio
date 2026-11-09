@@ -10,6 +10,9 @@ featured: false
 order: 9
 category: carti-vizita
 lang: ro
+service: services.cards
+business: "firmă de montaj uși"
+location: "în Germania"
 ---
 
 ## Despre proiect

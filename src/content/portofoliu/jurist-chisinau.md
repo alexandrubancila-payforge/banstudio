@@ -10,6 +10,9 @@ url: "https://juristchisinau.md/"
 featured: false
 order: 12
 lang: ro
+service: services.web
+business: "cabinet de avocatură"
+location: "în Chișinău"
 ---
 
 ## Despre proiect

@@ -10,6 +10,8 @@ url: "https://templo-motor.com/"
 featured: false
 order: 11
 lang: ro
+service: services.web
+business: "service auto"
 ---
 
 ## Despre proiect

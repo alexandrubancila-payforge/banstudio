@@ -10,6 +10,9 @@ url: "https://alpinism-utilitar.pro/"
 featured: false
 order: 16
 lang: ru
+service: services.web
+business: "промышленного альпинизма"
+location: "в Румынии и Молдове"
 ---
 
 ## О проекте

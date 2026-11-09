@@ -10,6 +10,9 @@ url: "https://juristchisinau.md/"
 featured: false
 order: 12
 lang: ru
+service: services.web
+business: "адвокатского кабинета"
+location: "в Кишинёве"
 ---
 
 ## О проекте

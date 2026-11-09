@@ -10,6 +10,9 @@ url: "https://alpinism-utilitar.pro/"
 featured: false
 order: 16
 lang: ro
+service: services.web
+business: "alpinism utilitar"
+location: "în România și Moldova"
 ---
 
 ## Despre proiect

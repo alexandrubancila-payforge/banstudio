@@ -10,6 +10,9 @@ url: "https://taxihincesti.md/"
 featured: false
 order: 10
 lang: ro
+service: services.web
+business: "taxi"
+location: "în Hîncești"
 ---
 
 ## Despre proiect

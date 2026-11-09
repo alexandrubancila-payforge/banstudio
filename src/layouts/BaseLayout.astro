@@ -12,6 +12,8 @@ interface Props {
   noindex?: boolean;
   /** Prima secțiune e hero-ul întunecat → headerul plutește peste ea. */
   heroOverlay?: boolean;
+  /** `title` e deja complet (ex. generat cu limită de lungime) → nu mai adăugăm " | BanStudio". */
+  rawTitle?: boolean;
 }
 
 const locale = resolveLocale(Astro.currentLocale);
@@ -23,10 +25,15 @@ const {
   ogImage = '/og-default.png',
   noindex = false,
   heroOverlay = false,
+  rawTitle = false,
 } = Astro.props;
 
 const canonicalURL = new URL(routePath(Astro.url), site.url);
-const fullTitle = title === 'Home' ? `${site.name} — ${description}` : `${title} | ${site.name}`;
+const suffix = ` | ${site.name}`;
+const fullTitle =
+  title === 'Home' ? `${site.name} — ${description}`
+  : rawTitle || title.endsWith(suffix) ? title
+  : `${title}${suffix}`;
 
 // Hreflang — din harta centrală (src/i18n/routes.ts), aceeași pe care o folosește
 // și sitemap-ul. Doar traduceri care există cu adevărat + x-default spre română;

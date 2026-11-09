@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { SERVICE_KEYS } from './lib/portfolio-seo';
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
@@ -31,6 +32,11 @@ const portofoliu = defineCollection({
     order: z.number().default(0),
     category: z.enum(['web', 'carti-vizita']).default('web'),
     lang: z.enum(['ro', 'ru', 'en']).default('ro'),
+    // SEO — vezi src/lib/portfolio-seo.ts pentru cum devin title / description / H1.
+    service: z.enum(SERVICE_KEYS),
+    business: z.string(),
+    location: z.string().optional(),
+    relatedServices: z.array(z.enum(SERVICE_KEYS)).default([]),
   }),
 });
 

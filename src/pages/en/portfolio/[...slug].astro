@@ -4,6 +4,7 @@ import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
 import SchemaBreadcrumb from '@components/seo/SchemaBreadcrumb.astro';
 import { getCollection, render } from 'astro:content';
+import { portfolioSeo } from '@lib/portfolio-seo';
 import { getDict, route } from '@/i18n';
 
 const dict = getDict('en');
@@ -23,12 +24,14 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+const seo = portfolioSeo(project.data, 'en');
 ---
 
 <BaseLayout
-  title={project.data.title}
-  description={project.data.description}
+  title={seo.title}
+  description={seo.description}
   ogImage={project.data.image}
+  rawTitle
 >
   <SchemaBreadcrumb items={[
     { name: dict.breadcrumb.home, href: homeHref },
@@ -52,7 +55,7 @@ const { Content } = await render(project);
           ))}
         </div>
         <h1 class="mt-4 text-display font-heading font-black text-ink">
-          {project.data.title}
+          {seo.h1}
         </h1>
         <p class="mt-4 text-lg text-ink-muted sm:text-xl">
           {project.data.description}
@@ -66,6 +69,14 @@ const { Content } = await render(project);
             <div>
               <dt class="text-xs font-semibold uppercase tracking-wider text-ink-subtle">{dict.portfolio.year}</dt>
               <dd class="mt-1 font-semibold text-ink">{project.data.date.getFullYear()}</dd>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wider text-ink-subtle">{dict.portfolio.service}</dt>
+              {seo.services.map((s) => (
+                <dd class="mt-1 font-semibold text-ink">
+                  <a href={s.href} class="underline decoration-border underline-offset-4 transition-colors hover:text-primary-600 hover:decoration-current">{s.label}</a>
+                </dd>
+              ))}
             </div>
           </dl>
           {project.data.url && (

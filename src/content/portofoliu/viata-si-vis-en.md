@@ -10,6 +10,9 @@ url: "https://viatasivis.ro/"
 featured: false
 order: 5
 lang: en
+service: services.web
+business: "a nonprofit"
+location: "in Romania"
 ---
 
 ## About the project
