@@ -30,7 +30,7 @@ const portofoliu = defineCollection({
     url: z.string().url().optional(),
     featured: z.boolean().default(false),
     order: z.number().default(0),
-    category: z.enum(['web', 'carti-vizita']).default('web'),
+    category: z.enum(['web', 'carduri-qr', 'carti-vizita']).default('web'),
     lang: z.enum(['ro', 'ru', 'en']).default('ro'),
     // SEO — vezi src/lib/portfolio-seo.ts pentru cum devin title / description / H1.
     service: z.enum(SERVICE_KEYS),
